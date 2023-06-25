@@ -1,0 +1,14 @@
+Quest to Divinity:
+
+Modern Dark Fantasy game set in an unnamed city/a world very similar to ours with unique city names
+
+classes:
+
+
+
+
+races:
+vampire
+cambion
+nephilim
+human
