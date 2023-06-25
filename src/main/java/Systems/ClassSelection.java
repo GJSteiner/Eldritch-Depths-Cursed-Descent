@@ -1,5 +1,10 @@
 package Systems;
 
+import Abilities.Acolyte.AcolyteAbilities.BloodBolt;
+import Abilities.Acolyte.AcolyteAbilities.BloodRain;
+import Abilities.Acolyte.AcolyteAbilities.Drain;
+import Abilities.Acolyte.AcolyteAbilities.VoidBolt;
+import Abilities.Acolyte.AcolytePassives.Reserves;
 import Characters.Player;
 
 import java.util.Scanner;
@@ -82,8 +87,13 @@ public class ClassSelection {
         // Create an Acolyte player instance
         Player player = new Player(name, level, maxHealth, health, magic, strength, defense, alive);
 
-        player.addAbility();
+        player.addAbility(new VoidBolt());
+        player.addAbility(new BloodBolt());
+        player.addAbility(new Drain());
+        player.addAbility(new BloodRain());
+        player.addPassive(new Reserves());
 
+        return player;
     }
 
     private static Player createCrusaderPlayer(String name) {

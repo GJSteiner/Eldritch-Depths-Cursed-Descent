@@ -6,12 +6,14 @@ public abstract class Ability {
     private String description;
     private int levelRequirement;
     private double damage;
+    private boolean aoe;
 
-    public Ability(String name, String description, int levelRequirement, double damage) {
+    public Ability(String name, String description, int levelRequirement, double damage, boolean aoe) {
         this.name = name;
         this.description = description;
         this.levelRequirement = levelRequirement;
         this.damage = damage;
+        this.aoe = aoe;
     }
 
     public String getName() {
@@ -26,7 +28,7 @@ public abstract class Ability {
         return levelRequirement;
     }
 
-    public double getDamage(Character character) {
+    public double getDamage() {
         return damage;
     }
 
@@ -44,6 +46,14 @@ public abstract class Ability {
 
     public void setDamage(double damage) {
         this.damage = damage;
+    }
+
+    public boolean isAoe() {
+        return aoe;
+    }
+
+    public void setAoe(boolean aoe) {
+        this.aoe = aoe;
     }
 
     protected abstract void executeAbility(Character caster, Character target);

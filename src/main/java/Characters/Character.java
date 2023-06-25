@@ -1,6 +1,8 @@
 package Characters;
 
 import Abilities.Ability;
+import Abilities.Passive;
+import Items.Item;
 
 import java.util.List;
 
@@ -13,6 +15,10 @@ public abstract class Character {
     int strength = 1;
     int defense = 1;
     boolean alive = true;
+
+    protected List<Item> inventory;
+    protected List<Ability> abilities;
+    protected List<Passive> passives;
 
     public Character(){
 
@@ -115,5 +121,27 @@ public abstract class Character {
             health = maxHealth;
         }
     }
-    public abstract List<Ability> getAbilities();
+    public List<Ability> getAbilities() {
+        return abilities;
+    }
+
+    public List<Item> getInventory() {
+        return inventory;
+    }
+
+    public List<Passive> getPassives() {
+        return passives;
+    }
+
+    public void addAbility(Ability ability){
+        abilities.add(ability);
+    }
+
+    public void addItemToInventory(Item item) {
+        inventory.add(item);
+    }
+
+    public void addPassive(Passive passive){
+        passives.add(passive);
+    }
 }

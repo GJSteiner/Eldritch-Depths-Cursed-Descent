@@ -1,0 +1,8 @@
+Things to consider:
+
+Reconsider passives. Perhaps they could function like aoe abilities,
+where they use a tag to check if it's a passive, and thus should be excluded
+from ability choices in combat, rather than being separated into its own thing.
+On the other hand, it does make for somewhat nicer organization to have passives
+separated into their own category.
+

@@ -3,6 +3,8 @@ package Systems;
 import Characters.Character;
 import Abilities.Ability;
 
+import java.util.Scanner;
+
 public class Combat {
     public static void startCombat(Character player, Character enemy) {
         System.out.println("A battle begins between " + player.getName() + " and " + enemy.getName() + "!");
@@ -34,6 +36,7 @@ public class Combat {
 
     private static void displayCharacterStats(Character character) {
         System.out.println(character.getName() + ":");
+        System.out.println("Level: " + character.getLevel());
         System.out.println("Health: " + character.getHealth());
         System.out.println("Magic: " + character.getMagic());
         System.out.println("Strength: " + character.getStrength());
@@ -44,14 +47,51 @@ public class Combat {
     private static void selectAndUseAbility(Character player, Character target) {
         // Display available abilities to the user
         System.out.println("Available abilities:");
-        for (Ability ability : user.getAbilities()) {
+        for (Ability ability : player.getAbilities()) {
             System.out.println(ability.getName() + " - " + ability.getDescription());
         }
 
-        // Select an ability to use
-        Ability selectedAbility = // Get the selected ability from user input or other means
+        // Prompt the player to select an ability
+        System.out.print("Select an ability by entering its number: ");
+        int abilityIndex = getPlayerChoice(player.getAbilities().size());
 
-                // Use the selected ability
-                selectedAbility.useAbility(user, target);
+        // Use the selected ability on the target
+        Ability selectedAbility = player.getAbilities().get(abilityIndex);
+
+        if(selectedAbility.isAoe()){
+
+            for(Character enemy : CharacterManager.getEnemies()){
+                selectedAbility.useAbility(player, enemy);
+            }
+            System.out.println("All enemies were hit by " + selectedAbility.getName());
+        }
+        else{
+            selectedAbility.useAbility(player, target);
+        }
+
+        System.out.println();
     }
+
+    private static int getPlayerChoice(int maxChoice) {
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+
+        while (true) {
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+                if (choice < 1 || choice > maxChoice) {
+                    System.out.print("Invalid choice. Please enter a number between 1 and " + maxChoice + ": ");
+                } else {
+                    break;
+                }
+            } catch (NumberFormatException e) {
+                System.out.print("Invalid input. Please enter a number between 1 and " + maxChoice + ": ");
+            }
+        }
+
+        return choice - 1;
+    }
+
+
+
 }

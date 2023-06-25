@@ -1,6 +1,7 @@
 package Characters;
 
 import Abilities.Ability;
+import Abilities.Passive;
 import Items.Item;
 
 import java.util.ArrayList;
@@ -8,34 +9,18 @@ import java.util.List;
 
 public class Player extends Character {
 
-    private List<Item> inventory;
-    private List<Ability> abilities;
-
     public Player(String name, int level, int maxHealth, int health, int magic, int strength, int defense, boolean alive) {
         super(name, level, maxHealth, health, magic, strength, defense, alive);
         this.abilities = new ArrayList<>();
         this.inventory = new ArrayList<>();
+        this.passives = new ArrayList<>();
     }
 
-    public Player(String name, int level, int maxHealth, int health, int magic, int strength, int defense, boolean alive, List<Item> inventory, List<Ability> abilities) {
+    public Player(String name, int level, int maxHealth, int health, int magic, int strength, int defense, boolean alive, List<Item> inventory, List<Ability> abilities, List<Passive> passives) {
         super(name, level, maxHealth, health, magic, strength, defense, alive);
-        this.inventory = inventory;
         this.abilities = abilities;
-    }
-
-//    public Player(String name, int health, int magic, int strength, int defense, boolean alive) {
-//        this.name = name;
-//        this.health = health;
-//        this.magic = magic;
-//        this.strength = strength;
-//        this.defense = defense;
-//        this.inventory = new ArrayList<>();
-//        this.abilities = new ArrayList<>();
-//        this.alive = alive;
-//    }
-
-    public List<Item> getInventory() {
-        return inventory;
+        this.inventory = inventory;
+        this.passives = passives;
     }
 
     @Override
@@ -55,12 +40,6 @@ public class Player extends Character {
         return null;
     }
 
-    public void addItemToInventory(Item item) {
-        inventory.add(item);
-    }
 
-    public void addAbility(Ability ability){
-        abilities.add(ability);
-    }
 
 }
