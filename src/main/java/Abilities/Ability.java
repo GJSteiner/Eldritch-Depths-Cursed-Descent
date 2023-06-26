@@ -66,4 +66,5 @@ public abstract class Ability {
             System.out.println("You have not reached the required level for this ability.");
         }
     };
+
 }

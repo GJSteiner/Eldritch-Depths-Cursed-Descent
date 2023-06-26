@@ -4,6 +4,7 @@ import Abilities.Ability;
 import Abilities.Passive;
 import Items.Item;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Character {
@@ -24,6 +25,8 @@ public abstract class Character {
 
     };
 
+
+
     public Character(String name, int level, int maxHealth, int health, int magic, int strength, int defense, boolean alive) {
         this.name = name;
         this.level = level;
@@ -33,6 +36,23 @@ public abstract class Character {
         this.strength = strength;
         this.defense = defense;
         this.alive = alive;
+        this.abilities = new ArrayList<>();
+        this.inventory = new ArrayList<>();
+        this.passives = new ArrayList<>();
+    }
+
+    public Character(String name, int level, int maxHealth, int health, int magic, int strength, int defense, boolean alive, List<Item> inventory, List<Ability> abilities, List<Passive> passives) {
+        this.name = name;
+        this.level = level;
+        this.maxHealth = maxHealth;
+        this.health = health;
+        this.magic = magic;
+        this.strength = strength;
+        this.defense = defense;
+        this.alive = alive;
+        this.abilities = abilities;
+        this.inventory = inventory;
+        this.passives = passives;
     }
 
     public int getMaxHealth() {

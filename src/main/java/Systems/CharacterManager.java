@@ -14,8 +14,8 @@ public class CharacterManager {
 
     static {
         enemies = new ArrayList<>();
-        // Add your enemy characters here
-        // Example:
+        // Add enemy characters here
+        // Ex:
         // enemies.add(new Enemy("Enemy 1", 10, 50, 50, 10, 5, 5, true));
         // enemies.add(new Enemy("Enemy 2", 15, 80, 80, 20, 8, 8, true));
     }

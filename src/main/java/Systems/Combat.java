@@ -1,8 +1,11 @@
 package Systems;
 
+import Abilities.Enemies.VoidImp.DarkBlast;
 import Characters.Character;
 import Abilities.Ability;
 
+import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Combat {
@@ -69,6 +72,24 @@ public class Combat {
             selectedAbility.useAbility(player, target);
         }
 
+        System.out.println();
+    }
+
+    private static void npcUseAbility(Character npc, Character target){
+        List<Ability> abilities = npc.getAbilities();
+        Random random = new Random();
+        int randomIndex = random.nextInt(abilities.size());
+        Ability randomAbility = null;
+        boolean validAbility = false;
+        // check to make sure that a npc only uses an ability that they're the proper level to use
+        while(!validAbility) {
+            randomAbility = abilities.get(randomIndex);
+            if(randomAbility.getLevelRequirement() <= npc.getLevel()){
+                validAbility = true;
+            }
+        }
+        randomAbility.useAbility(npc, target);
+        System.out.println(npc.getName() + " uses " + randomAbility.getName() + " on " + target.getName() + ", dealing" + randomAbility.getDamage() + " damage");
         System.out.println();
     }
 
