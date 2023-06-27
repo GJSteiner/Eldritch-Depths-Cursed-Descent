@@ -1,5 +1,7 @@
 package Floors.FirstFloor;
 
+import Characters.Enemies.Enemy;
+import Characters.Enemies.Floor1.VoidImp;
 import Floors.FloorLayout;
 import Rooms.Room;
 import Systems.Direction;
@@ -31,10 +33,13 @@ public class FirstFloorLayout extends FloorLayout {
             bossRoom.addExit(treasureRoom, Direction.WEST);
 
         // Add the rooms to the first floor layout
-            addRoom(startingRoom);
+        addRoom(startingRoom);
         addRoom(enemyRoom1);
         addRoom(treasureRoom);
         addRoom(bossRoom);
+        // Create enemies and add them to their rooms
+        /// enemyRoom1 enemies:
+        VoidImp.level0Imp();
 
     }
 }
