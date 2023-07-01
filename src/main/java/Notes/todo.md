@@ -10,3 +10,6 @@
 10) begin screen
 11) end screen
 12) level up system
+
+
+add loot to level 1 and 2 voidImps in the VoidImpCreator

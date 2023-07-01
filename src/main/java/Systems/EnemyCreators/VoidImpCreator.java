@@ -8,10 +8,12 @@ import Abilities.Passive;
 import Characters.Enemies.Enemy;
 import Characters.Enemies.Floor1.VoidImp;
 import Items.Armor;
+import Items.Armors.ArmorList;
 import Items.Item;
 import Items.Potion;
 import Items.Potions.HealthPotions;
 import Items.Weapon;
+import Items.Weapons.WeaponList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +28,10 @@ public class VoidImpCreator {
      List<Ability> enemyAbilities = new ArrayList<>();  // Assuming you have a list of abilities for the enemy
      List<Passive> enemyPassives = new ArrayList<>();  // Assuming you have a list of passives for the enemy
 
-    Potion healthPotion = new HealthPotions().createSmallHealthPotion();
+//    Potion healthPotion = new HealthPotions().createSmallHealthPotion();
+    Potion impPotion = new HealthPotions().smallHealthPotion;
+    Armor impArmor = new ArmorList().voidRobes;
+    Weapon impWeapon = new WeaponList().voidDagger;
 
 
     public VoidImp create(String enemyName, int enemyLevel){
@@ -35,25 +40,19 @@ public class VoidImpCreator {
         enemyAbilities.add(shadowStep);
         enemyAbilities.add(impFire);
 
+        if(enemyLevel == 0){
+// Create an inventory list for the Void Imp, provided it's level 0
+            enemyInventory.add(impPotion);
+            enemyInventory.add(impWeapon);
+            enemyInventory.add(impArmor);
+        }
+
         int enemyMaxHealth = enemyLevel + 50;
         int enemyHealth = enemyMaxHealth;
         int enemyMagic = (enemyLevel + 1) * 5;
         int enemyStrength = (enemyLevel + 1) * 5;
         int enemyDefense = (enemyLevel + 1) * 2;
         boolean enemyAlive = true;
-
-        List<Item> voidImpInventory = new ArrayList<>();
-
-
-        if(enemyLevel == 0){
-            Weapon voidDagger = new Weapon("Void Dagger", "A dark dagger with magical properties", 5, 10);
-            Armor voidRobes = new Armor("Void Robes", "Mystical robes that provide protection", 3);
-// Create an inventory list for the Void Imp
-            voidImpInventory.add(healthPotion);
-            voidImpInventory.add(voidDagger);
-            voidImpInventory.add(voidRobes);
-        }
-
 
         VoidImp voidImp = new VoidImp(enemyName, enemyLevel, enemyMaxHealth, enemyHealth, enemyMagic, enemyStrength, enemyDefense, enemyAlive, enemyInventory, enemyAbilities, enemyPassives);
         return voidImp;

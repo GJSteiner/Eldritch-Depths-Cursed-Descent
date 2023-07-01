@@ -21,6 +21,10 @@ public class VoidImp extends Enemy {
     private static final List<Item> VOID_IMP_INVENTORY = new ArrayList<>();
     private static final List<Passive> VOID_IMP_PASSIVES = new ArrayList<>();
 
+    VoidImpCreator creator = new VoidImpCreator();
+
+    public VoidImp(){
+    }
 
     public VoidImp(String name, int level, int maxHealth, int health, int magic, int strength, int defense, boolean alive, List<Item> inventory, List<Ability> abilities, List<Passive> passives) {
         super(name, level, maxHealth, health, magic, strength, defense, alive, XP_YIELD, ENEMY_TYPE, DESCRIPTION, VOID_IMP_INVENTORY, VOID_IMP_ABILITIES, VOID_IMP_PASSIVES);
@@ -36,16 +40,16 @@ public class VoidImp extends Enemy {
         VOID_IMP_INVENTORY.add(item);
     }
 
-    public static VoidImp level0Imp(){
-        VoidImp voidImp = VoidImpCreator.create("Weak Void Imp", 0);
+    public VoidImp level0Imp(){
+        VoidImp voidImp = creator.create("Weak Void Imp", 0);
         return voidImp;
     }
-    public static VoidImp level1Imp(){
-        VoidImp voidImp = VoidImpCreator.create("Average Void Imp", 1);
+    public VoidImp level1Imp(){
+        VoidImp voidImp = creator.create("Average Void Imp", 1);
         return voidImp;
     }
-    public static VoidImp level2Imp(){
-        VoidImp voidImp = VoidImpCreator.create("Strong Void Imp", 2);
+    public VoidImp level2Imp(){
+        VoidImp voidImp = creator.create("Strong Void Imp", 2);
         return voidImp;
     }
 

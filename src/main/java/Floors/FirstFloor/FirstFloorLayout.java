@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FirstFloorLayout extends FloorLayout {
+    VoidImp voidImp = new VoidImp();
 
     List<Room> firstFloorLayout = new ArrayList<>();
 
@@ -39,7 +40,11 @@ public class FirstFloorLayout extends FloorLayout {
         addRoom(bossRoom);
         // Create enemies and add them to their rooms
         /// enemyRoom1 enemies:
-        VoidImp.level0Imp();
+        VoidImp enemy1 = voidImp.level0Imp();
+        /// treasureRoom enemies:
+        VoidImp enemy2 = voidImp.level1Imp();
+        /// bossRoom enemies:
+        VoidImp bossEnemy = voidImp.level2Imp();
 
     }
 }

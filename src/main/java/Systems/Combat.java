@@ -3,24 +3,31 @@ package Systems;
 import Abilities.Enemies.VoidImp.DarkBlast;
 import Characters.Character;
 import Abilities.Ability;
+import Characters.Enemies.Enemy;
+import Characters.Player;
 
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Combat {
-    public static void startCombat(Character player, Character enemy) {
+    public static void startCombat(Player player, Enemy enemy) {
         System.out.println("A battle begins between " + player.getName() + " and " + enemy.getName() + "!");
 
         while (player.isAlive() && enemy.isAlive()) {
             // Player's turn
             System.out.println(player.getName() + "'s turn:");
-            displayCharacterStats(player);
-            displayCharacterStats(enemy);
+            player.displayCharacterStats();
+            enemy.displayCharacterStats();
+//            displayCharacterStats(player);
+//            displayCharacterStats(enemy);
             selectAndUseAbility(player, enemy);
 
             if (!enemy.isAlive()) {
                 System.out.println(enemy.getName() + " has been defeated. " + player.getName() + " wins!");
+                player.gainExperience(enemy.getXpYield());
+                int droppedGold = enemy.dropGold();
+                player.addGold(droppedGold);
                 break;
             }
 
@@ -37,15 +44,15 @@ public class Combat {
         System.out.println("The battle has ended.");
     }
 
-    private static void displayCharacterStats(Character character) {
-        System.out.println(character.getName() + ":");
-        System.out.println("Level: " + character.getLevel());
-        System.out.println("Health: " + character.getHealth());
-        System.out.println("Magic: " + character.getMagic());
-        System.out.println("Strength: " + character.getStrength());
-        System.out.println("Defense: " + character.getDefense());
-        System.out.println();
-    }
+//    private static void displayCharacterStats(Character character) {
+//        System.out.println(character.getName() + ":");
+//        System.out.println("Level: " + character.getLevel());
+//        System.out.println("Health: " + character.getHealth());
+//        System.out.println("Magic: " + character.getMagic());
+//        System.out.println("Strength: " + character.getStrength());
+//        System.out.println("Defense: " + character.getDefense());
+//        System.out.println();
+//    }
 
     private static void selectAndUseAbility(Character player, Character target) {
         // Display available abilities to the user

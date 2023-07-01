@@ -3,6 +3,7 @@ package Characters;
 import Abilities.Ability;
 import Abilities.Passive;
 import Items.Item;
+import Items.Potion;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -164,4 +165,15 @@ public abstract class Character {
     public void addPassive(Passive passive){
         passives.add(passive);
     }
+    public void displayCharacterStats() {
+        System.out.println(getName() + ":");
+        System.out.println("Level: " + getLevel());
+        System.out.println("Health: " + getHealth());
+        System.out.println("Magic: " + getMagic());
+        System.out.println("Strength: " + getStrength());
+        System.out.println("Defense: " + getDefense());
+        System.out.println();
+    }
+
+
 }
