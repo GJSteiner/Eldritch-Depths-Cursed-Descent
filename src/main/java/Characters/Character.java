@@ -174,6 +174,8 @@ public abstract class Character {
         System.out.println("Defense: " + getDefense());
         System.out.println();
     }
-
+    public void removeItemFromInventory(Item item) {
+        inventory.remove(item);
+    }
 
 }
