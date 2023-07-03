@@ -19,8 +19,6 @@ public class Combat {
             System.out.println(player.getName() + "'s turn:");
             player.displayCharacterStats();
             enemy.displayCharacterStats();
-//            displayCharacterStats(player);
-//            displayCharacterStats(enemy);
             selectAndUseAbility(player, enemy);
 
             if (!enemy.isAlive()) {
@@ -37,22 +35,13 @@ public class Combat {
 
             if (!player.isAlive()) {
                 System.out.println(player.getName() + " has been defeated. " + enemy.getName() + " wins!");
+
                 break;
             }
         }
 
         System.out.println("The battle has ended.");
     }
-
-//    private static void displayCharacterStats(Character character) {
-//        System.out.println(character.getName() + ":");
-//        System.out.println("Level: " + character.getLevel());
-//        System.out.println("Health: " + character.getHealth());
-//        System.out.println("Magic: " + character.getMagic());
-//        System.out.println("Strength: " + character.getStrength());
-//        System.out.println("Defense: " + character.getDefense());
-//        System.out.println();
-//    }
 
     private static void selectAndUseAbility(Character player, Character target) {
         // Display available abilities to the user

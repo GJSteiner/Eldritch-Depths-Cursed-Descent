@@ -22,4 +22,5 @@ public abstract class FloorLayout {
     public List<Room> getLayout() {
         return layout;
     }
+    public abstract Room getStartingRoom();
 }

@@ -5,9 +5,12 @@ import Abilities.Passive;
 import Items.Item;
 import Rooms.Room;
 import Systems.Direction;
+import Dungeons.Dungeon;
+
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Player extends Character {
 
@@ -72,16 +75,32 @@ public class Player extends Character {
         gold -= amount;
     }
 
-    public void move(Direction direction) {
-        Room currentRoom = getCurrentRoom();
-        Room nextRoom = currentRoom.getExit(direction);
+    public void move() {
+        Scanner scanner = new Scanner(System.in);
+        List<Direction> availableDirections = currentRoom.getAvailableExits();
 
-        if (nextRoom != null) {
-            setCurrentRoom(nextRoom);
-            System.out.println("You move " + direction.toString() + " to the " + nextRoom.getName() + ".");
 
-        } else {
-            System.out.println("There is no exit in that direction.");
+        while(true) {
+            System.out.println("Where would you like to go?");
+
+
+            for(Direction availableDirection : availableDirections){
+                Room availableRoom = currentRoom.getExit(availableDirection);
+                System.out.println("; " + availableDirection.toString() + ": " + availableRoom.getName());
+            }
+
+            String choice = scanner.nextLine();
+            Direction chosenDirection = Direction.fromString(choice);
+
+            if(chosenDirection != null && availableDirections.contains(chosenDirection)){
+                Room nextRoom = currentRoom.getExit(chosenDirection);
+                currentRoom = nextRoom;
+                currentRoom.enterRoom(this);
+                break;
+            }else {
+                System.out.println("Invalid direction. Please choose one of the available directions.");
+            }
+
         }
     }
 

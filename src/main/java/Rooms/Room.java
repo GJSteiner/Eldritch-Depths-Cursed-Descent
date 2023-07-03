@@ -1,6 +1,7 @@
 package Rooms;
 
 import Characters.Enemies.Enemy;
+import Characters.Player;
 import Systems.Direction;
 
 import java.util.ArrayList;
@@ -8,17 +9,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Room {
+public abstract class Room {
     private String name;
     private String description;
     private Map<Direction, Room> exits;
     private List<Enemy> enemies;
+    private boolean isEndRoom;
 
     public Room(String name, String description) {
         this.name = name;
         this.description = description;
         this.exits = new HashMap<>();
         this.enemies = new ArrayList<>();
+        this.isEndRoom = false;
     }
 
     public String getName() {
@@ -45,4 +48,23 @@ public class Room {
     public void addEnemy(Enemy enemy) {
         enemies.add(enemy);
     }
+
+    public List<Direction> getAvailableExits() {
+        List<Direction> availableExits = new ArrayList<>();
+        for (Direction direction : Direction.values()) {
+            if (exits.containsKey(direction)) {
+                availableExits.add(direction);
+            }
+        }
+        return availableExits;
+    }
+
+    public boolean isEndRoom() {
+        return isEndRoom;
+    }
+
+    public void setEndRoom(boolean endRoom) {
+        isEndRoom = endRoom;
+    }
+    public abstract void enterRoom(Player player);
 }

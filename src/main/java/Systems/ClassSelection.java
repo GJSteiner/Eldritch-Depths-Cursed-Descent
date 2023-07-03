@@ -10,7 +10,8 @@ import Characters.Player;
 import java.util.Scanner;
 
 public class ClassSelection {
-    public static void main(String[] args) {
+    public static Player player;
+    public static void run() {
         // Display class selection menu
         displayClassSelectionMenu();
 
@@ -18,7 +19,7 @@ public class ClassSelection {
         int choice = getPlayerChoice();
 
         // Create player based on the chosen class
-        Player player = createPlayerFromClass(choice);
+        player = createPlayerFromClass(choice);
 
         // Start the game with the chosen player
         startGame(player);
@@ -39,9 +40,14 @@ public class ClassSelection {
 
         while(!validChoice){
             System.out.print("Enter your choice: ");
-            if (scanner.hasNextInt() && scanner.nextInt() >= 1 && scanner.nextInt() <= 3){
+            if (scanner.hasNextInt()){
                 choice = scanner.nextInt();
-                validChoice = true;
+                if(choice >=1 && choice <=3) {
+                    validChoice = true;
+                }
+                else {
+                    System.out.println("Invalid input. Please enter a number between 1 and 3 to choose your class.");
+                }
             }
             else{
                 System.out.println("Invalid input. Please enter a number to choose your class.");
