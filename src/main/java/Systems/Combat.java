@@ -12,13 +12,18 @@ import java.util.Scanner;
 
 public class Combat {
     public static void startCombat(Player player, Enemy enemy) {
+        System.out.println();
         System.out.println("A battle begins between " + player.getName() + " and " + enemy.getName() + "!");
-
+        System.out.println();
+        player.displayCharacterStats();
+        enemy.displayCharacterStats();
         while (player.isAlive() && enemy.isAlive()) {
             // Player's turn
             System.out.println(player.getName() + "'s turn:");
-            player.displayCharacterStats();
-            enemy.displayCharacterStats();
+            System.out.println();
+            System.out.println(player.getName() + ": " + player.getHealth() + " HP");
+            System.out.println(enemy.getName() + ": " + enemy.getHealth() + " HP");
+            System.out.println();
             selectAndUseAbility(player, enemy);
 
             if (!enemy.isAlive()) {
@@ -26,32 +31,44 @@ public class Combat {
                 player.gainExperience(enemy.getXpYield());
                 int droppedGold = enemy.dropGold();
                 player.addGold(droppedGold);
+                System.out.println("You have gained " + droppedGold + " gold!");
+                System.out.println("You now have " + player.getGold() + " gold.");
+                System.out.println();
                 break;
             }
 
             // Enemy's turn
             System.out.println(enemy.getName() + "'s turn:");
-            selectAndUseAbility(enemy, player);
-
+//            selectAndUseAbility(enemy, player);
+            npcUseAbility(enemy, player);
             if (!player.isAlive()) {
                 System.out.println(player.getName() + " has been defeated. " + enemy.getName() + " wins!");
-
+                System.out.println();
                 break;
             }
         }
 
         System.out.println("The battle has ended.");
+        if(enemy.getEnemyTags().contains("Boss")){
+            System.out.println("Congratulations! You have defeated this floor's boss and cleared the floor!");
+        }
     }
 
     private static void selectAndUseAbility(Character player, Character target) {
         // Display available abilities to the user
         System.out.println("Available abilities:");
-        for (Ability ability : player.getAbilities()) {
-            System.out.println(ability.getName() + " - " + ability.getDescription());
+        for (int i = 0; i < player.getAbilities().size(); i++) {
+            Ability currentAbility = player.getAbilities().get(i);
+            if(currentAbility.getLevelRequirement() <= player.getLevel()) {
+                System.out.println((i + 1) + ": " + currentAbility.getName() + " - " + currentAbility.getDescription());
+            }
         }
 
+
         // Prompt the player to select an ability
+        System.out.println();
         System.out.print("Select an ability by entering its number: ");
+        System.out.println();
         int abilityIndex = getPlayerChoice(player.getAbilities().size());
 
         // Use the selected ability on the target
@@ -73,12 +90,18 @@ public class Combat {
 
     private static void npcUseAbility(Character npc, Character target){
         List<Ability> abilities = npc.getAbilities();
+
+        if (abilities.isEmpty()) {
+            System.out.println(npc.getName() + " has no available abilities.");
+            return;
+        }
+
         Random random = new Random();
-        int randomIndex = random.nextInt(abilities.size());
         Ability randomAbility = null;
         boolean validAbility = false;
-        // check to make sure that a npc only uses an ability that they're the proper level to use
+        // Check to make sure that a npc only uses an ability that they're the proper level to use
         while(!validAbility) {
+            int randomIndex = random.nextInt(abilities.size());
             randomAbility = abilities.get(randomIndex);
             if(randomAbility.getLevelRequirement() <= npc.getLevel()){
                 validAbility = true;

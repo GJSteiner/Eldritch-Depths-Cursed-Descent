@@ -17,6 +17,7 @@ public class Player extends Character {
     private Room currentRoom;
     private int experience;
     private int gold;
+    private String playerClass;
 
     //shouldn't need these constructors anymore, since I moved them to the Character superclass
     public Player(String name, int level, int maxHealth, int health, int magic, int strength, int defense, boolean alive) {
@@ -25,6 +26,7 @@ public class Player extends Character {
         this.inventory = new ArrayList<>();
         this.passives = new ArrayList<>();
         this.gold = 0;
+        this.playerClass = "Acolyte";
     }
 //
 //    public Player(String name, int level, int maxHealth, int health, int magic, int strength, int defense, boolean alive, List<Item> inventory, List<Ability> abilities, List<Passive> passives) {
@@ -75,6 +77,14 @@ public class Player extends Character {
         gold -= amount;
     }
 
+    public String getPlayerClass() {
+        return playerClass;
+    }
+
+    public void setPlayerClass(String playerClass) {
+        this.playerClass = playerClass;
+    }
+
     public void move() {
         Scanner scanner = new Scanner(System.in);
         List<Direction> availableDirections = currentRoom.getAvailableExits();
@@ -86,7 +96,7 @@ public class Player extends Character {
 
             for(Direction availableDirection : availableDirections){
                 Room availableRoom = currentRoom.getExit(availableDirection);
-                System.out.println("; " + availableDirection.toString() + ": " + availableRoom.getName());
+                System.out.println(availableDirection.toString() + ": " + availableRoom.getName());
             }
 
             String choice = scanner.nextLine();
@@ -116,6 +126,7 @@ public class Player extends Character {
             level++;
             System.out.println(getName() + " has leveled up!");
             System.out.println(getName() + " is now level " + level + "!");
+            System.out.println();
             maxHealth *= (level+1);
             strength *= (level+1);
             magic *= (level+1);

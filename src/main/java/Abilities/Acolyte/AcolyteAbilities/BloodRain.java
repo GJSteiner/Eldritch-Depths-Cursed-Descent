@@ -27,7 +27,7 @@ public class BloodRain extends AcolyteAbility {
             caster.takeDamage(modifiedSelfDamage);
 
             System.out.println(caster.getName() + " casts Blood Rain!");
-            System.out.println(caster.getName() + " deals" + totalDamage + " damage to " + target.getName() + " and loses " + modifiedSelfDamage + " health.");
+            System.out.println(caster.getName() + " deals " + totalDamage + " damage to " + target.getName() + " and loses " + modifiedSelfDamage + " health.");
 
         }
         else {

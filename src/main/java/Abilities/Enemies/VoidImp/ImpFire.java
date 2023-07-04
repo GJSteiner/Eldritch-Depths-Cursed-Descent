@@ -19,6 +19,6 @@ public class ImpFire extends Ability {
         target.takeDamage(DAMAGE);
 
         System.out.println(caster.getName() + " casts Imp Fire on " + target.getName() + "!");
-        System.out.println(caster.getName() + " deals" + DAMAGE + " damage.");
+        System.out.println(caster.getName() + " deals " + DAMAGE + " damage.");
     }
 }

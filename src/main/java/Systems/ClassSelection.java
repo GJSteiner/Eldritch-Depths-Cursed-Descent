@@ -99,6 +99,7 @@ public class ClassSelection {
         player.addAbility(new BloodRain());
         player.addPassive(new Reserves());
 
+        player.setPlayerClass("Acolyte");
         return player;
     }
 
@@ -112,8 +113,12 @@ public class ClassSelection {
         int defense = 5;
         boolean alive = true;
 
+        Player player = new Player(name, level, maxHealth, health, magic, strength, defense, alive);
+
+
         // Create a Crusader player instance
-        return new Player(name, level, maxHealth, health, magic, strength, defense, alive);
+        player.setPlayerClass("Crusader");
+        return player;
     }
     private static Player createCorruptedPlayer(String name) {
         // Initial stats for Corrupted
@@ -125,13 +130,15 @@ public class ClassSelection {
         int defense = 5;
         boolean alive = true;
 
+        Player player = new Player(name, level, maxHealth, health, magic, strength, defense, alive);
+
+
         // Create a Corrupted player instance
-        return new Player(name, level, maxHealth, health, magic, strength, defense, alive);
+        player.setPlayerClass("Corrupted");
+        return player;
     }
 
     private static void startGame(Player player) {
-        // Start your game with the chosen player
-        System.out.println("Game started with " + player.getName() + " as the chosen class!");
-        // Add your game logic here
+        System.out.println("Game started with " + player.getName() + " as " + player.getPlayerClass() + ".");
     }
 }

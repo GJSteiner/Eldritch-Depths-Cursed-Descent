@@ -19,6 +19,6 @@ public class DarkBlast extends Ability {
         target.takeDamage(DAMAGE);
 
         System.out.println(caster.getName() + " casts Dark Bolt on " + target.getName() + "!");
-        System.out.println(caster.getName() + " deals" + DAMAGE + " damage.");
+        System.out.println(caster.getName() + " deals " + DAMAGE + " damage.");
     }
 }

@@ -19,6 +19,6 @@ public class VoidBolt extends Ability {
         target.takeDamage(DAMAGE);
 
         System.out.println(caster.getName() + " casts Void Bolt on " + target.getName() + "!");
-        System.out.println(caster.getName() + " deals" + DAMAGE + " damage.");
+        System.out.println(caster.getName() + " deals " + DAMAGE + " damage.");
     }
 }

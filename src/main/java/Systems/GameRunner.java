@@ -27,7 +27,7 @@ public class GameRunner {
             FloorLayout currentFloorLayout = dungeon.getCurrentFloorLayout();
             Room currentRoom = currentFloorLayout.getStartingRoom();
             player.setCurrentRoom(currentRoom);
-
+            System.out.println();
             System.out.println("You are now on Floor " + (dungeon.getCurrentFloorIndex() + 1));
             System.out.println("Explore the rooms and defeat the enemies to progress.");
 
@@ -52,13 +52,16 @@ public class GameRunner {
         while (true) {
             Room currentRoom = player.getCurrentRoom();
 
+            System.out.println();
             System.out.println("Current Room: " + currentRoom.getName());
+            System.out.println();
             System.out.println(currentRoom.getDescription());
+            System.out.println();
             player.move();
 
             // Checking if the player has reached the end of the floor
             if (currentRoom.isEndRoom()) {
-                System.out.println("Congratulations! You have cleared the floor!");
+//                System.out.println("Congratulations! You have cleared the floor!");
                 break;
             }
 

@@ -5,6 +5,7 @@ import Abilities.Passive;
 import Characters.Character;
 import Items.Item;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -12,15 +13,17 @@ public abstract class Enemy extends Character {
     private int xpYield;
     private String enemyType;
     private String description;
+    private List<String> enemyTags;
     public Enemy(){
 
     }
 
-    public Enemy(String name, int level, int maxHealth, int health, int magic, int strength, int defense, boolean alive, int xpYield, String enemyType, String description, List<Item> inventory, List<Ability> abilities, List<Passive> passives) {
+    public Enemy(String name, int level, int maxHealth, int health, int magic, int strength, int defense, boolean alive, int xpYield, String enemyType, String description, List<Item> inventory, List<Ability> abilities, List<Passive> passives, List<String> enemyTags) {
         super(name, level, maxHealth, health, magic, strength, defense, alive, inventory, abilities, passives);
         this.xpYield = xpYield;
         this.enemyType = enemyType;
         this.description = description;
+        this.enemyTags = enemyTags;
     }
 
     public int getXpYield() {
@@ -37,6 +40,14 @@ public abstract class Enemy extends Character {
 
     public void setEnemyType(String enemyType) {
         this.enemyType = enemyType;
+    }
+
+    public List<String> getEnemyTags() {
+        return enemyTags;
+    }
+
+    public void setEnemyTags(List<String> enemyTags) {
+        this.enemyTags = enemyTags;
     }
 
     public String getDescription() {
