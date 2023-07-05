@@ -11,19 +11,19 @@
 11) end screen
 12) ~~level up system~~
 13) ~~edit combat so that it doesn't allow the user to use an ability they don't have access to. prompt them for a new choice instead of just moving on to the enemy turn.~~ Solved by only displaying abilities where the levelRequirement is less or equal to player level. If they press a number that isn't displayed, it still skips their turn. 
-14) edit combat so that health of both parties is displayed right before the choice is made
+14) ~~edit combat so that health of both parties is displayed right before the choice is made~~
 15) adjust the health/damage. combat feels like it takes a while. 
 16) add randomized descriptions of abilities/attacks to give more flavor to combat
 17) add a feature on room/direction display that lists if the player has already been there
 18) adjust the health of the imps. player dies by the end of the second combat, guaranteed. 
-19) add a game over screen/function to add to combat method
+19) ~~add a game over screen/function to add to combat method~~
 20) add something to happen after the boss is killed to move to the next floor
 21) ~~add gold tracker after combat~~
 22) add a statGrowth variable to each class to apply to the levelUp function so they each gain stats differently
 23) add logic for DoT damage
 24) add abilities for Crusader and Corrupted
 25) edit the levelUp function to show how much stat was gained upon levelup
-26) 
+26) Still need to test that the aoe dmg method works
 
 
 add loot to level 1 and 2 voidImps in the VoidImpCreator

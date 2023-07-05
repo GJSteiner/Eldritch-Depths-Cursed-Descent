@@ -67,4 +67,10 @@ public class GameRunner {
 
         }
     }
+    public static void gameOver(Player player) {
+        System.out.println();
+        System.out.println("Game Over!");
+        System.out.println(player.getName() + " has been defeated.");
+        System.out.println("Better luck next time!");
+    }
 }

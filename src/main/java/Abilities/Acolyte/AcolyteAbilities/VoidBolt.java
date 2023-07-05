@@ -9,9 +9,12 @@ public class VoidBolt extends Ability {
     private static final int LEVEL_REQUIREMENT = 0;
     private static final double DAMAGE = 5;
     private static final boolean AOE = false;
+    private static final boolean DOT = false;
+    private static final String ABILITY_ELEMENT = "Void";
+
 
     public VoidBolt() {
-        super(NAME, DESCRIPTION, LEVEL_REQUIREMENT, DAMAGE, AOE);
+        super(NAME, DESCRIPTION, LEVEL_REQUIREMENT, DAMAGE, AOE, DOT, ABILITY_ELEMENT);
     }
 
     @Override

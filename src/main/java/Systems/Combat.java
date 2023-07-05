@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+import static Systems.GameRunner.gameOver;
+
 public class Combat {
     public static void startCombat(Player player, Enemy enemy) {
         System.out.println();
@@ -39,13 +41,28 @@ public class Combat {
 
             // Enemy's turn
             System.out.println(enemy.getName() + "'s turn:");
-//            selectAndUseAbility(enemy, player);
             npcUseAbility(enemy, player);
             if (!player.isAlive()) {
                 System.out.println(player.getName() + " has been defeated. " + enemy.getName() + " wins!");
                 System.out.println();
+                gameOver(player);
                 break;
             }
+
+            player.updateDamageOverTime();
+            enemy.updateDamageOverTime();
+
+
+            // Displaying dot damage for player
+            for (DamageOverTime dot : player.getDamageOverTimeEffects()) {
+                System.out.println(player.getName() + " takes " + dot.getDamagePerRound() + " damage from " + dot.getDotName() + ".");
+            }
+
+            // Displaying dot damage for enemy
+            for (DamageOverTime dot : enemy.getDamageOverTimeEffects()) {
+                System.out.println(enemy.getName() + " takes " + dot.getDamagePerRound() + " damage from " + dot.getDotName() + ".");
+            }
+            System.out.println();
         }
 
         System.out.println("The battle has ended.");
@@ -108,7 +125,7 @@ public class Combat {
             }
         }
         randomAbility.useAbility(npc, target);
-        System.out.println(npc.getName() + " uses " + randomAbility.getName() + " on " + target.getName() + ", dealing" + randomAbility.getDamage() + " damage");
+//        System.out.println(npc.getName() + " uses " + randomAbility.getName() + " on " + target.getName() + ", dealing" + randomAbility.getDamage() + " damage");
         System.out.println();
     }
 

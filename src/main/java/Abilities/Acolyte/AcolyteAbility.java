@@ -6,8 +6,8 @@ import Characters.Character;
 
 public abstract class AcolyteAbility extends Ability {
 
-    public AcolyteAbility(String name, String description, int levelRequirement, double damage, boolean aoe) {
-        super(name, description, levelRequirement, damage, aoe);
+    public AcolyteAbility(String name, String description, int levelRequirement, double damage, boolean aoe, boolean dot, String abilityElement) {
+        super(name, description, levelRequirement, damage, aoe, dot, abilityElement);
     }
 
     public double checkReserves(Character character, double selfDamage){

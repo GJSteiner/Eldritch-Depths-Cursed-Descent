@@ -1,23 +1,24 @@
 package Abilities.Acolyte.AcolyteAbilities;
 
-import Abilities.Ability;
 import Abilities.Acolyte.AcolyteAbility;
 import Characters.Character;
 
-public class BloodBolt extends AcolyteAbility {
-    private static final String NAME = "Blood Bolt";
-    private static final String DESCRIPTION = "Deals 5 damage + 0.5 magic. You lose 5 health.";
-    private static final int LEVEL_REQUIREMENT = 1;
-    private static final double DAMAGE = 5;
-    private static final double MAGIC_MULTIPLIER = 0.5;
-    private static final double SELF_DAMAGE = 5;
+import java.util.AbstractCollection;
+
+public class BloodySpear extends AcolyteAbility {
+    private static final String NAME = "Bloody Spear";
+    private static final String DESCRIPTION = "Deals 10 damage + 0.75 magic. You lose 10 health.";
+    private static final int LEVEL_REQUIREMENT = 2;
+    private static final double DAMAGE = 10;
+    private static final double MAGIC_MULTIPLIER = 0.75;
+    private static final double SELF_DAMAGE = 10;
     private static final boolean AOE = false;
     private static final boolean DOT = false;
     private static final String ABILITY_ELEMENT = "Blood";
 
 
 
-    public BloodBolt() {
+    public BloodySpear() {
         super(NAME, DESCRIPTION, LEVEL_REQUIREMENT, 0, AOE, DOT, ABILITY_ELEMENT);
     }
 
@@ -29,14 +30,11 @@ public class BloodBolt extends AcolyteAbility {
             target.takeDamage(totalDamage);
             caster.takeDamage(modifiedSelfDamage);
 
-            System.out.println(caster.getName() + " casts Blood Bolt on " + target.getName() + "!");
+            System.out.println(caster.getName() + " casts Bloody Spear on " + target.getName() + "!");
             System.out.println(caster.getName() + " deals " + totalDamage + " damage and loses " + modifiedSelfDamage + " health.");
         }
         else {
-            System.out.println(caster.getName() + " tried to use Blood Bolt, but doesn't have enough health to use this ability.");
+            System.out.println(caster.getName() + " tried to use Bloody Spear, but doesn't have enough health to use this ability.");
         }
-
-
-
     }
 }

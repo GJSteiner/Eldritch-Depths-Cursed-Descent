@@ -12,10 +12,12 @@ public class BloodRain extends AcolyteAbility {
     private static final double MAGIC_MULTIPLIER = 0.5;
     private static double SELF_DAMAGE = 30;
     private static final boolean AOE = true;
+    private static final boolean DOT = false;
+    private static final String ABILITY_ELEMENT = "Blood";
 
 
     public BloodRain() {
-        super(NAME, DESCRIPTION, LEVEL_REQUIREMENT, 0, AOE);
+        super(NAME, DESCRIPTION, LEVEL_REQUIREMENT, 0, AOE, DOT, ABILITY_ELEMENT);
     }
 
     @Override

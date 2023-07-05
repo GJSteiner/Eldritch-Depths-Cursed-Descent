@@ -1,10 +1,9 @@
 package Systems;
 
-import Abilities.Acolyte.AcolyteAbilities.BloodBolt;
-import Abilities.Acolyte.AcolyteAbilities.BloodRain;
-import Abilities.Acolyte.AcolyteAbilities.Drain;
-import Abilities.Acolyte.AcolyteAbilities.VoidBolt;
+import Abilities.Acolyte.AcolyteAbilities.*;
 import Abilities.Acolyte.AcolytePassives.Reserves;
+import Abilities.Crusader.CrusaderAbilities.*;
+import Abilities.Crusader.Passives.HolyFireMastery;
 import Characters.Player;
 
 import java.util.Scanner;
@@ -95,6 +94,7 @@ public class ClassSelection {
 
         player.addAbility(new VoidBolt());
         player.addAbility(new BloodBolt());
+        player.addAbility(new BloodySpear());
         player.addAbility(new Drain());
         player.addAbility(new BloodRain());
         player.addPassive(new Reserves());
@@ -113,10 +113,16 @@ public class ClassSelection {
         int defense = 5;
         boolean alive = true;
 
+        // Create a Crusader player instance
         Player player = new Player(name, level, maxHealth, health, magic, strength, defense, alive);
 
+        player.addAbility(new Smite());
+        player.addAbility(new HolyBlaze());
+        player.addAbility(new HolyRadiance());
+        player.addAbility(new HolyIgnition());
+        player.addAbility(new HolyInferno());
+        player.addPassive(new HolyFireMastery());
 
-        // Create a Crusader player instance
         player.setPlayerClass("Crusader");
         return player;
     }

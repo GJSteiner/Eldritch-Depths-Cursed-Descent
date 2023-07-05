@@ -52,7 +52,7 @@ public class VoidImpCreator {
         }
 
 //        int enemyMaxHealth = enemyLevel + 50;
-        int enemyMaxHealth = 1;
+        int enemyMaxHealth = 20;
         int enemyHealth = enemyMaxHealth;
         int enemyMagic = (enemyLevel + 1) * 5;
         int enemyStrength = (enemyLevel + 1) * 5;

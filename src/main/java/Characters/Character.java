@@ -4,8 +4,10 @@ import Abilities.Ability;
 import Abilities.Passive;
 import Items.Item;
 import Items.Potion;
+import Systems.DamageOverTime;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public abstract class Character {
@@ -21,6 +23,7 @@ public abstract class Character {
     protected List<Item> inventory;
     protected List<Ability> abilities;
     protected List<Passive> passives;
+    private List<DamageOverTime> damageOverTimeEffects;
 
     public Character(){
 
@@ -40,6 +43,7 @@ public abstract class Character {
         this.abilities = new ArrayList<>();
         this.inventory = new ArrayList<>();
         this.passives = new ArrayList<>();
+        this.damageOverTimeEffects = new ArrayList<>();
     }
 
     public Character(String name, int level, int maxHealth, int health, int magic, int strength, int defense, boolean alive, List<Item> inventory, List<Ability> abilities, List<Passive> passives) {
@@ -54,6 +58,7 @@ public abstract class Character {
         this.abilities = abilities;
         this.inventory = inventory;
         this.passives = passives;
+        this.damageOverTimeEffects = new ArrayList<>();
     }
 
     public int getMaxHealth() {
@@ -128,6 +133,14 @@ public abstract class Character {
         this.alive = alive;
     }
 
+    public List<DamageOverTime> getDamageOverTimeEffects() {
+        return damageOverTimeEffects;
+    }
+
+    public void setDamageOverTimeEffects(List<DamageOverTime> damageOverTimeEffects) {
+        this.damageOverTimeEffects = damageOverTimeEffects;
+    }
+
     public void takeDamage(double damage) {
         health -= damage;
         if(health <= 0){
@@ -176,6 +189,46 @@ public abstract class Character {
     }
     public void removeItemFromInventory(Item item) {
         inventory.remove(item);
+    }
+
+
+    public void applyDamageOverTime(String dotName, double damagePerRound, int numRounds) {
+        DamageOverTime existingDot = getExistingDamageOverTimeEffect(dotName);
+        if(existingDot != null){
+            //This stacks the intensity
+//            existingDot.setDamagePerRound(existingDot.getDamagePerRound() + damagePerRound);
+            //This stacks the duration
+            existingDot.setRemainingRounds(existingDot.getRemainingRounds() + numRounds);
+        }
+        else {
+            DamageOverTime dot = new DamageOverTime(dotName, damagePerRound, numRounds);
+            damageOverTimeEffects.add(dot);
+        }
+    }
+    private DamageOverTime getExistingDamageOverTimeEffect(String dotName) {
+        // Iterating over the damageOverTimeEffects list and checking if any effect already exists
+        for (DamageOverTime dot : damageOverTimeEffects) {
+            if (dot.getDotName().equals(dotName)) {
+                return dot;
+            }
+        }
+        return null; // No existing effect found
+    }
+
+    public void updateDamageOverTime() {
+        //Using an Iterator rather than a for loop so that dots that have expired can be removed without
+        //interrupting the loop
+        Iterator<DamageOverTime> iterator = damageOverTimeEffects.iterator();
+        while (iterator.hasNext()) {
+            DamageOverTime dot = iterator.next();
+            double damage = dot.getDamagePerRound();
+            takeDamage(damage);
+
+            dot.decrementRounds();
+            if (dot.getRemainingRounds() <= 0) {
+                iterator.remove();
+            }
+        }
     }
 
 }

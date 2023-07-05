@@ -63,7 +63,7 @@ public class VoidImp extends Enemy {
         VoidImp voidImp = creator.create("Weak Void Imp", 0);
         voidImp.getEnemyTags().add(allTags.getWeakEnemy());
         voidImp.getEnemyTags().add(allTags.getNormalEnemy());
-        
+
         return voidImp;
     }
 

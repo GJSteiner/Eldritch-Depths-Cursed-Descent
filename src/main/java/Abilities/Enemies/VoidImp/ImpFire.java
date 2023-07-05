@@ -9,9 +9,12 @@ public class ImpFire extends Ability {
     private static final int LEVEL_REQUIREMENT = 2;
     private static final double DAMAGE = 30;
     private static final boolean AOE = false;
+    private static final boolean DOT = false;
+    private static final String ABILITY_ELEMENT = "Fire";
+
 
     public ImpFire() {
-        super(NAME, DESCRIPTION, LEVEL_REQUIREMENT, DAMAGE, AOE);
+        super(NAME, DESCRIPTION, LEVEL_REQUIREMENT, DAMAGE, AOE, DOT, ABILITY_ELEMENT);
     }
 
     @Override

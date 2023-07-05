@@ -7,13 +7,17 @@ public abstract class Ability {
     private int levelRequirement;
     private double damage;
     private boolean aoe;
+    private boolean dot;
+    private String abilityElement;
 
-    public Ability(String name, String description, int levelRequirement, double damage, boolean aoe) {
+    public Ability(String name, String description, int levelRequirement, double damage, boolean aoe, boolean dot, String abilityElement) {
         this.name = name;
         this.description = description;
         this.levelRequirement = levelRequirement;
         this.damage = damage;
         this.aoe = aoe;
+        this.dot = dot;
+        this.abilityElement = abilityElement;
     }
 
     public String getName() {
@@ -54,6 +58,22 @@ public abstract class Ability {
 
     public void setAoe(boolean aoe) {
         this.aoe = aoe;
+    }
+
+    public boolean isDot() {
+        return dot;
+    }
+
+    public void setDot(boolean dot) {
+        this.dot = dot;
+    }
+
+    public String getAbilityElement() {
+        return abilityElement;
+    }
+
+    public void setAbilityElement(String abilityElement) {
+        this.abilityElement = abilityElement;
     }
 
     protected abstract void executeAbility(Character caster, Character target);

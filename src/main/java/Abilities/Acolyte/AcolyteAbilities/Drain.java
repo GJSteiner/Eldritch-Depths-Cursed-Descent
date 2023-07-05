@@ -9,10 +9,13 @@ public class Drain extends Ability {
     private static final int LEVEL_REQUIREMENT = 3;
     private static final double MAGIC_MULTIPLIER = 1.0;
     private static final boolean AOE = false;
+    private static final boolean DOT = false;
+    private static final String ABILITY_ELEMENT = "Blood";
+
 
 
     public Drain() {
-        super(NAME, DESCRIPTION, LEVEL_REQUIREMENT, 0, AOE);
+        super(NAME, DESCRIPTION, LEVEL_REQUIREMENT, 0, AOE, DOT, ABILITY_ELEMENT);
     }
 
     @Override

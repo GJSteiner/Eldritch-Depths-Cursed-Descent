@@ -9,9 +9,12 @@ public class ShadowStep extends Ability {
     private static final int LEVEL_REQUIREMENT = 1;
     private static final double DAMAGE = 15;
     private static final boolean AOE = false;
+    private static final boolean DOT = false;
+    private static final String ABILITY_ELEMENT = "Void";
+
 
     public ShadowStep() {
-        super(NAME, DESCRIPTION, LEVEL_REQUIREMENT, DAMAGE, AOE);
+        super(NAME, DESCRIPTION, LEVEL_REQUIREMENT, DAMAGE, AOE, DOT, ABILITY_ELEMENT);
     }
 
     @Override
