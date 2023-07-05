@@ -3,6 +3,7 @@ package Characters;
 import Abilities.Ability;
 import Abilities.Passive;
 import Items.Item;
+import Items.UsableItem;
 import Rooms.Room;
 import Systems.Direction;
 import Dungeons.Dungeon;
@@ -113,6 +114,48 @@ public class Player extends Character {
 
         }
     }
+    public void makeChoice(){
+
+        System.out.println("What would you like to do?");
+        System.out.println("1. Move");
+        System.out.println("2. Check Inventory");
+        System.out.println("3. Check Stats");
+
+        int choice = getActionChoice();
+        if (choice == 1){
+            move();
+        }
+        if (choice == 2){
+
+        }
+        if (choice == 3){
+
+        }
+
+    }
+    public int getActionChoice(){
+        Scanner scanner = new Scanner(System.in);
+        int choice = 0;
+        boolean validChoice = false;
+
+        while(!validChoice){
+            System.out.print("Enter your choice: ");
+            if (scanner.hasNextInt()){
+                choice = scanner.nextInt();
+                if(choice >=1 && choice <=3) {
+                    validChoice = true;
+                }
+                else {
+                    System.out.println("Invalid input. Please enter a number between 1 and 3.");
+                }
+            }
+            else{
+                System.out.println("Invalid input. Please enter a number between 1 and 3.");
+                scanner.nextLine(); // Consume the invalid input
+            }
+        }
+        return choice;
+    }
 
     public void gainExperience(int xp){
         experience += xp;
@@ -148,6 +191,60 @@ public class Player extends Character {
         }
     }
 
+    public void displayInventoryAndChooseAction() {
+        System.out.println("=== Inventory ===");
+        for (int i = 0; i < inventory.size(); i++) {
+            Item item = inventory.get(i);
+            System.out.println((i + 1) + ". " + item.getName());
+        }
+        System.out.println("0. Cancel");
+        System.out.print("Enter the number of the item you want to use or equip: ");
 
+        Scanner scanner = new Scanner(System.in);
+        int choice = scanner.nextInt();
+
+        if (choice == 0) {
+            System.out.println("Action canceled.");
+            return;
+        }
+
+        int itemIndex = choice - 1;
+        if (itemIndex >= 0 && itemIndex < inventory.size()) {
+            Item selectedItem = inventory.get(itemIndex);
+            System.out.println("Selected item: " + selectedItem.getName());
+            System.out.println("What action do you want to perform?");
+            System.out.println("1. Use");
+            System.out.println("2. Equip");
+            System.out.println("0. Cancel");
+            System.out.print("Enter your choice: ");
+
+            int actionChoice = scanner.nextInt();
+
+            switch (actionChoice) {
+                case 1:
+                    // Use the item
+                    if (selectedItem instanceof UsableItem) {
+                        UsableItem usableItem = (UsableItem) selectedItem;
+                        usableItem.use(this);
+                        inventory.remove(selectedItem);
+                    } else {
+                        System.out.println("The selected item is not usable.");
+                    }
+                    break;
+                case 2:
+                    // Equip the item
+                    equipItem(selectedItem);
+                    break;
+                case 0:
+                    System.out.println("Action canceled.");
+                    break;
+                default:
+                    System.out.println("Invalid choice.");
+                    break;
+            }
+        } else {
+            System.out.println("Invalid item selection.");
+        }
+    }
 
 }

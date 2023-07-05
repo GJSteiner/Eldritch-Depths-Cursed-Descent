@@ -4,6 +4,9 @@ import Characters.Player;
 import Items.Armor;
 import Items.Item;
 import Items.Potion;
+import Items.Potions.LargeHealthPotion;
+import Items.Potions.MediumHealthPotion;
+import Items.Potions.SmallHealthPotion;
 import Items.Weapon;
 
 import java.util.ArrayList;
@@ -17,17 +20,17 @@ public class FloorOneLootTable {
         // Common Items
         lootTable.add(new Weapon("Iron Sword", "A sturdy iron sword", 0, 5));
         lootTable.add(new Armor("Leather Armor", "Basic leather armor", 2, 0));
-        lootTable.add(new Potion("Health Potion", "Restores 20 health points", 20, 0));
+        lootTable.add(new SmallHealthPotion());
 
         // Uncommon Items
         lootTable.add(new Weapon("Steel Dagger", "A sharp steel dagger", 0, 3));
         lootTable.add(new Armor("Chainmail", "Durable chainmail armor", 4, 0));
-        lootTable.add(new Potion("Magic Potion", "Restores 20 magic points", 0, 20));
+        lootTable.add(new MediumHealthPotion());
 
         // Rare Items
         lootTable.add(new Weapon("Staff of Fire", "A powerful staff imbued with fire magic", 10, 0));
         lootTable.add(new Armor("Plate Armor", "Heavy plate armor", 8, 0));
-        lootTable.add(new Potion("Elixir of Strength", "Temporarily increases strength by 5", 0, 0));
+        lootTable.add(new LargeHealthPotion());
     }
 
     public static void getRandomLoot(Player player) {

@@ -67,4 +67,18 @@ public abstract class Enemy extends Character {
 
         return droppedGold;
     }
+    public Item dropRandomItem() {
+        if (inventory.isEmpty()) {
+            return null;
+        }
+
+        // Selecting a random item from the inventory
+        int randomIndex = (int) (Math.random() * inventory.size());
+        Item droppedItem = inventory.get(randomIndex);
+
+        // Removing the dropped item from the inventory
+        inventory.remove(randomIndex);
+
+        return droppedItem;
+    }
 }

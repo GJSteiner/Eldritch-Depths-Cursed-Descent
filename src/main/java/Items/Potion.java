@@ -1,6 +1,8 @@
 package Items;
 
-public class Potion extends Item{
+import Characters.Character;
+
+public abstract class Potion extends UsableItem{
 
     private int healthRestore;
     private int magicRestore;
@@ -72,5 +74,17 @@ public class Potion extends Item{
 
     public void setDefenseBoost(int defenseBoost) {
         this.defenseBoost = defenseBoost;
+    }
+
+    @Override
+    public void use(Character character){
+        if(character.getInventory().contains(this)){
+            character.heal(getHealthRestore());
+            character.removeItemFromInventory(this);
+            System.out.println(character.getName() + " restored " + getHealthRestore() + " health.");
+            if(!character.getInventory().contains(this)){
+                System.out.println(character.getName() + " has no more potions.");
+            }
+        }
     }
 }

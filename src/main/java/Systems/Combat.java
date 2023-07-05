@@ -5,6 +5,7 @@ import Characters.Character;
 import Abilities.Ability;
 import Characters.Enemies.Enemy;
 import Characters.Player;
+import Items.Item;
 
 import java.util.List;
 import java.util.Random;
@@ -36,6 +37,12 @@ public class Combat {
                 System.out.println("You have gained " + droppedGold + " gold!");
                 System.out.println("You now have " + player.getGold() + " gold.");
                 System.out.println();
+                Item droppedItem = enemy.dropRandomItem();
+                if(droppedItem != null) {
+                    System.out.println(enemy.getName() + " dropped a " + droppedItem.getName() + "!");
+                    System.out.println(player.getName() + " picked up a " + droppedItem.getName() + ".");
+                    player.getInventory().add(droppedItem);
+                }
                 break;
             }
 
