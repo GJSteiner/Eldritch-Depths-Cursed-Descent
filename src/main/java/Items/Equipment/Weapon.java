@@ -1,6 +1,8 @@
-package Items;
+package Items.Equipment;
 
-public class Weapon extends Item{
+import Items.Item;
+
+public class Weapon extends Item {
     private int magicBonus;
     private int strengthBonus;
 

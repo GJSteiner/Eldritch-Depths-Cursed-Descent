@@ -1,17 +1,15 @@
 package Characters;
 
-import Abilities.Ability;
-import Abilities.Passive;
+import Items.Equipment.EquipableItem;
+import Items.Equipment.EquipmentSlot;
 import Items.Item;
-import Items.UsableItem;
+import Items.Consumables.Potions.UsableItem;
 import Rooms.Room;
 import Systems.Direction;
-import Dungeons.Dungeon;
+import Systems.EquipmentSystem;
 
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Player extends Character {
 
@@ -19,8 +17,6 @@ public class Player extends Character {
     private int experience;
     private int gold;
     private String playerClass;
-
-    //shouldn't need these constructors anymore, since I moved them to the Character superclass
     public Player(String name, int level, int maxHealth, int health, int magic, int strength, int defense, boolean alive) {
         super(name, level, maxHealth, health, magic, strength, defense, alive);
         this.abilities = new ArrayList<>();
@@ -28,6 +24,7 @@ public class Player extends Character {
         this.passives = new ArrayList<>();
         this.gold = 0;
         this.playerClass = "Acolyte";
+
     }
 //
 //    public Player(String name, int level, int maxHealth, int health, int magic, int strength, int defense, boolean alive, List<Item> inventory, List<Ability> abilities, List<Passive> passives) {
@@ -85,6 +82,8 @@ public class Player extends Character {
     public void setPlayerClass(String playerClass) {
         this.playerClass = playerClass;
     }
+
+
 
     public void move() {
         Scanner scanner = new Scanner(System.in);
@@ -233,7 +232,7 @@ public class Player extends Character {
                     break;
                 case 2:
                     // Equip the item
-                    equipItem(selectedItem);
+                    getEquipmentSystem().equipItem(this, selectedItem);
                     break;
                 case 0:
                     System.out.println("Action canceled.");

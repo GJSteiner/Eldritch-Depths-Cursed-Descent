@@ -1,6 +1,6 @@
-package Items.Weapons;
+package Items.Equipment.Weapons;
 
-import Items.Weapon;
+import Items.Equipment.Weapon;
 
 public class WeaponList {
 

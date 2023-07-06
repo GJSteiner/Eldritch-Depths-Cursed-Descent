@@ -1,8 +1,8 @@
-//package Items.Potions;
+//package Items.Consumables.Potions;
 //
 //import Characters.Character;
 //import Items.Item;
-//import Items.Potion;
+//import Items.Consumables.Potions.Potion;
 //
 //public class HealthPotions {
 //

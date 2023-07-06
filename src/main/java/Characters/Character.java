@@ -2,13 +2,13 @@ package Characters;
 
 import Abilities.Ability;
 import Abilities.Passive;
+import Items.Equipment.EquipableItem;
+import Items.Equipment.EquipmentSlot;
 import Items.Item;
-import Items.Potion;
 import Systems.DamageOverTime;
+import Systems.EquipmentSystem;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public abstract class Character {
     String name = "";
@@ -24,6 +24,10 @@ public abstract class Character {
     protected List<Ability> abilities;
     protected List<Passive> passives;
     private List<DamageOverTime> damageOverTimeEffects;
+    private Map<EquipmentSlot, EquipableItem> equippedItems;
+    private EquipmentSystem equipmentSystem;
+
+
 
     public Character(){
 
@@ -44,6 +48,9 @@ public abstract class Character {
         this.inventory = new ArrayList<>();
         this.passives = new ArrayList<>();
         this.damageOverTimeEffects = new ArrayList<>();
+        this.equippedItems = new HashMap<>();
+        this.equipmentSystem = new EquipmentSystem();
+
     }
 
     public Character(String name, int level, int maxHealth, int health, int magic, int strength, int defense, boolean alive, List<Item> inventory, List<Ability> abilities, List<Passive> passives) {
@@ -59,6 +66,8 @@ public abstract class Character {
         this.inventory = inventory;
         this.passives = passives;
         this.damageOverTimeEffects = new ArrayList<>();
+        this.equippedItems = new HashMap<>();
+        this.equipmentSystem = new EquipmentSystem();
     }
 
     public int getMaxHealth() {
@@ -133,6 +142,10 @@ public abstract class Character {
         this.alive = alive;
     }
 
+    public EquipmentSystem getEquipmentSystem() {
+        return equipmentSystem;
+    }
+
     public List<DamageOverTime> getDamageOverTimeEffects() {
         return damageOverTimeEffects;
     }
@@ -177,6 +190,13 @@ public abstract class Character {
 
     public void addPassive(Passive passive){
         passives.add(passive);
+    }
+    public Map<EquipmentSlot, EquipableItem> getEquippedItems() {
+        return equippedItems;
+    }
+
+    public void setEquippedItems(Map<EquipmentSlot, EquipableItem> equippedItems) {
+        this.equippedItems = equippedItems;
     }
     public void displayCharacterStats() {
         System.out.println(getName() + ":");
@@ -228,6 +248,36 @@ public abstract class Character {
             if (dot.getRemainingRounds() <= 0) {
                 iterator.remove();
             }
+        }
+    }
+    public void equip(EquipableItem item) {
+        EquipmentSlot equipmentSlot = item.getEquipmentSlot();
+
+        // Check if the equipment slot is already occupied
+        if (equipmentSystem.isEquipmentSlotOccupied(this, equipmentSlot)) {
+            System.out.println("The equipment slot is already occupied.");
+            return;
+        }
+
+        // Equip the item to the character
+        equippedItems.put(equipmentSlot, item);
+
+        // Apply the item's effects to the character
+        item.addDefense(this);
+        item.addHealth(this);
+
+        System.out.println("Equipped item: " + item.getName() + " to " + equipmentSlot.getName());
+    }
+    public void unequip(EquipmentSlot equipmentSlot) {
+        if (equipmentSystem.isEquipmentSlotOccupied(this, equipmentSlot)) {
+            EquipableItem unequippedItem = equippedItems.get(equipmentSlot);
+            equippedItems.remove(equipmentSlot);
+            unequippedItem.removeDefense(this);
+            unequippedItem.removeHealth(this);
+            inventory.add(unequippedItem);
+            System.out.println("Unequipped " + unequippedItem.getName() + " from " + equipmentSlot.getName());
+        } else {
+            System.out.println("No item equipped in " + equipmentSlot.getName());
         }
     }
 

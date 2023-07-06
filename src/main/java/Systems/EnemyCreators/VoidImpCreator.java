@@ -6,13 +6,12 @@ import Abilities.Enemies.VoidImp.ImpFire;
 import Abilities.Enemies.VoidImp.ShadowStep;
 import Abilities.Passive;
 import Characters.Enemies.Floor1.VoidImp;
-import Items.Armor;
-import Items.Armors.ArmorList;
+import Items.Consumables.Potions.SmallHealthPotion;
+import Items.Equipment.Armors.Armor;
+import Items.Equipment.Armors.ArmorList;
 import Items.Item;
-import Items.Potion;
-import Items.Potions.HealthPotions;
-import Items.Weapon;
-import Items.Weapons.WeaponList;
+import Items.Equipment.Weapon;
+import Items.Equipment.Weapons.WeaponList;
 import Systems.EnemyTags;
 
 import java.util.ArrayList;
@@ -31,7 +30,7 @@ public class VoidImpCreator {
      List<Passive> enemyPassives = new ArrayList<>();  // Assuming you have a list of passives for the enemy
 
 //    Potion healthPotion = new HealthPotions().createSmallHealthPotion();
-    Potion weakImpPotion = new HealthPotions().smallHealthPotion;
+    SmallHealthPotion weakImpPotion = new SmallHealthPotion();
     Armor weakImpArmor = new ArmorList().voidRobes;
     Weapon weakImpWeapon = new WeaponList().voidDagger;
 

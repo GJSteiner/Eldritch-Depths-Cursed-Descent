@@ -1,7 +1,4 @@
-package Items.Potions;
-
-import Characters.Character;
-import Items.Potion;
+package Items.Consumables.Potions;
 
 public class SmallHealthPotion extends Potion {
     private static final String NAME = "Small Health Potion";

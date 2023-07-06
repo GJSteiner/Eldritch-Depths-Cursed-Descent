@@ -1,6 +1,4 @@
-package Items.Potions;
-
-import Items.Potion;
+package Items.Consumables.Potions;
 
 public class LargeHealthPotion extends Potion {
     private static final String NAME = "Large Health Potion";
