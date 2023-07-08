@@ -5,6 +5,7 @@ import Characters.Character;
 import Abilities.Ability;
 import Characters.Enemies.Enemy;
 import Characters.Player;
+import Items.Consumables.Potions.UsableItem;
 import Items.Item;
 
 import java.util.List;
@@ -24,8 +25,13 @@ public class Combat {
             // Player's turn
             System.out.println(player.getName() + "'s turn:");
             System.out.println();
-            System.out.println(player.getName() + ": " + player.getHealth() + " HP");
-            System.out.println(enemy.getName() + ": " + enemy.getHealth() + " HP");
+            System.out.println(player.getName() + "'s Health: " + player.getHealth() + " HP");
+            if(enemy.getName().endsWith("s")){
+                System.out.println(enemy.getName() + "' Health: " + enemy.getHealth() + " HP");
+            }
+            else {
+                System.out.println(enemy.getName() + "'s Health: " + enemy.getHealth() + " HP");
+            }
             System.out.println();
             selectAndUseAbility(player, enemy);
 
@@ -76,10 +82,12 @@ public class Combat {
         if(enemy.getEnemyTags().contains("Boss")){
             System.out.println("Congratulations! You have defeated this floor's boss and cleared the floor!");
         }
+        player.makeChoice();
+
     }
 
     private static void selectAndUseAbility(Character player, Character target) {
-        // Display available abilities to the user
+        // Displaying available abilities to the user
         System.out.println("Available abilities:");
         for (int i = 0; i < player.getAbilities().size(); i++) {
             Ability currentAbility = player.getAbilities().get(i);
@@ -88,25 +96,48 @@ public class Combat {
             }
         }
 
+        // Displaying available consumables in the inventory
+        System.out.println("Available consumables:");
+        List<Item> inventory = player.getInventory();
+        for (int i = 0; i < inventory.size(); i++) {
+            Item currentItem = inventory.get(i);
+            if (currentItem instanceof UsableItem) {
+                UsableItem usableItem = (UsableItem) currentItem;
+                System.out.println((i + 1) + ": " + usableItem.getName() + " - " + usableItem.getDescription());
+            }
+        }
 
-        // Prompt the player to select an ability
+
+        // Prompting the player to select an action
         System.out.println();
-        System.out.print("Select an ability by entering its number: ");
+        System.out.print("Select an ability or consumable by entering its number: ");
         System.out.println();
-        int abilityIndex = getPlayerChoice(player.getAbilities().size());
+        int choice = getPlayerChoice(player.getAbilities().size() + inventory.size());
 
         // Use the selected ability on the target
-        Ability selectedAbility = player.getAbilities().get(abilityIndex);
+        if(choice <= player.getAbilities().size()) {
+            int abilityIndex = choice;
 
-        if(selectedAbility.isAoe()){
+            Ability selectedAbility = player.getAbilities().get(abilityIndex);
 
-            for(Character enemy : CharacterManager.getEnemies()){
-                selectedAbility.useAbility(player, enemy);
+            if (selectedAbility.isAoe()) {
+
+                for (Character enemy : CharacterManager.getEnemies()) {
+                    selectedAbility.useAbility(player, enemy);
+                }
+                System.out.println("All enemies were hit by " + selectedAbility.getName());
+            } else {
+                selectedAbility.useAbility(player, target);
             }
-            System.out.println("All enemies were hit by " + selectedAbility.getName());
         }
         else{
-            selectedAbility.useAbility(player, target);
+            int itemIndex = choice - player.getInventory().size() - 1;
+            Item selectedItem = inventory.get(itemIndex);
+            if (selectedItem instanceof UsableItem) {
+                UsableItem usableItem = (UsableItem) selectedItem;
+                usableItem.use(player);
+                System.out.println("You used " + usableItem.getName() + ".");
+            }
         }
 
         System.out.println();
@@ -132,8 +163,6 @@ public class Combat {
             }
         }
         randomAbility.useAbility(npc, target);
-//        System.out.println(npc.getName() + " uses " + randomAbility.getName() + " on " + target.getName() + ", dealing" + randomAbility.getDamage() + " damage");
-        System.out.println();
     }
 
     private static int getPlayerChoice(int maxChoice) {

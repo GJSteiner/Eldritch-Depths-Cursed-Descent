@@ -18,10 +18,10 @@ public class VoidImp extends Enemy {
     private static final int XP_YIELD = 50;
     private static final String ENEMY_TYPE = "Void Imp";
     private static final String DESCRIPTION = "A small imp from the void realm.";
-    private static final List<Ability> VOID_IMP_ABILITIES = new ArrayList<>();
-    private static final List<Item> VOID_IMP_INVENTORY = new ArrayList<>();
-    private static final List<Passive> VOID_IMP_PASSIVES = new ArrayList<>();
-    private static final List<String> VOID_IMP_TAGS = new ArrayList<>();
+//    private static final List<Ability> VOID_IMP_ABILITIES = new ArrayList<>();
+//    private static final List<Item> VOID_IMP_INVENTORY = new ArrayList<>();
+//    private static final List<Passive> VOID_IMP_PASSIVES = new ArrayList<>();
+//    private static final List<String> VOID_IMP_TAGS = new ArrayList<>();
 
     private final EnemyTags allTags = new EnemyTags();
     private final List<String> enemyTags = new ArrayList<>();
@@ -32,31 +32,32 @@ public class VoidImp extends Enemy {
     }
 
     public VoidImp(String name, int level, int maxHealth, int health, int magic, int strength, int defense, boolean alive, List<Item> inventory, List<Ability> abilities, List<Passive> passives, List<String> enemyTags) {
-        super(name, level, maxHealth, health, magic, strength, defense, alive, XP_YIELD, ENEMY_TYPE, DESCRIPTION, VOID_IMP_INVENTORY, VOID_IMP_ABILITIES, VOID_IMP_PASSIVES, VOID_IMP_TAGS);
+        super(name, level, maxHealth, health, magic, strength, defense, alive, XP_YIELD, ENEMY_TYPE, DESCRIPTION, inventory, abilities, passives, enemyTags);
         enemyTags.add(allTags.getVoidEnemy());
         enemyTags.add(allTags.getImpEnemy());
     }
 
-    static {
+    // getting all this from the voidImpCreator instead
+//    static {
+//
+//        Ability darkBlast = new DarkBlast();
+//        Ability impFire = new ImpFire();
+//        Ability shadowStep = new ShadowStep();
+//
+//        VOID_IMP_ABILITIES.add(darkBlast);
+//        VOID_IMP_ABILITIES.add(impFire);
+//        VOID_IMP_ABILITIES.add(shadowStep);
+//    }
 
-        Ability darkBlast = new DarkBlast();
-        Ability impFire = new ImpFire();
-        Ability shadowStep = new ShadowStep();
-
-        VOID_IMP_ABILITIES.add(darkBlast);
-        VOID_IMP_ABILITIES.add(impFire);
-        VOID_IMP_ABILITIES.add(shadowStep);
-    }
-
-    private void addAbilities(Ability ability){
-        VOID_IMP_ABILITIES.add(ability);
-    }
-    private void addPassives(Passive passive){
-        VOID_IMP_PASSIVES.add(passive);
-    }
-    private void addItems(Item item){
-        VOID_IMP_INVENTORY.add(item);
-    }
+//    private void addAbilities(Ability ability){
+//        VOID_IMP_ABILITIES.add(ability);
+//    }
+//    private void addPassives(Passive passive){
+//        VOID_IMP_PASSIVES.add(passive);
+//    }
+//    private void addItems(Item item){
+//        VOID_IMP_INVENTORY.add(item);
+//    }
 
 
     public VoidImp level0Imp() {

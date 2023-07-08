@@ -1,14 +1,13 @@
 package Items.LootTables;
 
 import Characters.Player;
-import Items.Equipment.Armors.Armor;
 import Items.Equipment.Armors.Chest;
 import Items.Equipment.EquipmentSlot;
+import Items.Equipment.Weapons.Weapon;
 import Items.Item;
 import Items.Consumables.Potions.LargeHealthPotion;
 import Items.Consumables.Potions.MediumHealthPotion;
 import Items.Consumables.Potions.SmallHealthPotion;
-import Items.Equipment.Weapon;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,17 +18,17 @@ public class FloorOneLootTable {
 
     static {
         // Common Items
-        lootTable.add(new Weapon("Iron Sword", "A sturdy iron sword", 0, 5));
+        lootTable.add(new Weapon("Iron Sword", "A sturdy iron sword", EquipmentSlot.WEAPON, 0, 3,  0, 0));
         lootTable.add(new Chest("Leather Armor", "Basic leather armor", EquipmentSlot.CHEST,0, 0, 2, 0));
         lootTable.add(new SmallHealthPotion());
 
         // Uncommon Items
-        lootTable.add(new Weapon("Steel Dagger", "A sharp steel dagger", 0, 3));
+        lootTable.add(new Weapon("Steel Dagger", "A sharp steel dagger", EquipmentSlot.WEAPON, 0, 5, 0 , 0));
         lootTable.add(new Chest("Chainmail", "Durable chainmail armor",EquipmentSlot.CHEST,0, 0, 4, 0));
         lootTable.add(new MediumHealthPotion());
 
         // Rare Items
-        lootTable.add(new Weapon("Staff of Fire", "A powerful staff imbued with fire magic", 10, 0));
+        lootTable.add(new Weapon("Staff of Fire", "A powerful staff imbued with fire magic", EquipmentSlot.WEAPON, 10, 0, 0, 0));
         lootTable.add(new Chest("Plate Armor", "Heavy plate armor",EquipmentSlot.CHEST,0, 0, 8, 0));
         lootTable.add(new LargeHealthPotion());
     }

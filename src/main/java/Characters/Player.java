@@ -91,6 +91,7 @@ public class Player extends Character {
 
 
         while(true) {
+            System.out.println();
             System.out.println("Where would you like to go?");
 
 
@@ -114,21 +115,30 @@ public class Player extends Character {
         }
     }
     public void makeChoice(){
-
+        System.out.println();
         System.out.println("What would you like to do?");
         System.out.println("1. Move");
         System.out.println("2. Check Inventory");
         System.out.println("3. Check Stats");
+        System.out.println("4. Check Equipment");
 
         int choice = getActionChoice();
+
         if (choice == 1){
             move();
         }
-        if (choice == 2){
 
+        if (choice == 2) {
+            displayInventoryAndChooseAction();
+            makeChoice();
         }
-        if (choice == 3){
-
+        if (choice == 3) {
+            displayCharacterStats();
+            makeChoice();
+        }
+        if (choice == 4){
+            displayEquipment();
+            makeChoice();
         }
 
     }
@@ -141,11 +151,11 @@ public class Player extends Character {
             System.out.print("Enter your choice: ");
             if (scanner.hasNextInt()){
                 choice = scanner.nextInt();
-                if(choice >=1 && choice <=3) {
+                if(choice >=1 && choice <=4) {
                     validChoice = true;
                 }
                 else {
-                    System.out.println("Invalid input. Please enter a number between 1 and 3.");
+                    System.out.println("Invalid input. Please enter a number between 1 and 4.");
                 }
             }
             else{
@@ -187,6 +197,18 @@ public class Player extends Character {
         }
         else {
             return newExperienceTreshold;
+        }
+    }
+    public void displayEquipment(){
+        System.out.println();
+        System.out.println("Equipped Items:");
+        System.out.println();
+
+        for (Map.Entry<EquipmentSlot, EquipableItem> entry : getEquippedItems().entrySet()) {
+            EquipmentSlot slot = entry.getKey();
+            EquipableItem item = entry.getValue();
+
+            System.out.println(slot.getName() + ": " + (item != null ? item.getName() : "Empty"));
         }
     }
 

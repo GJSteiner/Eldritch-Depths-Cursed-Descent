@@ -44,23 +44,51 @@ public abstract class EquipableItem extends Item {
 //
 //    public abstract void unequip(Character character);
     public void addDefense(Character character){
-        character.setDefense(character.getDefense()+defense);
+        // Running checks on all of these to make sure that if there is a debuff, it's not
+        // dropped by unequipping and reequipping.
+        if(defense > 0) {
+            character.setDefense(character.getDefense() + defense);
+        }
     }
     public void removeDefense(Character character){
-        character.setDefense(character.getDefense()-defense);
+        if(defense >0) {
+            character.setDefense(character.getDefense() - defense);
+        }
     }
     public void addHealth(Character character){
-        character.setMaxHealth(character.getMaxHealth()+health);
-        character.setHealth(character.getMaxHealth());
+        if(health >0) {
+            character.setMaxHealth(character.getMaxHealth() + health);
+        }
     }
     public void removeHealth(Character character){
-        int currentHealth = character.getHealth();
-        character.setMaxHealth(character.getMaxHealth()-health);
-        if(currentHealth >= character.getMaxHealth()) {
-            character.setHealth(character.getMaxHealth());
+        if(health >0) {
+            int currentHealth = character.getHealth();
+            character.setMaxHealth(character.getMaxHealth() - health);
+            if (currentHealth >= character.getMaxHealth()) {
+                character.setHealth(character.getMaxHealth());
+            } else {
+                character.setHealth(currentHealth);
+            }
         }
-        else{
-            character.setHealth(currentHealth);
+    }
+    public void addStrength(Character character){
+        if(strength > 0){
+        character.setStrength(character.getStrength()+strength);
+        }
+    }
+    public void removeStrength(Character character){
+        if(strength > 0) {
+            character.setStrength(character.getStrength() - strength);
+        }
+    }
+    public void addMagic(Character character){
+        if(magic > 0) {
+            character.setMagic(character.getMagic() + magic);
+        }
+    }
+    public void removeMagic(Character character) {
+        if (magic > 0){
+            character.setMagic(character.getMagic() - magic);
         }
     }
 //    public abstract void applyEffect(Character character);

@@ -39,24 +39,14 @@ public class GameRunner {
         System.out.println("Congratulations! You have completed the dungeon!");
     }
 
-//    private static void gameLoop(Player player, Dungeon dungeon) {
-//        // Main game loop
-//        while (player.isAlive() && !dungeon.isGameCompleted()) {
-//            // Process player input, handle player actions
-//            // Update game state (player, dungeon, enemies, etc.)
-//            // Display game information, room description, player status, etc.
-//        }
-//    }
-
     private static void exploreDungeon(Player player, Dungeon dungeon) {
         while (true) {
             Room currentRoom = player.getCurrentRoom();
 
-            System.out.println();
-            System.out.println("Current Room: " + currentRoom.getName());
-            System.out.println();
-            System.out.println(currentRoom.getDescription());
-            System.out.println();
+//            System.out.println();
+//            System.out.println("Current Room: " + currentRoom.getName());
+//            System.out.println();
+//            System.out.println(currentRoom.getDescription());
             player.move();
 
             // Checking if the player has reached the end of the floor

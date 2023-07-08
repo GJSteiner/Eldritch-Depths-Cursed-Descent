@@ -1,4 +1,4 @@
-1) enemy class
+1) ~~enemy class~~
 2) enemies for each floor
 3) Loot tables
 4) items
@@ -15,15 +15,19 @@
 15) adjust the health/damage. combat feels like it takes a while. 
 16) add randomized descriptions of abilities/attacks to give more flavor to combat
 17) add a feature on room/direction display that lists if the player has already been there
-18) adjust the health of the imps. player dies by the end of the second combat, guaranteed. 
+18) ~~adjust the health of the imps. player dies by the end of the second combat, guaranteed.~~
 19) ~~add a game over screen/function to add to combat method~~
 20) add something to happen after the boss is killed to move to the next floor
 21) ~~add gold tracker after combat~~
 22) add a statGrowth variable to each class to apply to the levelUp function so they each gain stats differently
-23) add logic for DoT damage
-24) add abilities for Crusader and Corrupted
+23) ~~add logic for DoT damage~~
+24) ~~add abilities for Crusader and Corrupted~~
 25) edit the levelUp function to show how much stat was gained upon levelup
 26) Still need to test that the aoe dmg method works
+27) display equipment stats when they are looked at
+28) adjust item stats
+29) adjust levelup stats. currently going from 80 max health to 166 seems like a lot unless enemies are scaled to match.
+30) levelup is also currently factoring in stats from items when leveling up, which needs to be fixed. maybe need to have 2 stats: base hp/strength/defence etc and item hp/str/def etc
 
 
 add loot to level 1 and 2 voidImps in the VoidImpCreator

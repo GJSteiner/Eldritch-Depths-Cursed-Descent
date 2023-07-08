@@ -199,13 +199,13 @@ public abstract class Character {
         this.equippedItems = equippedItems;
     }
     public void displayCharacterStats() {
+        System.out.println();
         System.out.println(getName() + ":");
         System.out.println("Level: " + getLevel());
-        System.out.println("Health: " + getHealth());
+        System.out.println("Health: " + getHealth() + "/" + maxHealth + " HP");
         System.out.println("Magic: " + getMagic());
         System.out.println("Strength: " + getStrength());
         System.out.println("Defense: " + getDefense());
-        System.out.println();
     }
     public void removeItemFromInventory(Item item) {
         inventory.remove(item);
@@ -265,6 +265,8 @@ public abstract class Character {
         // Apply the item's effects to the character
         item.addDefense(this);
         item.addHealth(this);
+        item.addStrength(this);
+        item.addMagic(this);
 
         System.out.println("Equipped item: " + item.getName() + " to " + equipmentSlot.getName());
     }
@@ -274,6 +276,8 @@ public abstract class Character {
             equippedItems.remove(equipmentSlot);
             unequippedItem.removeDefense(this);
             unequippedItem.removeHealth(this);
+            unequippedItem.removeStrength(this);
+            unequippedItem.removeMagic(this);
             inventory.add(unequippedItem);
             System.out.println("Unequipped " + unequippedItem.getName() + " from " + equipmentSlot.getName());
         } else {

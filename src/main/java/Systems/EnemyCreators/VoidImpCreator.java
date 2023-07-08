@@ -9,8 +9,8 @@ import Characters.Enemies.Floor1.VoidImp;
 import Items.Consumables.Potions.SmallHealthPotion;
 import Items.Equipment.Armors.Armor;
 import Items.Equipment.Armors.ArmorList;
+import Items.Equipment.Weapons.Weapon;
 import Items.Item;
-import Items.Equipment.Weapon;
 import Items.Equipment.Weapons.WeaponList;
 import Systems.EnemyTags;
 
@@ -50,8 +50,7 @@ public class VoidImpCreator {
             enemyInventory.add(weakImpArmor);
         }
 
-//        int enemyMaxHealth = enemyLevel + 50;
-        int enemyMaxHealth = 20;
+        int enemyMaxHealth = (enemyLevel+1) * 10;
         int enemyHealth = enemyMaxHealth;
         int enemyMagic = (enemyLevel + 1) * 5;
         int enemyStrength = (enemyLevel + 1) * 5;

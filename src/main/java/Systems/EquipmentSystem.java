@@ -39,6 +39,7 @@ public class EquipmentSystem {
 
             // Check if the equipment slot is already occupied
             if (isEquipmentSlotOccupied(character, equipmentSlot)) {
+                character.unequip(equipmentSlot);
                 System.out.println("Cannot equip the item. The equipment slot " + equipmentSlot.getName() + " is already occupied.");
             } else {
                 // Equip the item
