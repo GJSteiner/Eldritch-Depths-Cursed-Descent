@@ -15,11 +15,30 @@ import static Systems.GameRunner.getPlayerChoice;
 
 public class Combat {
     public static void startCombat(Player player, List<Enemy> aliveEnemies) {
-        for (Enemy enemy : aliveEnemies) {
+        boolean bossEnemyRoom = false;
+        if(aliveEnemies.size() == 1){
             System.out.println();
-            System.out.println("A battle begins between " + player.getName() + " and " + enemy.getName() + "!");
+            System.out.println("A battle begins between " + player.getName() + " and " + aliveEnemies.get(0).getName() + "!");
             System.out.println();
-            player.displayCharacterStats();
+        }
+        else{
+            System.out.println();
+            System.out.println("A battle begins between " + player.getName() + " and multiple enemies!");
+            System.out.println();
+
+        }
+        for (int i = 0; i < aliveEnemies.size(); i++) {
+            aliveEnemies.get(i).displayCharacterStats();
+            if(aliveEnemies.get(i).getEnemyTags().contains("Boss")){
+                bossEnemyRoom = true;
+            }
+        }
+        System.out.println();
+        player.displayCharacterStats();
+
+        for (int i = 0; i < aliveEnemies.size(); i++) {
+            Enemy enemy = aliveEnemies.get(i);
+            System.out.println("Enemy Number " + i);
             enemy.displayCharacterStats();
             System.out.println();
             while (player.isAlive() && enemy.isAlive()) {
@@ -72,13 +91,19 @@ public class Combat {
                 }
                 System.out.println();
             }
-
-            System.out.println("The battle against " + enemy.getName() + " has ended.");
-            if (enemy.getEnemyTags().contains("Boss")) {
-                System.out.println("Congratulations! You have defeated this floor's boss and cleared the floor!");
-            }
-            player.makeChoice();
         }
+        if (bossEnemyRoom) {
+            System.out.println("Congratulations! You have defeated this floor's boss and cleared the floor!");
+        }
+        else if(aliveEnemies.size() == 1){
+            System.out.println("The battle against " + aliveEnemies.get(0).getName() + " has ended.");
+        }
+        else{
+            System.out.println("The battle has ended.");
+        }
+
+        player.makeChoice();
+
     }
     private static int chooseActionOrItem(Character player, Character target){
         int choice = 0;

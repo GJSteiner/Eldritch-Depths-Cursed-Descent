@@ -1,5 +1,6 @@
 package Floors;
 
+import Characters.Enemies.Enemy;
 import Rooms.Room;
 
 import java.util.ArrayList;
@@ -25,5 +26,11 @@ public abstract class FloorLayout {
     public abstract Room getStartingRoom();
     public void reset() {
         generateLayout();
+    }
+    public void setNamesForMultipleEnemies(List<Enemy> enemies){
+        for (int i = 0; i < enemies.size(); i++) {
+            Enemy enemy = enemies.get(i);
+            enemy.setName(enemy.getName() + " " + (i+1));
+        }
     }
 }

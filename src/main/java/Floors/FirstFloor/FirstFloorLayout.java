@@ -38,6 +38,7 @@ public class FirstFloorLayout extends FloorLayout {
         room3Enemies.add(enemy3);
         room3Enemies.add(enemy4);
         room3Enemies.add(enemy5);
+        setNamesForMultipleEnemies(room3Enemies);
         /// bossRoom enemies:
         VoidImp bossEnemy = voidImp.level2Imp();
         List<Enemy> bossRoomEnemies = new ArrayList<>();
