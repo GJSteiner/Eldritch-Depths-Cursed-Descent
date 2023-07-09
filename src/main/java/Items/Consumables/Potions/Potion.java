@@ -1,8 +1,13 @@
 package Items.Consumables.Potions;
 
 import Characters.Character;
+import Items.Consumables.UsableItem;
+import Items.Item;
 
-public abstract class Potion extends UsableItem{
+import java.util.Collections;
+import java.util.List;
+
+public abstract class Potion extends UsableItem {
 
     private int healthRestore;
     private int magicRestore;
@@ -77,14 +82,32 @@ public abstract class Potion extends UsableItem{
     }
 
     @Override
-    public void use(Character character){
-        if(character.getInventory().contains(this)){
+    public void use(Character character) {
+        List<Item> inventory = character.getInventory();
+        int remainingPotions = 0;
+
+        // Count the remaining potions with the same name
+        for (Item item : inventory) {
+            if (item instanceof Potion && item.getName().equals(this.getName())) {
+                remainingPotions++;
+            }
+        }
+
+        if (remainingPotions > 0) {
             character.heal(getHealthRestore());
             character.removeItemFromInventory(this);
             System.out.println(character.getName() + " restored " + getHealthRestore() + " health.");
-            if(!character.getInventory().contains(this)){
-                System.out.println(character.getName() + " has no more potions.");
+            System.out.println("Health: " + character.getHealth() + "/" + character.getMaxHealth());
+
+            remainingPotions--;
+
+            if (remainingPotions > 0) {
+                System.out.println(character.getName() + " has " + remainingPotions + " " + getName() + " potion(s) left.");
+            } else {
+                System.out.println(character.getName() + " has no more " + getName() + " potions.");
             }
+        } else {
+            System.out.println(character.getName() + " has no " + getName() + " potions left.");
         }
     }
 }

@@ -2,6 +2,7 @@ package Characters;
 
 import Abilities.Ability;
 import Abilities.Passive;
+import Items.Consumables.UsableItem;
 import Items.Equipment.EquipableItem;
 import Items.Equipment.EquipmentSlot;
 import Items.Item;
@@ -284,5 +285,12 @@ public abstract class Character {
             System.out.println("No item equipped in " + equipmentSlot.getName());
         }
     }
-
+    public boolean hasUsableItems(List<Item> inventory) {
+        for (Item item : inventory) {
+            if (item instanceof UsableItem) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

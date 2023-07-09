@@ -3,10 +3,9 @@ package Characters;
 import Items.Equipment.EquipableItem;
 import Items.Equipment.EquipmentSlot;
 import Items.Item;
-import Items.Consumables.Potions.UsableItem;
+import Items.Consumables.UsableItem;
 import Rooms.Room;
 import Systems.Direction;
-import Systems.EquipmentSystem;
 
 
 import java.util.*;
@@ -267,5 +266,11 @@ public class Player extends Character {
             System.out.println("Invalid item selection.");
         }
     }
-
+    public void reset() {
+        setHealth(20);
+        setExperience(0);
+        setLevel(0);
+        setGold(0);
+        getInventory().clear();
+    }
 }

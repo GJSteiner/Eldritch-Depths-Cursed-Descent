@@ -57,4 +57,7 @@ public class Dungeon {
     public void setGameCompleted(boolean gameCompleted) {
         this.gameCompleted = gameCompleted;
     }
+    public void reset(){
+        setCurrentFloorIndex(0);
+    }
 }

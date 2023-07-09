@@ -23,4 +23,7 @@ public abstract class FloorLayout {
         return layout;
     }
     public abstract Room getStartingRoom();
+    public void reset() {
+        generateLayout();
+    }
 }

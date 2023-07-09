@@ -1,4 +1,4 @@
-package Items.Consumables.Potions;
+package Items.Consumables;
 
 import Characters.Character;
 import Items.Item;
