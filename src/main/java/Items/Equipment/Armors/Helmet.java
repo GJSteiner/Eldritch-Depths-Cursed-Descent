@@ -4,8 +4,10 @@ import Items.Equipment.EquipmentSlot;
 
 public class Helmet extends Armor {
 
-    public Helmet(String name, String description, EquipmentSlot equipmentSlot, int magic, int strength, int defense, int health) {
-        super(name, description, EquipmentSlot.HEAD, magic, strength, defense, health);
+    public Helmet(String name, String description, int tier) {
+        super(name, description, EquipmentSlot.HEAD, tier);
+        this.setDefense(calculateMainStat(tier, 2));
+        this.setHealth(calculateMainStat(tier, 10));
     }
 
 }

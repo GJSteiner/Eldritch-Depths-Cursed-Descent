@@ -3,7 +3,9 @@ package Items.Equipment.Armors;
 import Items.Equipment.EquipmentSlot;
 
 public class Hands extends Armor{
-    public Hands(String name, String description, EquipmentSlot equipmentSlot, int magic, int strength, int defense, int health) {
-        super(name, description, EquipmentSlot.HANDS, magic, strength, defense, health);
+    public Hands(String name, String description, int tier) {
+        super(name, description, EquipmentSlot.HANDS, tier);
+        this.setDefense(calculateMainStat(tier, 2));
+        this.setHealth(calculateMainStat(tier, 10));
     }
 }
