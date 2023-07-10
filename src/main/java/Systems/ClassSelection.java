@@ -100,6 +100,7 @@ public class ClassSelection {
         player.addPassive(new Reserves());
 
         player.setPlayerClass("Acolyte");
+        player.setBaseStats();
         return player;
     }
 
@@ -124,6 +125,7 @@ public class ClassSelection {
         player.addPassive(new HolyFireMastery());
 
         player.setPlayerClass("Crusader");
+        player.setBaseStats();
         return player;
     }
     private static Player createCorruptedPlayer(String name) {
@@ -141,6 +143,7 @@ public class ClassSelection {
 
         // Create a Corrupted player instance
         player.setPlayerClass("Corrupted");
+        player.setBaseStats();
         return player;
     }
 

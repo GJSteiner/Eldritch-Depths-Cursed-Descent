@@ -15,10 +15,14 @@ public abstract class Character {
     String name = "";
     int level = 1;
     int maxHealth;
+    int baseHealth = maxHealth;
     int health = 1;
     int magic = 1;
+    int baseMagic = magic;
     int strength = 1;
+    int baseStrength = strength;
     int defense = 1;
+    int baseDefense = defense;
     boolean alive = true;
 
     protected List<Item> inventory;
@@ -143,6 +147,38 @@ public abstract class Character {
         this.alive = alive;
     }
 
+    public int getBaseHealth() {
+        return baseHealth;
+    }
+
+    public void setBaseHealth(int baseHealth) {
+        this.baseHealth = baseHealth;
+    }
+
+    public int getBaseMagic() {
+        return baseMagic;
+    }
+
+    public void setBaseMagic(int baseMagic) {
+        this.baseMagic = baseMagic;
+    }
+
+    public int getBaseStrength() {
+        return baseStrength;
+    }
+
+    public void setBaseStrength(int baseStrength) {
+        this.baseStrength = baseStrength;
+    }
+
+    public int getBaseDefense() {
+        return baseDefense;
+    }
+
+    public void setBaseDefense(int baseDefense) {
+        this.baseDefense = baseDefense;
+    }
+
     public EquipmentSystem getEquipmentSystem() {
         return equipmentSystem;
     }
@@ -197,6 +233,7 @@ public abstract class Character {
     }
 
     public void setEquippedItems(Map<EquipmentSlot, EquipableItem> equippedItems) {
+
         this.equippedItems = equippedItems;
     }
     public void displayCharacterStats() {
@@ -208,6 +245,7 @@ public abstract class Character {
         System.out.println("Strength: " + getStrength());
         System.out.println("Defense: " + getDefense());
     }
+
     public void removeItemFromInventory(Item item) {
         inventory.remove(item);
     }
@@ -255,10 +293,10 @@ public abstract class Character {
         EquipmentSlot equipmentSlot = item.getEquipmentSlot();
 
         // Check if the equipment slot is already occupied
-        if (equipmentSystem.isEquipmentSlotOccupied(this, equipmentSlot)) {
-            System.out.println("The equipment slot is already occupied.");
-            return;
-        }
+//        if (equipmentSystem.isEquipmentSlotOccupied(this, equipmentSlot)) {
+//            System.out.println("Cannot equip the item. The equipment slot " + equipmentSlot.getName() + " is already occupied.");
+//            return;
+//        }
 
         // Equip the item to the character
         equippedItems.put(equipmentSlot, item);
@@ -285,6 +323,10 @@ public abstract class Character {
             System.out.println("No item equipped in " + equipmentSlot.getName());
         }
     }
+    public void unequipAll() {
+        equippedItems.clear();
+//        System.out.println("All items have been unequipped.");
+    }
     public boolean hasUsableItems(List<Item> inventory) {
         for (Item item : inventory) {
             if (item instanceof UsableItem) {
@@ -292,5 +334,11 @@ public abstract class Character {
             }
         }
         return false;
+    }
+    public void setBaseStats(){
+        setBaseDefense(defense);
+        setBaseHealth(health);
+        setBaseMagic(magic);
+        setBaseStrength(strength);
     }
 }

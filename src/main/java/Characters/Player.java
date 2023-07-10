@@ -178,12 +178,25 @@ public class Player extends Character {
             System.out.println(getName() + " has leveled up!");
             System.out.println(getName() + " is now level " + level + "!");
             System.out.println();
+            Map<EquipmentSlot, EquipableItem> currentEquipment = getEquippedItems();
+            unequipAll();
+
             maxHealth *= (level+1);
             strength *= (level+1);
             magic *= (level+1);
             defense *= (level+1);
             experience = 0;
-            displayCharacterStats();
+            System.out.println("Max Health: " + baseHealth + " -> " + maxHealth);
+            System.out.println("Strength: " + baseStrength + " -> " + strength);
+            System.out.println("Magic: " + baseMagic + " -> " + magic);
+            System.out.println("Defense: " + baseDefense + " -> " + defense);
+            setBaseStats();
+//            displayCharacterStats();
+            for (EquipableItem item : currentEquipment.values()) {
+                if (item != null) {
+                    equip(item);
+                }
+            }
             experienceThreshold = calculateExperienceThreshold();
         }
     }

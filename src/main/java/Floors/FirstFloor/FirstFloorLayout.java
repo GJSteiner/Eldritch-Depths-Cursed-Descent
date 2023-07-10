@@ -48,15 +48,15 @@ public class FirstFloorLayout extends FloorLayout {
         SmallHealthPotion smallPotion1 = new SmallHealthPotion();
         SmallHealthPotion smallPotion2 = new SmallHealthPotion();
         MediumHealthPotion mediumPotion1 = new MediumHealthPotion();
-        MediumHealthPotion mediumPotion2 = new MediumHealthPotion();
-        LargeHealthPotion largePotion1 = new LargeHealthPotion();
+//        MediumHealthPotion mediumPotion2 = new MediumHealthPotion();
+//        LargeHealthPotion largePotion1 = new LargeHealthPotion();
 
         List<Item> treasure = new ArrayList<>();
         treasure.add(smallPotion1);
         treasure.add(smallPotion2);
         treasure.add(mediumPotion1);
-        treasure.add(mediumPotion2);
-        treasure.add(largePotion1);
+//        treasure.add(mediumPotion2);
+//        treasure.add(largePotion1);
 
 
         // Creating the rooms for the floor

@@ -6,12 +6,15 @@ import Abilities.Enemies.VoidImp.ImpFire;
 import Abilities.Enemies.VoidImp.ShadowStep;
 import Abilities.Passive;
 import Characters.Enemies.Floor1.VoidImp;
+import Items.Consumables.Potions.LargeHealthPotion;
+import Items.Consumables.Potions.MediumHealthPotion;
 import Items.Consumables.Potions.SmallHealthPotion;
-import Items.Equipment.Armors.Armor;
-import Items.Equipment.Armors.ArmorList;
-import Items.Equipment.Weapons.Weapon;
+import Items.Equipment.Armors.*;
+import Items.Equipment.OffHands.DefenseOffHand;
+import Items.Equipment.OffHands.MagicOffHand;
+import Items.Equipment.OffHands.StrengthOffHand;
+import Items.Equipment.Weapons.*;
 import Items.Item;
-import Items.Equipment.Weapons.WeaponList;
 import Systems.EnemyTags;
 
 import java.util.ArrayList;
@@ -25,17 +28,29 @@ public class VoidImpCreator {
     private final Ability impFire = new ImpFire();
 
     List<String> enemyTags = new ArrayList<>();
-     List<Item> enemyInventory = new ArrayList<>();  // Assuming you have an inventory of items for the enemy
-     List<Ability> enemyAbilities = new ArrayList<>();  // Assuming you have a list of abilities for the enemy
-     List<Passive> enemyPassives = new ArrayList<>();  // Assuming you have a list of passives for the enemy
+     List<Ability> enemyAbilities = new ArrayList<>();
+     List<Passive> enemyPassives = new ArrayList<>();
 
 //    Potion healthPotion = new HealthPotions().createSmallHealthPotion();
     SmallHealthPotion weakImpPotion = new SmallHealthPotion();
-    Armor weakImpArmor = new ArmorList().voidRobes;
-    Weapon weakImpWeapon = new WeaponList().voidDagger;
+    MediumHealthPotion averageImpPotion = new MediumHealthPotion();
+    LargeHealthPotion largeImpPotion = new LargeHealthPotion();
+    Chest weakImpChest = new ArmorList().voidRobes;
+    Legs weakImpGreaves = new ArmorList().voidwalkerLeggings;
+    Hands weakImpGloves = new ArmorList().eldritchGrasps;
+    Feet weakImpBoots = new ArmorList().voidwalkers;
+    Helmet weakImpHelm = new ArmorList().forbiddenCowl;
+    BalancedWeapon weakImpBalancedWeapon = new WeaponList().voidDagger;
+    MagicWeapon weakImpMagicWeapon = new WeaponList().voidStaff;
+    StrengthWeapon weakImpStrengthWeapon = new WeaponList().silverRapier;
+    MagicOffHand weakImpMagicOffHand = new WeaponList().arcaneOrb;
+    StrengthOffHand weakImpStrengthOffhand = new WeaponList().orbOfMight;
+    DefenseOffHand weakImpDefenseOffHand = new WeaponList().blessedShield;
 
 
     public VoidImp create(String enemyName, int enemyLevel){
+        List<Item> enemyInventory = new ArrayList<>();
+
         enemyTags.add(tags.getVoidEnemy());
         enemyTags.add(tags.getImpEnemy());
 
@@ -46,8 +61,24 @@ public class VoidImpCreator {
         if(enemyLevel == 0){
 // Create an inventory list for the Void Imp, provided it's level 0
             enemyInventory.add(weakImpPotion);
-            enemyInventory.add(weakImpWeapon);
-            enemyInventory.add(weakImpArmor);
+            enemyInventory.add(weakImpGloves);
+            enemyInventory.add(weakImpHelm);
+            enemyInventory.add(weakImpBoots);
+        }
+        if(enemyLevel == 1){
+            enemyInventory.add(weakImpPotion);
+            enemyInventory.add(weakImpBalancedWeapon);
+            enemyInventory.add(weakImpBalancedWeapon);
+            enemyInventory.add(weakImpStrengthOffhand);
+            enemyInventory.add(weakImpMagicOffHand);
+            enemyInventory.add(weakImpDefenseOffHand);
+        }
+        if(enemyLevel == 2){
+            enemyInventory.add(averageImpPotion);
+            enemyInventory.add(weakImpStrengthWeapon);
+            enemyInventory.add(weakImpMagicWeapon);
+            enemyInventory.add(weakImpChest);
+            enemyInventory.add(weakImpGreaves);
         }
 
         int enemyMaxHealth = (enemyLevel+1) * 10;
