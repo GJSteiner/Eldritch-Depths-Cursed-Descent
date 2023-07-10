@@ -16,14 +16,19 @@ public abstract class Character {
     int level = 1;
     int maxHealth;
     int baseHealth = maxHealth;
+    int equippedHealth = 0;
     int health = 1;
     int magic = 1;
+    int equippedMagic =0;
     int baseMagic = magic;
     int strength = 1;
+    int equippedStrength = 0;
     int baseStrength = strength;
     int defense = 1;
+    int equippedDefense=0;
     int baseDefense = defense;
     boolean alive = true;
+
 
     protected List<Item> inventory;
     protected List<Ability> abilities;
@@ -179,6 +184,55 @@ public abstract class Character {
         this.baseDefense = baseDefense;
     }
 
+    public int getEquippedHealth() {
+        return equippedHealth;
+    }
+
+    public void setEquippedHealth(int equippedHealth) {
+        this.equippedHealth = equippedHealth;
+        calculateTotalHealth();
+    }
+    public void calculateTotalHealth(){
+        maxHealth = baseHealth+equippedHealth;
+    }
+
+    public int getEquippedMagic() {
+        return equippedMagic;
+    }
+
+    public void setEquippedMagic(int equippedMagic) {
+        this.equippedMagic = equippedMagic;
+        calculateTotalMagic();
+    }
+
+    public void calculateTotalMagic() {
+        magic = baseMagic + equippedMagic;
+    }
+
+    public int getEquippedStrength() {
+        return equippedStrength;
+    }
+
+    public void setEquippedStrength(int equippedStrength) {
+        this.equippedStrength = equippedStrength;
+        calculateTotalStrength();
+    }
+    public void calculateTotalStrength(){
+        strength = baseStrength + equippedStrength;
+    }
+
+    public int getEquippedDefense() {
+        return equippedDefense;
+    }
+
+    public void setEquippedDefense(int equippedDefense) {
+        this.equippedDefense = equippedDefense;
+        calculateTotalDefense();
+    }
+    public void calculateTotalDefense(){
+        defense = baseDefense + equippedDefense;
+    }
+
     public EquipmentSystem getEquipmentSystem() {
         return equipmentSystem;
     }
@@ -228,6 +282,7 @@ public abstract class Character {
     public void addPassive(Passive passive){
         passives.add(passive);
     }
+
     public Map<EquipmentSlot, EquipableItem> getEquippedItems() {
         return equippedItems;
     }
@@ -240,7 +295,7 @@ public abstract class Character {
         System.out.println();
         System.out.println(getName() + ":");
         System.out.println("Level: " + getLevel());
-        System.out.println("Health: " + getHealth() + "/" + maxHealth + " HP");
+        System.out.println("Health: " + getHealth() + "/" + (maxHealth+equippedHealth) + " HP");
         System.out.println("Magic: " + getMagic());
         System.out.println("Strength: " + getStrength());
         System.out.println("Defense: " + getDefense());
@@ -289,8 +344,8 @@ public abstract class Character {
             }
         }
     }
-    public void equip(EquipableItem item) {
-        EquipmentSlot equipmentSlot = item.getEquipmentSlot();
+    public void equip(EquipableItem equipment) {
+        EquipmentSlot equipmentSlot = equipment.getEquipmentSlot();
 
         // Check if the equipment slot is already occupied
 //        if (equipmentSystem.isEquipmentSlotOccupied(this, equipmentSlot)) {
@@ -299,15 +354,17 @@ public abstract class Character {
 //        }
 
         // Equip the item to the character
-        equippedItems.put(equipmentSlot, item);
+        equippedItems.put(equipmentSlot, equipment);
 
         // Apply the item's effects to the character
-        item.addDefense(this);
-        item.addHealth(this);
-        item.addStrength(this);
-        item.addMagic(this);
+        equipment.addDefense(this);
+        equipment.addHealth(this);
+        equipment.addStrength(this);
+        equipment.addMagic(this);
 
-        System.out.println("Equipped item: " + item.getName() + " to " + equipmentSlot.getName());
+
+
+        System.out.println("Equipped item: " + equipment.getName() + " to " + equipmentSlot.getName());
     }
     public void unequip(EquipmentSlot equipmentSlot) {
         if (equipmentSystem.isEquipmentSlotOccupied(this, equipmentSlot)) {

@@ -71,55 +71,50 @@ public abstract class EquipableItem extends Item {
         // Running checks on all of these to make sure that if there is a debuff, it's not
         // dropped by unequipping and reequipping.
         if (defense > 0) {
-            character.setDefense(character.getDefense() + defense);
+            character.setEquippedDefense(character.getEquippedDefense() + defense);
         }
     }
 
     public void removeDefense(Character character) {
         if (defense > 0) {
-            character.setDefense(character.getDefense() - defense);
+            character.setEquippedDefense(character.getEquippedDefense() - defense);
         }
     }
 
     public void addHealth(Character character) {
         if (health > 0) {
-            character.setMaxHealth(character.getMaxHealth() + health);
+            character.setEquippedHealth(character.getEquippedHealth() + health);
         }
     }
 
     public void removeHealth(Character character) {
-        if (health > 0) {
-            int currentHealth = character.getHealth();
-            character.setMaxHealth(character.getMaxHealth() - health);
-            if (currentHealth >= character.getMaxHealth()) {
-                character.setHealth(character.getMaxHealth());
-            } else {
-                character.setHealth(currentHealth);
-            }
+        character.setEquippedHealth(character.getEquippedHealth() -health);
+        if(character.getHealth() <=0){
+            character.setHealth(1);
         }
     }
 
     public void addStrength(Character character) {
         if (strength > 0) {
-            character.setStrength(character.getStrength() + strength);
+            character.setEquippedStrength(character.getEquippedStrength() + strength);
         }
     }
 
     public void removeStrength(Character character) {
         if (strength > 0) {
-            character.setStrength(character.getStrength() - strength);
+            character.setEquippedStrength(character.getEquippedStrength() - strength);
         }
     }
 
     public void addMagic(Character character) {
         if (magic > 0) {
-            character.setMagic(character.getMagic() + magic);
+            character.setEquippedMagic(character.getEquippedMagic() + magic);
         }
     }
 
     public void removeMagic(Character character) {
         if (magic > 0) {
-            character.setMagic(character.getMagic() - magic);
+            character.setEquippedMagic(character.getEquippedMagic() - magic);
         }
     }
 

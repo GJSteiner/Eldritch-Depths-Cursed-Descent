@@ -179,24 +179,32 @@ public class Player extends Character {
             System.out.println(getName() + " is now level " + level + "!");
             System.out.println();
             Map<EquipmentSlot, EquipableItem> currentEquipment = getEquippedItems();
-            unequipAll();
+//            unequipAll();
 
-            maxHealth *= (level+1);
-            strength *= (level+1);
-            magic *= (level+1);
-            defense *= (level+1);
-            experience = 0;
-            System.out.println("Max Health: " + baseHealth + " -> " + maxHealth);
-            System.out.println("Strength: " + baseStrength + " -> " + strength);
-            System.out.println("Magic: " + baseMagic + " -> " + magic);
-            System.out.println("Defense: " + baseDefense + " -> " + defense);
-            setBaseStats();
+            int newBaseHealth = baseHealth * (level+1);
+            int newBaseStrength = baseStrength * (level+1);
+            int newBaseMagic = baseMagic * (level+1);
+            int newBaseDefense = baseDefense * (level+1);
+            experience -= calculateExperienceThreshold();
+            System.out.println("Max Health: " + baseHealth + " -> " + newBaseHealth);
+            System.out.println("Magic: " + baseMagic + " -> " + newBaseMagic);
+            System.out.println("Strength: " + baseStrength + " -> " + newBaseStrength);
+            System.out.println("Defense: " + baseDefense + " -> " + newBaseDefense);
+
+            baseHealth=newBaseHealth;
+            calculateTotalHealth();
+            baseStrength=newBaseStrength;
+            calculateTotalStrength();
+            baseDefense=newBaseDefense;
+            calculateTotalDefense();
+            baseMagic=newBaseMagic;
+            calculateTotalMagic();
 //            displayCharacterStats();
-            for (EquipableItem item : currentEquipment.values()) {
-                if (item != null) {
-                    equip(item);
-                }
-            }
+//            for (EquipableItem item : currentEquipment.values()) {
+//                if (item != null) {
+//                    equip(item);
+//                }
+//            }
             experienceThreshold = calculateExperienceThreshold();
         }
     }

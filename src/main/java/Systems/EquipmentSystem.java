@@ -47,7 +47,7 @@ public class EquipmentSystem {
                 equipmentSlots.add(equipmentSlot);
 
                 character.getInventory().remove(item);
-                System.out.println("Equipped " + item.getName() + " in " + equipmentSlot.getName() + " slot.");
+//                System.out.println("Equipped " + item.getName() + " in " + equipmentSlot.getName() + " slot.");
 
         } else {
             System.out.println("Cannot equip the item. The item is not equipable.");
