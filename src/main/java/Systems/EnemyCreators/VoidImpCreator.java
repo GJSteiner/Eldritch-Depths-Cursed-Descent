@@ -1,9 +1,9 @@
 package Systems.EnemyCreators;
 
 import Abilities.Ability;
-import Abilities.Enemies.VoidImp.DarkBlast;
-import Abilities.Enemies.VoidImp.ImpFire;
-import Abilities.Enemies.VoidImp.ShadowStep;
+import Abilities.Enemies.DarkBlast;
+import Abilities.Enemies.ImpFire;
+import Abilities.Enemies.ShadowStep;
 import Abilities.Passive;
 import Characters.Enemies.Floor1.VoidImp;
 import Items.Consumables.Potions.LargeHealthPotion;

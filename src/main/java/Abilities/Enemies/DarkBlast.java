@@ -1,4 +1,4 @@
-package Abilities.Enemies.VoidImp;
+package Abilities.Enemies;
 
 import Abilities.Ability;
 import Characters.Character;

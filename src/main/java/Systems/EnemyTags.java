@@ -9,6 +9,9 @@ public class EnemyTags {
     private final String normalEnemy = "Normal";
     private final String bossEnemy = "Boss";
     private final String uniqueEnemy = "Unique";
+    private final String shadowEnemy = "Shadow";
+    private final String stealthyEnemy = "Stealthy";
+    private final String aberrationEnemy = "Aberration";
 
     public String getWeakEnemy() {
         return weakEnemy;
@@ -40,5 +43,16 @@ public class EnemyTags {
 
     public String getUniqueEnemy() {
         return uniqueEnemy;
+    }
+    public String getShadowEnemy() {
+        return shadowEnemy;
+    }
+
+    public String getStealthyEnemy() {
+        return stealthyEnemy;
+    }
+
+    public String getAberrationEnemy() {
+        return aberrationEnemy;
     }
 }

@@ -1,11 +1,7 @@
 package Characters.Enemies.Floor1;
 
 import Abilities.Ability;
-import Abilities.Enemies.VoidImp.DarkBlast;
-import Abilities.Enemies.VoidImp.ImpFire;
-import Abilities.Enemies.VoidImp.ShadowStep;
 import Abilities.Passive;
-import Characters.Character;
 import Characters.Enemies.Enemy;
 import Items.Item;
 import Systems.EnemyCreators.VoidImpCreator;
@@ -15,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VoidImp extends Enemy {
-    private static final int XP_YIELD = 50;
+    private static int XP_YIELD = 50;
     private static final String ENEMY_TYPE = "Void Imp";
     private static final String DESCRIPTION = "A small imp from the void realm.";
 //    private static final List<Ability> VOID_IMP_ABILITIES = new ArrayList<>();

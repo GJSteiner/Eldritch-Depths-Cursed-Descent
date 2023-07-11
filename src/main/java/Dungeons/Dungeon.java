@@ -2,6 +2,7 @@ package Dungeons;
 
 import Floors.FirstFloor.FirstFloorLayout;
 import Floors.FloorLayout;
+import Floors.SecondFloor.SecondFloorLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,7 @@ public class Dungeon {
 
     private void initializeFloors() {
         floors.add(new FirstFloorLayout());
+        floors.add(new SecondFloorLayout());
     }
 
     public FloorLayout getCurrentFloorLayout() {

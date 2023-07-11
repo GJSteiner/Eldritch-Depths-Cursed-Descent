@@ -1,7 +1,8 @@
-package Abilities.Enemies.VoidImp;
+package Abilities.Enemies;
 
 import Abilities.Ability;
 import Characters.Character;
+import Characters.Enemies.Enemy;
 
 public class ShadowStep extends Ability {
     private static final String NAME = "Shadow Step";
@@ -19,9 +20,17 @@ public class ShadowStep extends Ability {
 
     @Override
     public void executeAbility(Character caster, Character target) {
-        target.takeDamage(DAMAGE);
+        double adjustedDamage = DAMAGE;
+        // if the enemy is a Shadow enemy, target takes double damage
+        if(caster instanceof Enemy){
+           if (((Enemy) caster).getEnemyTags().contains("Shadow")){
+                adjustedDamage *=2;
+            }
+        }
+
+        target.takeDamage(adjustedDamage);
 
         System.out.println(caster.getName() + " casts Shadow Step on " + target.getName() + "!");
-        System.out.println(caster.getName() + " deals " + DAMAGE + " damage.");
+        System.out.println(caster.getName() + " deals " + adjustedDamage + " damage.");
     }
 }

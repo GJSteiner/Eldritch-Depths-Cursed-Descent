@@ -56,7 +56,8 @@ public class GameRunner {
             // Checking if the player has reached the end of the floor
             if (currentRoom.isEndRoom()) {
 //                System.out.println("Congratulations! You have cleared the floor!");
-                break;
+                dungeon.moveToNextFloor();
+
             }
 
         }
