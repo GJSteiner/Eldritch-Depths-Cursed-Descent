@@ -1,5 +1,6 @@
 package Characters;
 
+import Items.Consumables.Potions.Potion;
 import Items.Equipment.EquipableItem;
 import Items.Equipment.EquipmentSlot;
 import Items.Item;
@@ -181,10 +182,10 @@ public class Player extends Character {
             Map<EquipmentSlot, EquipableItem> currentEquipment = getEquippedItems();
 //            unequipAll();
 
-            int newBaseHealth = baseHealth * (level+1);
-            int newBaseStrength = baseStrength * (level+1);
-            int newBaseMagic = baseMagic * (level+1);
-            int newBaseDefense = baseDefense * (level+1);
+            int newBaseHealth = baseHealth * 2;
+            int newBaseStrength = baseStrength * 2;
+            int newBaseMagic = baseMagic * 2;
+            int newBaseDefense = baseDefense * 2;
             experience -= calculateExperienceThreshold();
             System.out.println("Max Health: " + baseHealth + " -> " + newBaseHealth);
             System.out.println("Magic: " + baseMagic + " -> " + newBaseMagic);
@@ -229,10 +230,16 @@ public class Player extends Character {
             EquipableItem item = entry.getValue();
 
             System.out.println(slot.getName() + ": " + (item != null ? item.getName() : "Empty"));
+
+            if(item != null){
+                item.displayStats();
+            }
+            System.out.println();
         }
     }
 
     public void displayInventoryAndChooseAction() {
+        System.out.println();
         System.out.println("=== Inventory ===");
         for (int i = 0; i < inventory.size(); i++) {
             Item item = inventory.get(i);
@@ -252,12 +259,27 @@ public class Player extends Character {
         int itemIndex = choice - 1;
         if (itemIndex >= 0 && itemIndex < inventory.size()) {
             Item selectedItem = inventory.get(itemIndex);
-            System.out.println("Selected item: " + selectedItem.getName());
+            if(selectedItem instanceof EquipableItem){
+                ((EquipableItem) selectedItem).displayInfo();
+                if(getEquipmentSystem().isEquipmentSlotOccupied(this, ((EquipableItem) selectedItem).getEquipmentSlot())){
+                    EquipableItem equippedItem = getEquippedItems().get(((EquipableItem) selectedItem).getEquipmentSlot());
+                    System.out.println();
+                    System.out.println(this.getName() + " currently has " + equippedItem.getName() + " equipped in that slot.");
+                    equippedItem.displayStats();
+                }
+            }
+            else if (selectedItem instanceof Potion){
+                System.out.println("Selected item: " + selectedItem.getName());
+
+                System.out.println("Healing: " + ((Potion) selectedItem).getHealthRestore());
+            }
+            System.out.println();
             System.out.println("What action do you want to perform?");
             System.out.println("1. Use");
             System.out.println("2. Equip");
             System.out.println("0. Cancel");
             System.out.print("Enter your choice: ");
+            System.out.println();
 
             int actionChoice = scanner.nextInt();
 

@@ -22,12 +22,12 @@
 22) add a statGrowth variable to each class to apply to the levelUp function so they each gain stats differently
 23) ~~add logic for DoT damage~~
 24) ~~add abilities for Crusader and Corrupted~~
-25) edit the levelUp function to show how much stat was gained upon levelup
+25) ~~edit the levelUp function to show how much stat was gained upon levelup~~
 26) Still need to test that the aoe dmg method works
 27) display equipment stats when they are looked at
 28) ~~adjust item stats~~
 29) adjust levelup stats. currently going from 80 max health to 166 seems like a lot unless enemies are scaled to match.
-30) levelup is also currently factoring in stats from items when leveling up, which needs to be fixed. maybe need to have 2 stats: base hp/strength/defence etc and item hp/str/def etc
+30) ~~levelup is also currently factoring in stats from items when leveling up, which needs to be fixed. maybe need to have 2 stats: base hp/strength/defence etc and item hp/str/def etc~~
 31) need to fix the reset methods. combat ends immediately after starting upon starting a new game. it also doesn't rerun character creation
 32) ~~adjust the healing of potions. maybe small-10 med -20 large-40. 20 hp feels good early, but 5 feels useless. maybe 15/30/60~~ changed it to 15/30/60 and reduced the number that treasure room gives.
 33) add an option in combat to choose 0 to go back if the player chose attack or use item and change their mind.

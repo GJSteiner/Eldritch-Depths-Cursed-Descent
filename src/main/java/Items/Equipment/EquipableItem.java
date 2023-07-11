@@ -158,6 +158,19 @@ public abstract class EquipableItem extends Item {
         int parsedBalanceStat = (int) balanceStat;
         return parsedBalanceStat;
     }
+    public void displayStats(){
+        System.out.println("Strength: " + this.getStrength());
+        System.out.println("Magic: " + this.getMagic());
+        System.out.println("Defense: " + this.getDefense());
+        System.out.println("Health: " + this.getHealth());
+    }
+    public void displayInfo(){
+        System.out.println();
+        System.out.println("=== " + this.getName() + " ===");
+        System.out.println(this.getDescription());
+        System.out.println(this.getEquipmentSlot().getName());
+        displayStats();
+    }
 
 
 //    public abstract void applyEffect(Character character);

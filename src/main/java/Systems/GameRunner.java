@@ -12,6 +12,10 @@ public class GameRunner {
     public static Player player;
     public static Dungeon dungeon = new Dungeon();
     public static void main(String[] args) {
+        run();
+    }
+
+    public static void run(){
         ClassSelection.run();
         player = ClassSelection.player;
         try {
@@ -109,6 +113,6 @@ public class GameRunner {
         }
 
         // Restart the game
-        initializeGame();
+        run();
     }
 }

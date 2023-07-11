@@ -67,4 +67,5 @@ public abstract class Room {
         isEndRoom = endRoom;
     }
     public abstract void enterRoom(Player player);
+//    public abstract void reset();
 }

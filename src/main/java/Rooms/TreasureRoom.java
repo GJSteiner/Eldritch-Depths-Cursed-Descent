@@ -33,8 +33,11 @@ public class TreasureRoom extends Room{
             // Clear the treasure list
             treasures.clear();
         } else {
-            System.out.println("There is no treasure in this room.");
+            System.out.println("There is no more treasure in this room.");
         }
         player.makeChoice();
     }
+//    public void reset() {
+//
+//    }
 }

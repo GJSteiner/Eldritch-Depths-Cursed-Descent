@@ -58,6 +58,9 @@ public class Dungeon {
         this.gameCompleted = gameCompleted;
     }
     public void reset(){
+        for (FloorLayout floor : floors){
+            floor.reset();
+        }
         setCurrentFloorIndex(0);
     }
 }

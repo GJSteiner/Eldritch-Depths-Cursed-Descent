@@ -20,4 +20,9 @@ public class StartingRoom extends Room{
             player.setCurrentRoom(this);
         }
 
+//    @Override
+//    public void reset() {
+//
+//    }
+
 }

@@ -61,4 +61,10 @@ public class BossRoom extends Room {
             System.out.println("You have already defeated all enemies in this room.");
         }
     }
+//    public void reset() {
+//        boss.setAlive(true);
+//        for (Enemy enemy : additionalEnemies) {
+//            enemy.setAlive(true);
+//        }
+//    }
 }

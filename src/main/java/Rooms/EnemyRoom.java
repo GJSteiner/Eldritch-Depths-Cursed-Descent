@@ -53,4 +53,10 @@ public class EnemyRoom extends Room {
             player.makeChoice();
         }
     }
+//    public void reset() {
+//        for (Enemy enemy : enemies) {
+//            enemy.setAlive(true);
+//            enemy.setHealth(enemy.getMaxHealth());
+//        }
+//    }
 }

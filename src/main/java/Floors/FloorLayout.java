@@ -1,7 +1,10 @@
 package Floors;
 
 import Characters.Enemies.Enemy;
+import Rooms.BossRoom;
+import Rooms.EnemyRoom;
 import Rooms.Room;
+import Rooms.TreasureRoom;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,13 +27,16 @@ public abstract class FloorLayout {
         return layout;
     }
     public abstract Room getStartingRoom();
-    public void reset() {
-        generateLayout();
-    }
     public void setNamesForMultipleEnemies(List<Enemy> enemies){
         for (int i = 0; i < enemies.size(); i++) {
             Enemy enemy = enemies.get(i);
             enemy.setName(enemy.getName() + " " + (i+1));
         }
+    }
+    public void reset() {
+        generateLayout();
+//        for (Room room : layout) {
+//            room.reset();
+//        }
     }
 }
