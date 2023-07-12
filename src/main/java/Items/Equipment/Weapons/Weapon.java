@@ -4,8 +4,8 @@ import Items.Equipment.EquipableItem;
 import Items.Equipment.EquipmentSlot;
 
 public class Weapon extends EquipableItem {
-    public Weapon(String name, String description, int tier) {
-        super(name, description, EquipmentSlot.WEAPON, tier, 0, 0, 0, 0);
+    public Weapon(String name, String description, String type, int tier) {
+        super(name, description, EquipmentSlot.WEAPON, type, tier, 0, 0, 0, 0);
     }
 
     protected int calculateMainStat(int tier) {

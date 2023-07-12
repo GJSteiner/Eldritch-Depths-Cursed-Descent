@@ -14,13 +14,8 @@ public class VoidImp extends Enemy {
     private static int XP_YIELD = 50;
     private static final String ENEMY_TYPE = "Void Imp";
     private static final String DESCRIPTION = "A small imp from the void realm.";
-//    private static final List<Ability> VOID_IMP_ABILITIES = new ArrayList<>();
-//    private static final List<Item> VOID_IMP_INVENTORY = new ArrayList<>();
-//    private static final List<Passive> VOID_IMP_PASSIVES = new ArrayList<>();
-//    private static final List<String> VOID_IMP_TAGS = new ArrayList<>();
 
     private final EnemyTags allTags = new EnemyTags();
-    private final List<String> enemyTags = new ArrayList<>();
 
     VoidImpCreator creator = new VoidImpCreator();
 
@@ -75,13 +70,9 @@ public class VoidImp extends Enemy {
     public VoidImp level2Imp() {
         VoidImp voidImp = creator.create("Strong Void Imp", 2);
         voidImp.getEnemyTags().add(allTags.getStrongEnemy());
-        voidImp.getEnemyTags().add(allTags.getBossEnemy());
 
         return voidImp;
     }
 
-    public List<String> getEnemyTags() {
-        return enemyTags;
-    }
 
 }

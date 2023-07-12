@@ -1,12 +1,55 @@
 package Items.Equipment.Weapons;
 
+import Items.Equipment.EquipableItem;
 import Items.Equipment.EquipmentSlot;
 import Items.Equipment.OffHands.DefenseOffHand;
 import Items.Equipment.OffHands.MagicOffHand;
 import Items.Equipment.OffHands.OffHand;
 import Items.Equipment.OffHands.StrengthOffHand;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class WeaponList {
+    List<EquipableItem> weaponList = new ArrayList<>();
+    public void compileWeaponList(){
+     //tier 1
+     weaponList.add(voidDagger);
+     weaponList.add(voidStaff);
+     weaponList.add(silverRapier);
+     weaponList.add(arcaneOrb);
+     weaponList.add(orbOfMight);
+     weaponList.add(blessedShield);
+     //tier 2
+     weaponList.add(shadowblade);
+     weaponList.add(eldritchStaff);
+     weaponList.add(cursedSword);
+     weaponList.add(eldritchTome);
+     weaponList.add(golemHeart);
+     weaponList.add(voidShield);
+     //tier 3
+     weaponList.add(arcaneHammer);
+     weaponList.add(arcaneScepter);
+     weaponList.add(abyssalHammer);
+     weaponList.add(voidSigil);
+     weaponList.add(holySigil);
+     weaponList.add(sentinelShield);
+     //tier 4
+     weaponList.add(celestialBow);
+     weaponList.add(staffOfTheEternalVoid);
+     weaponList.add(bladeOfFury);
+     weaponList.add(crystalOfAbyssalMastery);
+     weaponList.add(dragonboneWarhorn);
+     weaponList.add(shieldOfWarding);
+     //tier 5
+     weaponList.add(etherealBlade);
+     weaponList.add(staffOfAbyssalDominion);
+     weaponList.add(axeOfAnnihilation);
+     weaponList.add(blackGrimoire);
+     weaponList.add(leviathansGrasp);
+     weaponList.add(aegis);
+    }
+
     //
     //tier 1
     //
@@ -29,7 +72,7 @@ public class WeaponList {
     //
 
     //balanced
-    public BalancedWeapon Shadowblade = new BalancedWeapon("Shadowblade", "A sleek and deadly blade forged from shadows and infused with void magic.", 2);
+    public BalancedWeapon shadowblade = new BalancedWeapon("Shadowblade", "A sleek and deadly blade forged from shadows and infused with void magic.", 2);
     //magic weapon
     public MagicWeapon eldritchStaff = new MagicWeapon("Eldritch Staff", "A twisted staff infused with eldritch energy.", 2);
     //strength weapon
@@ -96,6 +139,15 @@ public class WeaponList {
     //    //defense offhand
     public DefenseOffHand aegis = new DefenseOffHand("Aegis", "An indestructible shield rumored to have been forged by gods, providing unmatched defense to its wielder", 5);
 
-
+ public EquipableItem getByTypeAndTier(String type, int tier){
+  compileWeaponList();
+  for (int i = 0; i < weaponList.size(); i++) {
+   EquipableItem item = weaponList.get(i);
+     if(item.getType().equals(type) && item.getTier() == tier){
+      return item;
+     }
+  }
+  return null;
+ }
 
 }

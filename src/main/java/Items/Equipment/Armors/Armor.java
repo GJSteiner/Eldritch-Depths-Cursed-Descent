@@ -5,9 +5,14 @@ import Items.Equipment.EquipableItem;
 import Items.Equipment.EquipmentSlot;
 import Items.Item;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Armor extends EquipableItem {
-    public Armor(String name, String description, EquipmentSlot equipmentSlot, int tier) {
-        super(name, description, equipmentSlot, tier,0,0,0,0);
+
+
+    public Armor(String name, String description, EquipmentSlot equipmentSlot, String type, int tier) {
+        super(name, description, equipmentSlot, type, tier,0,0,0,0);
     }
 
 }

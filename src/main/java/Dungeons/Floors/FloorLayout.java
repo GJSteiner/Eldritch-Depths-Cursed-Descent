@@ -1,10 +1,7 @@
-package Floors;
+package Dungeons.Floors;
 
 import Characters.Enemies.Enemy;
-import Rooms.BossRoom;
-import Rooms.EnemyRoom;
-import Rooms.Room;
-import Rooms.TreasureRoom;
+import Dungeons.Rooms.Room;
 
 import java.util.ArrayList;
 import java.util.List;

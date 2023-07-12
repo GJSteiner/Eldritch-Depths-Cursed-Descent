@@ -1,5 +1,7 @@
 package Systems;
 
+import Abilities.Enemies.EnemyPassives.Expunge;
+import Abilities.Passive;
 import Characters.Character;
 import Abilities.Ability;
 import Characters.Enemies.Enemy;
@@ -79,6 +81,8 @@ public class Combat {
 
                 player.updateDamageOverTime();
                 enemy.updateDamageOverTime();
+                player.updateHealOverTime();
+                enemy.updateHealOverTime();
 
                 // Displaying dot damage for player
                 for (DamageOverTime dot : player.getDamageOverTimeEffects()) {
@@ -90,6 +94,19 @@ public class Combat {
                     System.out.println(enemy.getName() + " takes " + dot.getDamagePerRound() + " damage from " + dot.getDotName() + ".");
                 }
                 System.out.println();
+
+                // Displaying hot for player
+                for (HealOverTime hot : player.getHealOverTimeEffects()){
+                    System.out.println(player.getName() + " heals " + hot.getHealthPerRound() + " health from " + hot.getHotName() + ".");
+                }
+
+                // Displaying hot for enemy
+                for (HealOverTime hot : enemy.getHealOverTimeEffects()){
+                    System.out.println(enemy.getName() + " heals " + hot.getHealthPerRound() + " health from " + hot.getHotName() + ".");
+                }
+                System.out.println();
+
+                handleEnemyPassives(enemy, player);
             }
         }
         if (bossEnemyRoom) {
@@ -225,6 +242,14 @@ public class Combat {
         randomAbility.useAbility(npc, target);
     }
 
+    public static void handleEnemyPassives(Character character, Character target){
+        //expunge
+        for (Passive passive : character.getPassives()){
+            if (passive instanceof Expunge){
+                ((Expunge) passive).applyExpunge(character, target);
+            }
+        }
+    }
 
 
 }

@@ -1,8 +1,8 @@
-//package Floors.FirstFloor;
+//package Dungeons.Floors.FirstFloor;
 //
 //import Characters.Enemies.Enemy;
 //import Characters.Enemies.Floor1.VoidImp;
-//import Floors.FirstFloor.FirstFloorLayout;
+//import Dungeons.Floors.FirstFloor.FirstFloorLayout;
 //
 //public class EnemyTable {
 

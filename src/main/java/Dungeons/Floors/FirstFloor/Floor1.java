@@ -1,6 +1,6 @@
-//package Floors.FirstFloor;
+//package Dungeons.Floors.FirstFloor;
 //
-//import Floors.Floor;
+//import Dungeons.Floors.Floor;
 //
 //public class Floor1 extends Floor {
 //    public Floor1(int floorNumber) {

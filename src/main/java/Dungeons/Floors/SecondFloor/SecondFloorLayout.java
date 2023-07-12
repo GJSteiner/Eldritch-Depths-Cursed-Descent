@@ -1,7 +1,7 @@
-package Floors.SecondFloor;
+package Dungeons.Floors.SecondFloor;
 
-import Floors.FloorLayout;
-import Rooms.Room;
+import Dungeons.Floors.FloorLayout;
+import Dungeons.Rooms.Room;
 
 public class SecondFloorLayout extends FloorLayout {
     @Override

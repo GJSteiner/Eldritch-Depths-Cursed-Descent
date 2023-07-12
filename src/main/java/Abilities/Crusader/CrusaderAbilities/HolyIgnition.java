@@ -24,12 +24,11 @@ public class HolyIgnition extends CrusaderAbility {
         checkHFM(caster, target);
 
         double totalDamage = DAMAGE + (caster.getMagic() * MAGIC_MULTIPLIER);
-//        target.takeDamage(totalDamage);
         target.applyDamageOverTime(NAME, totalDamage, DOT_ROUNDS);
 
         System.out.println(caster.getName() + " casts Holy Ignition!");
         System.out.println(caster.getName() + " ignites the target. The target is taking " + totalDamage +
-                " damage each round for " + DOT_ROUNDS +" rounds.");
+                " damage each round for " + DOT_ROUNDS + " rounds.");
 
     }
 }

@@ -4,7 +4,7 @@ import Items.Equipment.EquipmentSlot;
 
 public class BalancedWeapon extends Weapon{
     public BalancedWeapon(String name, String description, int tier) {
-        super(name, description, tier);
+        super(name, description,"Balance Weapon", tier);
         this.setMagic(calculateBalanceStat(tier));
         this.setStrength(calculateBalanceStat(tier));
     }

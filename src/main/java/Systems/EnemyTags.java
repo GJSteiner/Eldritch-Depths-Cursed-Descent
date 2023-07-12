@@ -12,6 +12,10 @@ public class EnemyTags {
     private final String shadowEnemy = "Shadow";
     private final String stealthyEnemy = "Stealthy";
     private final String aberrationEnemy = "Aberration";
+    private final String richEnemy = "Rich";
+    private final String megaRichEnemy = "Mega Rich";
+    private final String leechEnemy = "Leech";
+
 
     public String getWeakEnemy() {
         return weakEnemy;
@@ -54,5 +58,17 @@ public class EnemyTags {
 
     public String getAberrationEnemy() {
         return aberrationEnemy;
+    }
+
+    public String getRichEnemy() {
+        return richEnemy;
+    }
+
+    public String getMegaRichEnemy() {
+        return megaRichEnemy;
+    }
+
+    public String getLeechEnemy() {
+        return leechEnemy;
     }
 }

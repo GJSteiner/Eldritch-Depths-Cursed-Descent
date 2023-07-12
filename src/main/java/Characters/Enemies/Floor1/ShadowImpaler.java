@@ -63,4 +63,5 @@ public class ShadowImpaler extends Enemy {
         return enemyTags;
     }
 
+
 }

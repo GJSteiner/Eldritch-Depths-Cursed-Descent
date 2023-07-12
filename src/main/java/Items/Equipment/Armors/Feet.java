@@ -4,7 +4,7 @@ import Items.Equipment.EquipmentSlot;
 
 public class Feet extends Armor {
     public Feet(String name, String description, int tier) {
-        super(name, description, EquipmentSlot.FEET, tier);
+        super(name, description, EquipmentSlot.FEET,"Feet", tier);
         this.setDefense(calculateMainStat(tier, 2));
         this.setHealth(calculateMainStat(tier, 10));
     }

@@ -1,19 +1,20 @@
-package Floors.FirstFloor;
+package Dungeons.Floors.FirstFloor;
 
 import Characters.Enemies.Enemy;
 import Characters.Enemies.Floor1.VoidImp;
-import Floors.FloorLayout;
-import Items.Consumables.Potions.LargeHealthPotion;
+import Dungeons.Floors.FloorLayout;
 import Items.Consumables.Potions.MediumHealthPotion;
 import Items.Consumables.Potions.SmallHealthPotion;
 import Items.Item;
-import Rooms.*;
+import Dungeons.Rooms.*;
 import Systems.Direction;
+import Systems.EnemyTags;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FirstFloorLayout extends FloorLayout {
+    EnemyTags enemyTags = new EnemyTags();
 
     @Override
     protected void generateLayout() {
@@ -41,6 +42,7 @@ public class FirstFloorLayout extends FloorLayout {
         setNamesForMultipleEnemies(room3Enemies);
         /// bossRoom enemies:
         VoidImp bossEnemy = voidImp.level2Imp();
+        bossEnemy.addEnemyTag(enemyTags.getBossEnemy());
         List<Enemy> bossRoomEnemies = new ArrayList<>();
 
 

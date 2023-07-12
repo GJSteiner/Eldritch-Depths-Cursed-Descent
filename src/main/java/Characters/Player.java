@@ -5,7 +5,7 @@ import Items.Equipment.EquipableItem;
 import Items.Equipment.EquipmentSlot;
 import Items.Item;
 import Items.Consumables.UsableItem;
-import Rooms.Room;
+import Dungeons.Rooms.Room;
 import Systems.Direction;
 
 

@@ -5,18 +5,23 @@ import Characters.Player;
 import Items.Item;
 import org.apache.velocity.runtime.directive.Parse;
 
-public abstract class EquipableItem extends Item {
+public class EquipableItem extends Item {
     private int tier;
+    private final int MAX_TIER = 5;
     private EquipmentSlot equipmentSlot;
+    //only used for getting weapon types, but can be used if I add types for armor, like cloth/leather/heavy
+    private String type;
+
     private int magic;
     private int strength;
     private int defense;
     private int health;
 
-    public EquipableItem(String name, String description, EquipmentSlot equipmentSlot, int tier, int magic, int strength, int defense, int health) {
+    public EquipableItem(String name, String description, EquipmentSlot equipmentSlot, String type, int tier, int magic, int strength, int defense, int health) {
         super(name, description);
         this.tier = tier;
         this.equipmentSlot = equipmentSlot;
+        this.type = type;
         this.magic = magic;
         this.strength = strength;
         this.defense = defense;
@@ -61,6 +66,26 @@ public abstract class EquipableItem extends Item {
 
     public void setHealth(int health) {
         this.health = health;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public int getTier() {
+        return tier;
+    }
+
+    public void setTier(int tier) {
+        this.tier = tier;
+    }
+
+    public int getMAX_TIER() {
+        return MAX_TIER;
     }
 
     // Moved these to player instead
@@ -171,6 +196,7 @@ public abstract class EquipableItem extends Item {
         System.out.println(this.getEquipmentSlot().getName());
         displayStats();
     }
+
 
 
 //    public abstract void applyEffect(Character character);

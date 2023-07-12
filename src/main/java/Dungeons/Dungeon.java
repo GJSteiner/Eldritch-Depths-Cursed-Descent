@@ -1,8 +1,8 @@
 package Dungeons;
 
-import Floors.FirstFloor.FirstFloorLayout;
-import Floors.FloorLayout;
-import Floors.SecondFloor.SecondFloorLayout;
+import Dungeons.Floors.FirstFloor.FirstFloorLayout;
+import Dungeons.Floors.FloorLayout;
+import Dungeons.Floors.SecondFloor.SecondFloorLayout;
 
 import java.util.ArrayList;
 import java.util.List;

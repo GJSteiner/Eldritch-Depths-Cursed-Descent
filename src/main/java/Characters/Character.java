@@ -8,6 +8,7 @@ import Items.Equipment.EquipmentSlot;
 import Items.Item;
 import Systems.DamageOverTime;
 import Systems.EquipmentSystem;
+import Systems.HealOverTime;
 
 import java.util.*;
 
@@ -34,6 +35,7 @@ public abstract class Character {
     protected List<Ability> abilities;
     protected List<Passive> passives;
     private List<DamageOverTime> damageOverTimeEffects;
+    private List<HealOverTime> healOverTimeEffects;
     private Map<EquipmentSlot, EquipableItem> equippedItems;
     private EquipmentSystem equipmentSystem;
 
@@ -245,6 +247,14 @@ public abstract class Character {
         this.damageOverTimeEffects = damageOverTimeEffects;
     }
 
+    public List<HealOverTime> getHealOverTimeEffects() {
+        return healOverTimeEffects;
+    }
+
+    public void setHealOverTimeEffects(List<HealOverTime> healOverTimeEffects) {
+        this.healOverTimeEffects = healOverTimeEffects;
+    }
+
     public void takeDamage(double damage) {
         health -= damage;
         if(health <= 0){
@@ -304,7 +314,16 @@ public abstract class Character {
     public void removeItemFromInventory(Item item) {
         inventory.remove(item);
     }
-
+    public void applyHealOverTime(String hotName, double healthPerRound, int numRounds){
+        HealOverTime existingHot = getExistingHealOverTimeEffects(hotName);
+        if(existingHot != null){
+            existingHot.setRemainingRounds(existingHot.getRemainingRounds() + numRounds);
+        }
+        else{
+            HealOverTime hot = new HealOverTime(hotName, healthPerRound, numRounds);
+            healOverTimeEffects.add(hot);
+        }
+    }
 
     public void applyDamageOverTime(String dotName, double damagePerRound, int numRounds) {
         DamageOverTime existingDot = getExistingDamageOverTimeEffect(dotName);
@@ -319,6 +338,14 @@ public abstract class Character {
             damageOverTimeEffects.add(dot);
         }
     }
+    public HealOverTime getExistingHealOverTimeEffects(String hotName){
+        for (HealOverTime hot : healOverTimeEffects){
+            if(hot.getHotName().equals(hotName)){
+                return hot;
+            }
+        }
+        return null;
+    }
     private DamageOverTime getExistingDamageOverTimeEffect(String dotName) {
         // Iterating over the damageOverTimeEffects list and checking if any effect already exists
         for (DamageOverTime dot : damageOverTimeEffects) {
@@ -327,6 +354,20 @@ public abstract class Character {
             }
         }
         return null; // No existing effect found
+    }
+
+    public void updateHealOverTime(){
+        Iterator<HealOverTime> iterator = healOverTimeEffects.iterator();
+        while (iterator.hasNext()) {
+            HealOverTime hot = iterator.next();
+            double healing = hot.getHealthPerRound();
+            heal(healing);
+
+            hot.decrementRounds();
+            if (hot.getRemainingRounds() <= 0) {
+                iterator.remove();
+            }
+        }
     }
 
     public void updateDamageOverTime() {

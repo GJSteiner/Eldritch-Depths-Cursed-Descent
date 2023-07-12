@@ -1,4 +1,4 @@
-package Abilities.Enemies;
+package Abilities.Enemies.EnemyAbilities;
 
 import Abilities.Ability;
 import Characters.Character;

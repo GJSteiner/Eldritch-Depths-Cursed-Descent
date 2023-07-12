@@ -4,16 +4,18 @@ import Abilities.Ability;
 import Abilities.Passive;
 import Characters.Character;
 import Items.Item;
+import Systems.EnemyTags;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public abstract class Enemy extends Character {
+    EnemyTags tags = new EnemyTags();
     private int xpYield;
     private String enemyType;
     private String description;
-    private List<String> enemyTags;
+    private List<String> enemyTags = new ArrayList<>();
     public Enemy(){
 
     }
@@ -64,6 +66,12 @@ public abstract class Enemy extends Character {
 
         Random random = new Random();
         int droppedGold = random.nextInt(maxGold-minGold+1) + minGold;
+        if(this.getEnemyTags().contains(tags.getMegaRichEnemy())){
+            droppedGold*=3;
+        }
+        else if(this.getEnemyTags().contains(tags.getRichEnemy())){
+            droppedGold*=2;
+        }
 
         return droppedGold;
     }
@@ -81,4 +89,8 @@ public abstract class Enemy extends Character {
 
         return droppedItem;
     }
+    public void addEnemyTag(String tag) {
+        enemyTags.add(tag);
+    }
+
 }

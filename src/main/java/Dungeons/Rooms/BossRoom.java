@@ -1,4 +1,4 @@
-package Rooms;
+package Dungeons.Rooms;
 
 import Characters.Enemies.Enemy;
 import Characters.Player;

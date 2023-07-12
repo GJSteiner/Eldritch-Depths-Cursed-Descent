@@ -1,9 +1,53 @@
 package Items.Equipment.Armors;
 
 import Characters.Character;
+import Items.Equipment.EquipableItem;
 import Items.Equipment.EquipmentSlot;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ArmorList {
+
+
+    List<EquipableItem> armorList = new ArrayList<>();
+    public void compileArmorList(){
+// tier 1 loot
+        armorList.add(voidRobes);
+        armorList.add(voidwalkerLeggings);
+        armorList.add(eldritchGrasps);
+        armorList.add(voidwalkers);
+        armorList.add(forbiddenCowl);
+
+        // tier 2 loot
+        armorList.add(holyRobes);
+        armorList.add(celestialStrideGreaves);
+        armorList.add(voidTouchedHandguards);
+        armorList.add(eldritchStride);
+        armorList.add(eldritchVeil);
+
+        // tier 3 loot
+        armorList.add(shadowVeilArmor);
+        armorList.add(shadowstepLegguards);
+        armorList.add(glovesOfWhisperingShadows);
+        armorList.add(bootsOfArcaneShadows);
+        armorList.add(helmOfTheVoid);
+
+        // tier 4 loot
+        armorList.add(arcaneEnergizedPlate);
+        armorList.add(eldritchRuneLegplates);
+        armorList.add(glovesOfEldritchFlames);
+        armorList.add(bootsOfEldritchMastery);
+        armorList.add(maskOfAncientArcana);
+
+        // tier 5 loot
+        armorList.add(guardianPlate);
+        armorList.add(voidborneLegplates);
+        armorList.add(eldritchEmbrace);
+        armorList.add(abyssStriders);
+        armorList.add(eldritchCrown);
+    }
+
     //
     // tier 1 loot
     //
@@ -96,5 +140,15 @@ public class ArmorList {
     //helm
     public Helmet eldritchCrown = new Helmet("Eldritch Crown","A crown adorned with eldritch gemstones, channeling the raw power of the eldritch forces and instilling fear in the hearts of enemies.",5);
 
-
+    public EquipableItem getByTypeAndTier(String type, int tier){
+        compileArmorList();
+        for (int i = 0; i < armorList.size(); i++) {
+            EquipableItem item = armorList.get(i);
+            if(item.getType().equals(type) && item.getTier() == tier){
+                return item;
+            }
+        }
+        armorList.clear();
+        return null;
+    }
 }
