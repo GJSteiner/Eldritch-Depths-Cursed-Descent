@@ -6,9 +6,7 @@ import Items.Consumables.UsableItem;
 import Items.Equipment.EquipableItem;
 import Items.Equipment.EquipmentSlot;
 import Items.Item;
-import Systems.DamageOverTime;
-import Systems.EquipmentSystem;
-import Systems.HealOverTime;
+import Systems.*;
 
 import java.util.*;
 
@@ -38,6 +36,8 @@ public abstract class Character {
     private List<HealOverTime> healOverTimeEffects;
     private Map<EquipmentSlot, EquipableItem> equippedItems;
     private EquipmentSystem equipmentSystem;
+    private List<Debuff> activeDebuffs;
+    private List<Buff> activeBuffs;
 
 
 
@@ -62,6 +62,8 @@ public abstract class Character {
         this.damageOverTimeEffects = new ArrayList<>();
         this.equippedItems = new HashMap<>();
         this.equipmentSystem = new EquipmentSystem();
+        this.activeBuffs = new ArrayList<>();
+        this.activeDebuffs = new ArrayList<>();
 
     }
 
@@ -194,8 +196,18 @@ public abstract class Character {
         this.equippedHealth = equippedHealth;
         calculateTotalHealth();
     }
-    public void calculateTotalHealth(){
-        maxHealth = baseHealth+equippedHealth;
+    public void calculateTotalHealth() {
+        maxHealth = baseHealth + equippedHealth;
+        for (Debuff debuff : activeDebuffs) {
+            if (debuff.getTag().equals("Health")) {
+                maxHealth -= debuff.getIntensity();
+            }
+        }
+        for (Buff buff : activeBuffs){
+            if (buff.getTag().equals("Health")){
+                maxHealth += buff.getIntensity();
+            }
+        }
     }
 
     public int getEquippedMagic() {
@@ -209,6 +221,16 @@ public abstract class Character {
 
     public void calculateTotalMagic() {
         magic = baseMagic + equippedMagic;
+        for (Debuff debuff : activeDebuffs) {
+            if (debuff.getTag().equals("Magic")) {
+                magic -= debuff.getIntensity();
+            }
+        }
+        for (Buff buff : activeBuffs){
+            if (buff.getTag().equals("Magic")){
+                magic += buff.getIntensity();
+            }
+        }
     }
 
     public int getEquippedStrength() {
@@ -219,8 +241,18 @@ public abstract class Character {
         this.equippedStrength = equippedStrength;
         calculateTotalStrength();
     }
-    public void calculateTotalStrength(){
+    public void calculateTotalStrength() {
         strength = baseStrength + equippedStrength;
+        for (Debuff debuff : activeDebuffs) {
+            if (debuff.getTag().equals("Strength")) {
+                strength -= debuff.getIntensity();
+            }
+        }
+        for (Buff buff : activeBuffs){
+            if (buff.getTag().equals("Strength")){
+                strength += buff.getIntensity();
+            }
+        }
     }
 
     public int getEquippedDefense() {
@@ -231,8 +263,18 @@ public abstract class Character {
         this.equippedDefense = equippedDefense;
         calculateTotalDefense();
     }
-    public void calculateTotalDefense(){
+    public void calculateTotalDefense() {
         defense = baseDefense + equippedDefense;
+        for (Debuff debuff : activeDebuffs) {
+            if (debuff.getTag().equals("Defense")) {
+                defense -= debuff.getIntensity();
+            }
+        }
+        for (Buff buff : activeBuffs){
+            if (buff.getTag().equals("Health")){
+                defense += buff.getIntensity();
+            }
+        }
     }
 
     public EquipmentSystem getEquipmentSystem() {
@@ -256,6 +298,19 @@ public abstract class Character {
     }
 
     public void takeDamage(double damage) {
+
+        double damageReduction = defense * 0.5;
+
+        double reducedDamage = damage - damageReduction;
+        if (reducedDamage < 0) {
+            reducedDamage = 0;
+        }
+        health -= reducedDamage;
+        if(health <= 0){
+            alive = false;
+        }
+    }
+    public void takeUnmitigatedDamage(double damage){
         health -= damage;
         if(health <= 0){
             alive = false;
@@ -377,7 +432,7 @@ public abstract class Character {
         while (iterator.hasNext()) {
             DamageOverTime dot = iterator.next();
             double damage = dot.getDamagePerRound();
-            takeDamage(damage);
+            takeUnmitigatedDamage(damage);
 
             dot.decrementRounds();
             if (dot.getRemainingRounds() <= 0) {
@@ -403,7 +458,7 @@ public abstract class Character {
         equipment.addStrength(this);
         equipment.addMagic(this);
 
-
+        updateStats();
 
         System.out.println("Equipped item: " + equipment.getName() + " to " + equipmentSlot.getName());
     }
@@ -411,11 +466,16 @@ public abstract class Character {
         if (equipmentSystem.isEquipmentSlotOccupied(this, equipmentSlot)) {
             EquipableItem unequippedItem = equippedItems.get(equipmentSlot);
             equippedItems.remove(equipmentSlot);
+
             unequippedItem.removeDefense(this);
             unequippedItem.removeHealth(this);
             unequippedItem.removeStrength(this);
             unequippedItem.removeMagic(this);
+
             inventory.add(unequippedItem);
+
+            updateStats();
+
             System.out.println("Unequipped " + unequippedItem.getName() + " from " + equipmentSlot.getName());
         } else {
             System.out.println("No item equipped in " + equipmentSlot.getName());
@@ -423,6 +483,7 @@ public abstract class Character {
     }
     public void unequipAll() {
         equippedItems.clear();
+        updateStats();
 //        System.out.println("All items have been unequipped.");
     }
     public boolean hasUsableItems(List<Item> inventory) {
@@ -438,5 +499,28 @@ public abstract class Character {
         setBaseHealth(health);
         setBaseMagic(magic);
         setBaseStrength(strength);
+    }
+    public void applyDebuff(Debuff debuff) {
+        activeDebuffs.add(debuff);
+        updateStats();
+    }
+
+    public void removeDebuff(Debuff debuff) {
+        activeDebuffs.remove(debuff);
+        updateStats();
+    }public void applyBuff(Buff buff) {
+        activeBuffs.add(buff);
+        updateStats();
+    }
+
+    public void removeBuff(Buff buff) {
+        activeBuffs.remove(buff);
+        updateStats();
+    }
+    public void updateStats() {
+        calculateTotalDefense();
+        calculateTotalHealth();
+        calculateTotalStrength();
+        calculateTotalMagic();
     }
 }

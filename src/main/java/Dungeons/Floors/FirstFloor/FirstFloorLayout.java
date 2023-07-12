@@ -42,6 +42,7 @@ public class FirstFloorLayout extends FloorLayout {
         setNamesForMultipleEnemies(room3Enemies);
         /// bossRoom enemies:
         VoidImp bossEnemy = voidImp.level2Imp();
+        bossEnemy.removeEnemyTag(enemyTags.getNormalEnemy());
         bossEnemy.addEnemyTag(enemyTags.getBossEnemy());
         List<Enemy> bossRoomEnemies = new ArrayList<>();
 

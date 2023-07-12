@@ -70,6 +70,7 @@ public class VoidImp extends Enemy {
     public VoidImp level2Imp() {
         VoidImp voidImp = creator.create("Strong Void Imp", 2);
         voidImp.getEnemyTags().add(allTags.getStrongEnemy());
+        voidImp.getEnemyTags().add(allTags.getNormalEnemy());
 
         return voidImp;
     }

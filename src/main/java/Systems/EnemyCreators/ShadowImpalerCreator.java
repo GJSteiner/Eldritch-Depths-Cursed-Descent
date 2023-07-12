@@ -7,8 +7,7 @@ import Characters.Enemies.Floor1.ShadowImpaler;
 
 public class ShadowImpalerCreator extends EnemyCreator {
 
-    private final Ability darkBlast = new DarkBlast();
-    private final Ability shadowStep = new ShadowStep();
+
 
     public ShadowImpaler create(String enemyName, int enemyLevel){
         enemyAbilities.add(darkBlast);

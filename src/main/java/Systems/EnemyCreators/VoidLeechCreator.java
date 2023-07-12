@@ -21,19 +21,19 @@ public class VoidLeechCreator extends EnemyCreator {
 
         enemyPassives.add(expunge);
 
-        if(enemyLevel == 0){
+        if(enemyLevel == 2){
             enemyInventory.add(averagePotion);
             createArmor("Feet", 2);
             createArmor("Helmet", 2);
         }
-        if(enemyLevel == 1){
+        if(enemyLevel == 3){
             enemyInventory.add(averagePotion);
             createWeapon("BalancedWeapon", 2);
             createWeapon("StrengthOffHand", 2);
             createWeapon("MagicOffHand", 2);
             createWeapon("DefenseOffHand", 2);
         }
-        if(enemyLevel == 2){
+        if(enemyLevel == 4){
             enemyInventory.add(averagePotion);
             createWeapon("StrengthWeapon", 2);
             createWeapon("MagicWeapon", 2);

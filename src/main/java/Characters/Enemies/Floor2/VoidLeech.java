@@ -29,26 +29,26 @@ public class VoidLeech extends Enemy {
         enemyTags.add(allTags.getLeechEnemy());
     }
 
-    public VoidLeech level0Leech() {
-        VoidLeech voidLeech = creator.create("Weak Void Leech", 0);
+    public VoidLeech level2Leech() {
+        VoidLeech voidLeech = creator.create("Fresh Void Leech", 2);
         voidLeech.getEnemyTags().add(allTags.getWeakEnemy());
         voidLeech.getEnemyTags().add(allTags.getNormalEnemy());
 
         return voidLeech;
     }
 
-    public VoidLeech level1Leech() {
-        VoidLeech voidLeech = creator.create("Average Void Leech", 1);
+    public VoidLeech level3Leech() {
+        VoidLeech voidLeech = creator.create("Plump Void Leech", 3);
         voidLeech.getEnemyTags().add(allTags.getMediumEnemy());
         voidLeech.getEnemyTags().add(allTags.getNormalEnemy());
 
         return voidLeech;
     }
 
-    public VoidLeech level2Leech() {
-        VoidLeech voidLeech = creator.create("Strong Void Leech", 2);
+    public VoidLeech level4Leech() {
+        VoidLeech voidLeech = creator.create("Gluttonous Void Leech", 4);
         voidLeech.getEnemyTags().add(allTags.getStrongEnemy());
-        voidLeech.getEnemyTags().add(allTags.getBossEnemy());
+        voidLeech.getEnemyTags().add(allTags.getNormalEnemy());
 
         return voidLeech;
     }

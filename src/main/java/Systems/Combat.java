@@ -9,6 +9,7 @@ import Characters.Player;
 import Items.Consumables.UsableItem;
 import Items.Item;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -16,11 +17,13 @@ import static Systems.GameRunner.gameOver;
 import static Systems.GameRunner.getPlayerChoice;
 
 public class Combat {
+    private static List<Enemy> enemies = new ArrayList<>();
     public static void startCombat(Player player, List<Enemy> aliveEnemies) {
+        enemies = aliveEnemies;
         boolean bossEnemyRoom = false;
-        if(aliveEnemies.size() == 1){
+        if(enemies.size() == 1){
             System.out.println();
-            System.out.println("A battle begins between " + player.getName() + " and " + aliveEnemies.get(0).getName() + "!");
+            System.out.println("A battle begins between " + player.getName() + " and " + enemies.get(0).getName() + "!");
             System.out.println();
         }
         else{
@@ -29,17 +32,17 @@ public class Combat {
             System.out.println();
 
         }
-        for (int i = 0; i < aliveEnemies.size(); i++) {
-            aliveEnemies.get(i).displayCharacterStats();
-            if(aliveEnemies.get(i).getEnemyTags().contains("Boss")){
+        for (int i = 0; i < enemies.size(); i++) {
+            enemies.get(i).displayCharacterStats();
+            if(enemies.get(i).getEnemyTags().contains("Boss")){
                 bossEnemyRoom = true;
             }
         }
         System.out.println();
         player.displayCharacterStats();
 
-        for (int i = 0; i < aliveEnemies.size(); i++) {
-            Enemy enemy = aliveEnemies.get(i);
+        for (int i = 0; i < enemies.size(); i++) {
+            Enemy enemy = enemies.get(i);
             System.out.println("Enemy Number " + i);
             enemy.displayCharacterStats();
             System.out.println();
@@ -112,11 +115,13 @@ public class Combat {
         if (bossEnemyRoom) {
             System.out.println("Congratulations! You have defeated this floor's boss and cleared the floor!");
         }
-        else if(aliveEnemies.size() == 1){
-            System.out.println("The battle against " + aliveEnemies.get(0).getName() + " has ended.");
+        else if(enemies.size() == 1){
+            System.out.println("The battle against " + enemies.get(0).getName() + " has ended.");
+            enemies.clear();
         }
         else{
             System.out.println("The battle has ended.");
+            enemies.clear();
         }
 
         player.makeChoice();
@@ -238,8 +243,15 @@ public class Combat {
             if(randomAbility.getLevelRequirement() <= npc.getLevel()){
                 validAbility = true;
             }
+
         }
         randomAbility.useAbility(npc, target);
+        if(randomAbility.getAbilityElement().equals("Summoning")){
+            int randomIndex = random.nextInt(randomAbility.getSummons().size());
+            Enemy randomEnemy = randomAbility.getSummons().get(randomIndex);
+            enemies.add(randomEnemy);
+            System.out.println(npc + " has summoned a " + randomEnemy.getName() + "!");
+        }
     }
 
     public static void handleEnemyPassives(Character character, Character target){

@@ -19,9 +19,10 @@ public class DarkBlast extends Ability {
 
     @Override
     public void executeAbility(Character caster, Character target) {
-        target.takeDamage(DAMAGE);
+        double adjustedDamage = caster.getLevel()*DAMAGE;
+        target.takeDamage(adjustedDamage);
 
         System.out.println(caster.getName() + " casts Dark Bolt on " + target.getName() + "!");
-        System.out.println(caster.getName() + " deals " + DAMAGE + " damage.");
+        System.out.println(caster.getName() + " deals " + adjustedDamage + " damage.");
     }
 }

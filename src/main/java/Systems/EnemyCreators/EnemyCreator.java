@@ -32,6 +32,8 @@ public abstract class EnemyCreator {
     protected final Ability voidDrain = new VoidDrain();
     protected final Ability shadowStep = new ShadowStep();
     protected final Ability impFire = new ImpFire();
+    protected final Ability shadowEmbrace = new ShadowEmbrace();
+    protected final Ability abyssalMaw = new AbyssalMaw();
 
     // passives
     protected final Passive expunge = new Expunge();

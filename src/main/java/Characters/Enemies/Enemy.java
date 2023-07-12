@@ -29,7 +29,18 @@ public abstract class Enemy extends Character {
     }
 
     public int getXpYield() {
-        return xpYield;
+        int adjustedXpYield = xpYield;
+        if(enemyTags.contains(tags.getBossEnemy())){
+            adjustedXpYield *= 2;
+        }
+         else if (enemyTags.contains(tags.getStrongEnemy())){
+            adjustedXpYield *= 1.5;
+        }
+        else if(enemyTags.contains(tags.getMediumEnemy())){
+            adjustedXpYield *= 1.25;
+        }
+
+        return adjustedXpYield;
     }
 
     public void setXpYield(int xpYield) {
@@ -92,5 +103,7 @@ public abstract class Enemy extends Character {
     public void addEnemyTag(String tag) {
         enemyTags.add(tag);
     }
-
+    public void removeEnemyTag(String tag){
+        enemyTags.remove(tag);
+    }
 }

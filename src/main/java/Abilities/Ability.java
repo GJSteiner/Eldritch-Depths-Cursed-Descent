@@ -1,14 +1,21 @@
 package Abilities;
 import Characters.Character;
+import Characters.Enemies.Enemy;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Ability {
     private String name;
     private String description;
+    private List<String> tags;
     private int levelRequirement;
     private double damage;
     private boolean aoe;
     private boolean dot;
     private String abilityElement;
+    private List<Enemy> summons = new ArrayList();
+
 
     public Ability(String name, String description, int levelRequirement, double damage, boolean aoe, boolean dot, String abilityElement) {
         this.name = name;
@@ -18,6 +25,7 @@ public abstract class Ability {
         this.aoe = aoe;
         this.dot = dot;
         this.abilityElement = abilityElement;
+        this.tags = new ArrayList<>();
     }
 
     public String getName() {
@@ -74,6 +82,22 @@ public abstract class Ability {
 
     public void setAbilityElement(String abilityElement) {
         this.abilityElement = abilityElement;
+    }
+
+    public List<Enemy> getSummons() {
+        return summons;
+    }
+
+    public void setSummons(List<Enemy> summons) {
+        this.summons = summons;
+    }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
     }
 
     protected abstract void executeAbility(Character caster, Character target);
