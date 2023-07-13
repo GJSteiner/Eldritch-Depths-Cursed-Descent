@@ -17,7 +17,7 @@
 17) add a feature on room/direction display that lists if the player has already been there
 18) ~~adjust the health of the imps. player dies by the end of the second combat, guaranteed.~~
 19) ~~add a game over screen/function to add to combat method~~
-20) add something to happen after the boss is killed to move to the next floor
+20) ~~add something to happen after the boss is killed to move to the next floor~~
 21) ~~add gold tracker after combat~~
 22) add a statGrowth variable to each class to apply to the levelUp function so they each gain stats differently
 23) ~~add logic for DoT damage~~
@@ -26,13 +26,14 @@
 26) Still need to test that the aoe dmg method works
 27) ~~display equipment stats when they are looked at~~
 28) ~~adjust item stats~~
-29) adjust levelup stats. currently going from 80 max health to 166 seems like a lot unless enemies are scaled to match.
+29) ~~adjust levelup stats. currently going from 80 max health to 166 seems like a lot unless enemies are scaled to match.~~
 30) ~~levelup is also currently factoring in stats from items when leveling up, which needs to be fixed. maybe need to have 2 stats: base hp/strength/defence etc and item hp/str/def etc~~
 31) ~~need to fix the reset methods. combat ends immediately after starting upon starting a new game. it also doesn't rerun character creation~~
 32) ~~adjust the healing of potions. maybe small-10 med -20 large-40. 20 hp feels good early, but 5 feels useless. maybe 15/30/60~~ changed it to 15/30/60 and reduced the number that treasure room gives.
 33) build the Corrupted class
-34) adjust enemy xpYield to scale with enemy level. will need to tweak to balance though.
-35) add an option in combat to choose 0 to go back if the player chose attack or use item and change their mind.
+34) ~~adjust enemy xpYield to scale with enemy level. will need to tweak to balance though.~~
+35) randomize enemy encounters from the floor's enemy table
+36) add an option in combat to choose 0 to go back if the player chose attack or use item and change their mind.
 
 
 ~~add loot to level 1 and 2 voidImps in the VoidImpCreator~~

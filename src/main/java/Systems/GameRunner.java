@@ -2,7 +2,9 @@ package Systems;
 
 import Characters.Player;
 import Dungeons.Dungeon;
+import Dungeons.Floors.FirstFloor.FirstFloorLayout;
 import Dungeons.Floors.FloorLayout;
+import Dungeons.Floors.SecondFloor.SecondFloorLayout;
 import Dungeons.Rooms.Room;
 import Items.Equipment.Armors.ArmorList;
 
@@ -16,6 +18,7 @@ public class GameRunner {
     }
 
     public static void run(){
+
         ClassSelection.run();
         player = ClassSelection.player;
         try {
@@ -26,6 +29,9 @@ public class GameRunner {
     }
 
     private static void initializeGame() {
+        dungeon.getFloors().add(new FirstFloorLayout());
+        dungeon.getFloors().add(new SecondFloorLayout());
+        dungeon.getFloors().get(0).addNextFloorExit();
 
         while (!dungeon.isGameCompleted()) {
             FloorLayout currentFloorLayout = dungeon.getCurrentFloorLayout();
@@ -37,7 +43,7 @@ public class GameRunner {
 
             exploreDungeon(player, dungeon);
 
-            dungeon.moveToNextFloor();
+//            dungeon.moveToNextFloor();
         }
 
         System.out.println("Congratulations! You have completed the dungeon!");
@@ -46,16 +52,17 @@ public class GameRunner {
     private static void exploreDungeon(Player player, Dungeon dungeon) {
         while (true) {
             Room currentRoom = player.getCurrentRoom();
-
-//            System.out.println();
-//            System.out.println("Current Room: " + currentRoom.getName());
-//            System.out.println();
-//            System.out.println(currentRoom.getDescription());
+//
+//            int x = 0;
+//            for (int i = 0; i < dungeon.getFloors().size(); i++) {
+//                x++;
+//
+//            }
+//            System.out.println(x);
             player.makeChoice();
 
             // Checking if the player has reached the end of the floor
             if (currentRoom.isEndRoom()) {
-//                System.out.println("Congratulations! You have cleared the floor!");
                 dungeon.moveToNextFloor();
 
                 currentRoom = dungeon.getCurrentFloorLayout().getStartingRoom();
@@ -63,11 +70,17 @@ public class GameRunner {
                 System.out.println();
                 System.out.println("You have reached Floor " + (dungeon.getCurrentFloorIndex() + 1) + ".");
             }
-            else {
-                // Dungeon exploration is complete
-//                System.out.println("Congratulations! You have completed the dungeon!");
-                break;
+
+            if (currentRoom.isVisited()) {
+                System.out.println("You have already visited this room.");
+                continue; // Move to the next iteration of the loop
             }
+
+            // Marking the current room as visited
+            currentRoom.setVisited(true);
+
+            // Moving to the next room
+    player.makeChoice();
 
         }
     }

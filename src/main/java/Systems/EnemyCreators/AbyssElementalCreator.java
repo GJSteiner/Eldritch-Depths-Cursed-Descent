@@ -5,9 +5,7 @@ import Characters.Enemies.Floor2.VoidLeech;
 
 public class AbyssElementalCreator extends EnemyCreator {
     public AbyssElemental create(String enemyName, int enemyLevel){
-        enemyTags.add(tags.getWaterEnemy());
-        enemyTags.add(tags.getElementalEnemy());
-        enemyTags.add(tags.getAbyssEnemy());
+
 
         enemyAbilities.add(darkBlast);
         enemyAbilities.add(abyssalMaw);
@@ -40,7 +38,7 @@ public class AbyssElementalCreator extends EnemyCreator {
         int enemyDefense = (enemyLevel + 1) * 5;
         boolean enemyAlive = true;
 
-        AbyssElemental abyssElemental = new AbyssElemental(enemyName, enemyLevel, enemyMaxHealth, enemyHealth, enemyMagic, enemyStrength, enemyDefense, enemyAlive, enemyInventory, enemyAbilities, enemyPassives, enemyTags);
+        AbyssElemental abyssElemental = new AbyssElemental(enemyName, enemyLevel, enemyMaxHealth, enemyHealth, enemyMagic, enemyStrength, enemyDefense, enemyAlive, enemyInventory, enemyAbilities, enemyPassives);
         return abyssElemental;
     }
 }

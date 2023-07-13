@@ -81,7 +81,7 @@ public class ClassSelection {
 
     private static Player createAcolytePlayer(String name) {
         // Initial stats for Acolyte
-        int level = 0;
+        int level = 5;
         int maxHealth = 80;
         int health = maxHealth;
         int magic = 8;

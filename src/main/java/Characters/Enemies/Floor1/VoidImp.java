@@ -18,59 +18,42 @@ public class VoidImp extends Enemy {
 //    private final EnemyTags allTags = new EnemyTags();
 
     VoidImpCreator creator = new VoidImpCreator();
+    private List<String> setImpTags(){
+        List<String> impTags = new ArrayList<>();
+        impTags.add(allTags.getImpEnemy());
+        impTags.add(allTags.getVoidEnemy());
+
+        return impTags;
+    }
 
     public VoidImp(){
     }
 
-    public VoidImp(String name, int level, int maxHealth, int health, int magic, int strength, int defense, boolean alive, List<Item> inventory, List<Ability> abilities, List<Passive> passives, List<String> enemyTags) {
-        super(name, level, maxHealth, health, magic, strength, defense, alive, XP_YIELD, ENEMY_TYPE, DESCRIPTION, inventory, abilities, passives, enemyTags);
-        enemyTags.add(allTags.getVoidEnemy());
-        enemyTags.add(allTags.getImpEnemy());
+    public VoidImp(String name, int level, int maxHealth, int health, int magic, int strength, int defense, boolean alive, List<Item> inventory, List<Ability> abilities, List<Passive> passives) {
+        super(name, level, maxHealth, health, magic, strength, defense, alive, XP_YIELD, ENEMY_TYPE, DESCRIPTION, inventory, abilities, passives);
+        setTags(setImpTags());
     }
-
-    // getting all this from the voidImpCreator instead
-//    static {
-//
-//        Ability darkBlast = new DarkBlast();
-//        Ability impFire = new ImpFire();
-//        Ability shadowStep = new ShadowStep();
-//
-//        VOID_IMP_ABILITIES.add(darkBlast);
-//        VOID_IMP_ABILITIES.add(impFire);
-//        VOID_IMP_ABILITIES.add(shadowStep);
-//    }
-
-//    private void addAbilities(Ability ability){
-//        VOID_IMP_ABILITIES.add(ability);
-//    }
-//    private void addPassives(Passive passive){
-//        VOID_IMP_PASSIVES.add(passive);
-//    }
-//    private void addItems(Item item){
-//        VOID_IMP_INVENTORY.add(item);
-//    }
-
 
     public VoidImp level0Imp() {
         VoidImp voidImp = creator.create("Weak Void Imp", 0);
-        voidImp.addEnemyTag(allTags.getWeakEnemy());
-        voidImp.addEnemyTag(allTags.getNormalEnemy());
+        voidImp.addTag(allTags.getWeakEnemy());
+        voidImp.addTag(allTags.getNormalEnemy());
 
         return voidImp;
     }
 
     public VoidImp level1Imp() {
         VoidImp voidImp = creator.create("Average Void Imp", 1);
-        voidImp.addEnemyTag(allTags.getMediumEnemy());
-        voidImp.addEnemyTag(allTags.getNormalEnemy());
+        voidImp.addTag(allTags.getMediumEnemy());
+        voidImp.addTag(allTags.getNormalEnemy());
 
         return voidImp;
     }
 
     public VoidImp level2Imp() {
         VoidImp voidImp = creator.create("Strong Void Imp", 2);
-        voidImp.addEnemyTag(allTags.getStrongEnemy());
-        voidImp.addEnemyTag(allTags.getNormalEnemy());
+        voidImp.addTag(allTags.getStrongEnemy());
+        voidImp.addTag(allTags.getNormalEnemy());
 
         return voidImp;
     }

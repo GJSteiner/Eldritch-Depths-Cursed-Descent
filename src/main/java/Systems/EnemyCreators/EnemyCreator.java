@@ -40,8 +40,8 @@ public abstract class EnemyCreator {
 
     //add private final Ability lines for every enemy ability
 
-    EnemyTags tags = new EnemyTags();
-    List<String> enemyTags = new ArrayList<>();
+    EnemyTags allTags = new EnemyTags();
+    protected List<String> tags = new ArrayList<>();
     List<Ability> enemyAbilities = new ArrayList<>();
     List<Passive> enemyPassives = new ArrayList<>();
     SmallHealthPotion weakPotion = new SmallHealthPotion();

@@ -7,6 +7,8 @@ import Dungeons.Floors.SecondFloor.SecondFloorLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Systems.GameRunner.dungeon;
+
 public class Dungeon {
     private List<FloorLayout> floors;
     private int currentFloorIndex;
@@ -16,12 +18,12 @@ public class Dungeon {
         floors = new ArrayList<>();
         currentFloorIndex = 0;
         gameCompleted = false;
-        initializeFloors();
+//        initializeFloors();
     }
 
     private void initializeFloors() {
-        floors.add(new FirstFloorLayout());
-        floors.add(new SecondFloorLayout());
+//        floors.add(new FirstFloorLayout(dungeon));
+//        floors.add(new SecondFloorLayout(dungeon));
     }
 
     public FloorLayout getCurrentFloorLayout() {

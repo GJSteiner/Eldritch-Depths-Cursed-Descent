@@ -15,7 +15,11 @@ import Systems.EnemyTags;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class FirstFloorLayout extends FloorLayout {
+
+    public FirstFloorLayout() {
+    }
 
     @Override
     protected void generateLayout() {
@@ -36,7 +40,7 @@ public class FirstFloorLayout extends FloorLayout {
         VoidImp enemy3 = voidImp.level1Imp();
         VoidImp enemy4 = voidImp.level1Imp();
 //        VoidImp enemy5 = voidImp.level1Imp();
-        ShadowImpaler enemy5 = shadowImpaler.level2Shadow();
+        ShadowImpaler enemy5 = shadowImpaler.level1Shadow();
         List<Enemy> room3Enemies = new ArrayList<>();
         room3Enemies.add(enemy3);
         room3Enemies.add(enemy4);
@@ -44,9 +48,10 @@ public class FirstFloorLayout extends FloorLayout {
         setNamesForMultipleEnemies(room3Enemies);
         /// bossRoom enemies:
         VoidImp bossEnemy = voidImp.level2Imp();
-        bossEnemy.addEnemyTag(enemyTags.getBossEnemy());
-        bossEnemy.removeEnemyTag(enemyTags.getNormalEnemy());
+        bossEnemy.addTag(enemyTags.getBossEnemy());
+        bossEnemy.removeTag(enemyTags.getNormalEnemy());
         List<Enemy> bossRoomEnemies = new ArrayList<>();
+
 
 
         // Treasure(items available for pickup, rather than defeating enemies)
@@ -102,5 +107,25 @@ public class FirstFloorLayout extends FloorLayout {
         bossRoom.setEndRoom(true);
 
     }
+    public void addNextFloorExit(){
+        int lastIndex = getLayout().size()-1;
+
+            Room nextFloorStartingRoom = getNextFloorLayout().getStartingRoom();
+        Room bossRoom = this.getLayout().get(lastIndex);
+            bossRoom.addExit(nextFloorStartingRoom, Direction.SOUTH);
+            nextFloorStartingRoom.addExit(bossRoom, Direction.NORTH);
+
+    }
+//    protected FloorLayout getNextFloorLayout(Dungeon dungeon) {
+//        List<FloorLayout> floors = dungeon.getFloors();
+//        int currentFloorIndex = dungeon.getCurrentFloorIndex();
+//
+//        if (currentFloorIndex + 1 < floors.size()) {
+//            return floors.get(currentFloorIndex + 1);
+//        } else {
+//            return null;
+//        }
+//    }
+
 
 }

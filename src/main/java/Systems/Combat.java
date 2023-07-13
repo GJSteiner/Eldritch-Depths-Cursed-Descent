@@ -6,6 +6,7 @@ import Characters.Character;
 import Abilities.Ability;
 import Characters.Enemies.Enemy;
 import Characters.Player;
+import Dungeons.Floors.FirstFloor.FirstFloorLayout;
 import Items.Consumables.UsableItem;
 import Items.Item;
 
@@ -19,6 +20,7 @@ import static Systems.GameRunner.getPlayerChoice;
 public class Combat {
     private static List<Enemy> enemies = new ArrayList<>();
     public static void startCombat(Player player, List<Enemy> aliveEnemies) {
+
         enemies = aliveEnemies;
         boolean bossEnemyRoom = false;
         if(enemies.size() == 1){
@@ -34,7 +36,7 @@ public class Combat {
         }
         for (int i = 0; i < enemies.size(); i++) {
             enemies.get(i).displayCharacterStats();
-            if(enemies.get(i).getEnemyTags().contains("Boss")){
+            if(enemies.get(i) != null && enemies.get(i).getTags() != null && checkBossEnemy(enemies.get(i))){
                 bossEnemyRoom = true;
             }
         }
@@ -65,12 +67,18 @@ public class Combat {
                     System.out.println("You have gained " + droppedGold + " gold!");
                     System.out.println("You now have " + player.getGold() + " gold.");
                     System.out.println();
-                    Item droppedItem = enemy.dropRandomItem();
-                    if (droppedItem != null) {
-                        System.out.println(enemy.getName() + " dropped a " + droppedItem.getName() + "!");
-                        System.out.println(player.getName() + " picked up a " + droppedItem.getName() + ".");
-                        player.getInventory().add(droppedItem);
+                    // boss drops 2 items
+                    if(checkBossEnemy(enemy)){
+                        dropAndPickupItem(player, enemy);
                     }
+                    dropAndPickupItem(player, enemy);
+                    //condensed into a separate method
+//                    Item droppedItem = enemy.dropRandomItem();
+//                    if (droppedItem != null) {
+//                        System.out.println(enemy.getName() + " dropped a " + droppedItem.getName() + "!");
+//                        System.out.println(player.getName() + " picked up a " + droppedItem.getName() + ".");
+//                        player.getInventory().add(droppedItem);
+//                    }
                     break;
                 }
 
@@ -116,6 +124,7 @@ public class Combat {
         }
         if (player.getCurrentRoom().isEndRoom()) {
             System.out.println("Congratulations! You have defeated this floor's boss and cleared the floor!");
+
         }
         else if(enemies.size() == 1){
             System.out.println("The battle against " + enemies.get(0).getName() + " has ended.");
@@ -264,6 +273,16 @@ public class Combat {
             }
         }
     }
+    public static void dropAndPickupItem(Character player, Enemy enemy){
+        Item droppedItem = enemy.dropRandomItem();
+        if (droppedItem != null) {
+            System.out.println(enemy.getName() + " dropped a " + droppedItem.getName() + "!");
+            System.out.println(player.getName() + " picked up a " + droppedItem.getName() + ".");
+            player.getInventory().add(droppedItem);
+        }
+    }
 
-
+    public static boolean checkBossEnemy(Enemy enemy){
+        return enemy.getTags().contains("Boss");
+    }
 }

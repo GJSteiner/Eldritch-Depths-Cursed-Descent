@@ -23,8 +23,18 @@ public class AbyssElemental extends Enemy {
     public AbyssElemental() {
     }
 
-    public AbyssElemental(String name, int level, int maxHealth, int health, int magic, int strength, int defense, boolean alive, List<Item> inventory, List<Ability> abilities, List<Passive> passives, List<String> enemyTags) {
-        super(name, level, maxHealth, health, magic, strength, defense, alive, XP_YIELD, ENEMY_TYPE, DESCRIPTION, inventory, abilities, passives, enemyTags);
+
+    public List<String> setAbyssTags() {
+        List<String> abyssTags = new ArrayList<>();
+        abyssTags.add(allTags.getWaterEnemy());
+        abyssTags.add(allTags.getElementalEnemy());
+        abyssTags.add(allTags.getAbyssEnemy());
+        return abyssTags;
+    }
+
+    public AbyssElemental(String name, int level, int maxHealth, int health, int magic, int strength, int defense, boolean alive, List<Item> inventory, List<Ability> abilities, List<Passive> passives) {
+        super(name, level, maxHealth, health, magic, strength, defense, alive, XP_YIELD, ENEMY_TYPE, DESCRIPTION, inventory, abilities, passives);
+        setTags(setAbyssTags());
     }
 
     public AbyssElemental level2Abyss() {

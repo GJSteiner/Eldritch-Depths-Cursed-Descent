@@ -10,8 +10,6 @@ import Characters.Enemies.Floor1.VoidImp;
 public class VoidImpCreator extends EnemyCreator {
 
     public VoidImp create(String enemyName, int enemyLevel){
-        enemyTags.add(tags.getVoidEnemy());
-        enemyTags.add(tags.getImpEnemy());
 
         enemyAbilities.add(darkBlast);
         enemyAbilities.add(shadowStep);
@@ -45,7 +43,8 @@ public class VoidImpCreator extends EnemyCreator {
         int enemyDefense = (enemyLevel + 1);
         boolean enemyAlive = true;
 
-        VoidImp voidImp = new VoidImp(enemyName, enemyLevel, enemyMaxHealth, enemyHealth, enemyMagic, enemyStrength, enemyDefense, enemyAlive, enemyInventory, enemyAbilities, enemyPassives, enemyTags);
+        VoidImp voidImp = new VoidImp(enemyName, enemyLevel, enemyMaxHealth, enemyHealth, enemyMagic, enemyStrength, enemyDefense, enemyAlive, enemyInventory, enemyAbilities, enemyPassives);
+
         return voidImp;
     }
 

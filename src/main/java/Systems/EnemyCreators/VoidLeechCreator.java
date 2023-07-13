@@ -12,8 +12,7 @@ import Items.Equipment.Weapons.*;
 public class VoidLeechCreator extends EnemyCreator {
 
     public VoidLeech create(String enemyName, int enemyLevel){
-        enemyTags.add(tags.getVoidEnemy());
-        enemyTags.add(tags.getLeechEnemy());
+
 
         enemyAbilities.add(darkBlast);
         enemyAbilities.add(voidSiphon);
@@ -48,7 +47,8 @@ public class VoidLeechCreator extends EnemyCreator {
         int enemyDefense = (enemyLevel + 1) * 3;
         boolean enemyAlive = true;
 
-        VoidLeech voidLeech = new VoidLeech(enemyName, enemyLevel, enemyMaxHealth, enemyHealth, enemyMagic, enemyStrength, enemyDefense, enemyAlive, enemyInventory, enemyAbilities, enemyPassives, enemyTags);
+        VoidLeech voidLeech = new VoidLeech(enemyName, enemyLevel, enemyMaxHealth, enemyHealth, enemyMagic, enemyStrength, enemyDefense, enemyAlive, enemyInventory, enemyAbilities, enemyPassives);
+
         return voidLeech;
     }
 

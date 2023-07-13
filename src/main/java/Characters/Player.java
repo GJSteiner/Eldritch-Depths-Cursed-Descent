@@ -98,14 +98,12 @@ public class Player extends Character {
     public void move() {
         Scanner scanner = new Scanner(System.in);
         List<Direction> availableDirections = currentRoom.getAvailableExits();
-
-
-        while(true) {
+        boolean validDirection = false;
+        while (!validDirection) {
             System.out.println();
             System.out.println("Where would you like to go?");
 
-
-            for(Direction availableDirection : availableDirections){
+            for (Direction availableDirection : availableDirections) {
                 Room availableRoom = currentRoom.getExit(availableDirection);
                 System.out.println(availableDirection.toString() + ": " + availableRoom.getName());
             }
@@ -113,17 +111,20 @@ public class Player extends Character {
             String choice = scanner.nextLine();
             Direction chosenDirection = Direction.fromString(choice);
 
-            if(chosenDirection != null && availableDirections.contains(chosenDirection)){
+            if (chosenDirection != null && availableDirections.contains(chosenDirection)) {
                 Room nextRoom = currentRoom.getExit(chosenDirection);
                 currentRoom = nextRoom;
-                currentRoom.enterRoom(this);
-                break;
-            }else {
+                currentRoom.enterRoom(this); // Update the current room
+                validDirection = true;
+
+
+            } else {
                 System.out.println("Invalid direction. Please choose one of the available directions.");
             }
-
         }
     }
+
+
     public void makeChoice(){
         System.out.println();
         System.out.println("What would you like to do?");
@@ -302,7 +303,9 @@ public class Player extends Character {
                     if (selectedItem instanceof UsableItem) {
                         UsableItem usableItem = (UsableItem) selectedItem;
                         usableItem.use(this);
-                        inventory.remove(selectedItem);
+                            //don't need this line because in the Potion.use() method it already removes the potion
+                            //from the inventory
+                        //inventory.remove(selectedItem);
                     } else {
                         System.out.println("The selected item is not usable.");
                     }

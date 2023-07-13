@@ -23,10 +23,16 @@ public class VoidLeech extends Enemy {
     public VoidLeech() {
     }
 
-    public VoidLeech(String name, int level, int maxHealth, int health, int magic, int strength, int defense, boolean alive, List<Item> inventory, List<Ability> abilities, List<Passive> passives, List<String> enemyTags) {
-        super(name, level, maxHealth, health, magic, strength, defense, alive, XP_YIELD, ENEMY_TYPE, DESCRIPTION, inventory, abilities, passives, enemyTags);
-        enemyTags.add(allTags.getVoidEnemy());
-        enemyTags.add(allTags.getLeechEnemy());
+    public List<String> setLeechTags() {
+        List<String> leechTags = new ArrayList<>();
+        leechTags.add(allTags.getVoidEnemy());
+        leechTags.add(allTags.getLeechEnemy());
+        return leechTags;
+    }
+
+    public VoidLeech(String name, int level, int maxHealth, int health, int magic, int strength, int defense, boolean alive, List<Item> inventory, List<Ability> abilities, List<Passive> passives) {
+        super(name, level, maxHealth, health, magic, strength, defense, alive, XP_YIELD, ENEMY_TYPE, DESCRIPTION, inventory, abilities, passives);
+        setTags(setLeechTags());
     }
 
     public VoidLeech level2Leech() {

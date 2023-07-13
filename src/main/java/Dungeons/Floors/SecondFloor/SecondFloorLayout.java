@@ -4,6 +4,7 @@ import Characters.Enemies.Enemy;
 import Characters.Enemies.Floor1.VoidImp;
 import Characters.Enemies.Floor2.AbyssElemental;
 import Characters.Enemies.Floor2.VoidLeech;
+import Dungeons.Dungeon;
 import Dungeons.Floors.FloorLayout;
 import Dungeons.Rooms.*;
 import Items.Consumables.Potions.LargeHealthPotion;
@@ -17,6 +18,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SecondFloorLayout extends FloorLayout {
+
+    public SecondFloorLayout() {
+    }
 
     @Override
     protected void generateLayout() {
@@ -53,8 +57,8 @@ public class SecondFloorLayout extends FloorLayout {
         setNamesForMultipleEnemies(room4Enemies);
         /// bossRoom enemies:
         AbyssElemental bossEnemy = abyssElemental.level4Abyss();
-        bossEnemy.removeEnemyTag(enemyTags.getNormalEnemy());
-        bossEnemy.addEnemyTag(enemyTags.getBossEnemy());
+        bossEnemy.removeTag(enemyTags.getNormalEnemy());
+        bossEnemy.addTag(enemyTags.getBossEnemy());
         List<Enemy> bossRoomEnemies = new ArrayList<>();
         VoidLeech bossRoomAdd1 = voidLeech.level4Leech();
         bossRoomEnemies.add(bossRoomAdd1);
@@ -112,5 +116,21 @@ public class SecondFloorLayout extends FloorLayout {
     }
     public Room getStartingRoom(){
         return layout.get(0);
+    }
+
+    @Override
+    public void addNextFloorExit() {
+
+    }
+
+    protected FloorLayout getNextFloorLayout(Dungeon dungeon) {
+        List<FloorLayout> floors = dungeon.getFloors();
+        int currentFloorIndex = dungeon.getCurrentFloorIndex();
+
+        if (currentFloorIndex + 1 < floors.size()) {
+            return floors.get(currentFloorIndex + 1);
+        } else {
+            return null;
+        }
     }
 }

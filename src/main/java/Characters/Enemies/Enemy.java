@@ -15,18 +15,17 @@ public abstract class Enemy extends Character {
     private int xpYield;
     private String enemyType;
     private String description;
-    private static List<String> tags = new ArrayList<>();
+    private  List<String> tags = new ArrayList<>();
     public Enemy(){
 
     }
 
-    public Enemy(String name, int level, int maxHealth, int health, int magic, int strength, int defense, boolean alive, int xpYield, String enemyType, String description, List<Item> inventory, List<Ability> abilities, List<Passive> passives, List<String> tags) {
+    public Enemy(String name, int level, int maxHealth, int health, int magic, int strength, int defense, boolean alive, int xpYield, String enemyType, String description, List<Item> inventory, List<Ability> abilities, List<Passive> passives) {
         super(name, level, maxHealth, health, magic, strength, defense, alive, inventory, abilities, passives);
         this.xpYield = xpYield;
         this.enemyType = enemyType;
         this.description = description;
-        this.tags = tags;
-    }
+        }
 
 //    public int getXpYield() {
 //        int adjustedXpYield = xpYield;
@@ -69,11 +68,11 @@ public int getXpYield(int level) {
         this.enemyType = enemyType;
     }
 
-    public List<String> getEnemyTags() {
+    public List<String> getTags() {
         return tags;
     }
 
-    public void setEnemyTags(List<String> enemyTags) {
+    public void setTags(List<String> enemyTags) {
         this.tags = enemyTags;
     }
 
@@ -91,10 +90,10 @@ public int getXpYield(int level) {
 
         Random random = new Random();
         int droppedGold = random.nextInt(maxGold-minGold+1) + minGold;
-        if(this.getEnemyTags().contains(allTags.getMegaRichEnemy())){
+        if(this.getTags().contains(allTags.getMegaRichEnemy())){
             droppedGold*=3;
         }
-        else if(this.getEnemyTags().contains(allTags.getRichEnemy())){
+        else if(this.getTags().contains(allTags.getRichEnemy())){
             droppedGold*=2;
         }
 
@@ -114,10 +113,10 @@ public int getXpYield(int level) {
 
         return droppedItem;
     }
-    public void addEnemyTag(String tag) {
+    public void addTag(String tag) {
         tags.add(tag);
     }
-    public void removeEnemyTag(String tag){
+    public void removeTag(String tag){
         tags.remove(tag);
     }
 }

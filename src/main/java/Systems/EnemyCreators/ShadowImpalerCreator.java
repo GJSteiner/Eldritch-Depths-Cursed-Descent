@@ -27,6 +27,7 @@ public class ShadowImpalerCreator extends EnemyCreator {
             createWeapon("DefenseOffHand", 1);
         }
         if (enemyLevel == 3){
+
             enemyInventory.add(averagePotion);
             createWeapon("StrengthWeapon", 1);
             createWeapon("MagicWeapon", 1);
@@ -41,7 +42,7 @@ public class ShadowImpalerCreator extends EnemyCreator {
         int enemyDefense = (enemyLevel + 1) * 2;
         boolean enemyAlive = true;
 
-        ShadowImpaler shadowImpaler = new ShadowImpaler(enemyName, enemyLevel, enemyMaxHealth, enemyHealth, enemyMagic, enemyStrength, enemyDefense, enemyAlive, enemyInventory, enemyAbilities, enemyPassives, enemyTags);
+        ShadowImpaler shadowImpaler = new ShadowImpaler(enemyName, enemyLevel, enemyMaxHealth, enemyHealth, enemyMagic, enemyStrength, enemyDefense, enemyAlive, enemyInventory, enemyAbilities, enemyPassives);
         return shadowImpaler;
     }
 

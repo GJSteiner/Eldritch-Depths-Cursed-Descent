@@ -15,6 +15,7 @@ public abstract class Room {
     private Map<Direction, Room> exits;
     private List<Enemy> enemies;
     private boolean isEndRoom;
+    private boolean visited;
 
     public Room(String name, String description) {
         this.name = name;
@@ -22,6 +23,7 @@ public abstract class Room {
         this.exits = new HashMap<>();
         this.enemies = new ArrayList<>();
         this.isEndRoom = false;
+        this.visited = false;
     }
 
     public String getName() {
@@ -65,6 +67,13 @@ public abstract class Room {
 
     public void setEndRoom(boolean endRoom) {
         isEndRoom = endRoom;
+    }
+    public boolean isVisited() {
+        return visited;
+    }
+
+    public void setVisited(boolean visited) {
+        this.visited = visited;
     }
     public abstract void enterRoom(Player player);
 //    public abstract void reset();
