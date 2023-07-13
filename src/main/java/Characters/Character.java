@@ -60,6 +60,7 @@ public abstract class Character {
         this.inventory = new ArrayList<>();
         this.passives = new ArrayList<>();
         this.damageOverTimeEffects = new ArrayList<>();
+        this.healOverTimeEffects = new ArrayList<>();
         this.equippedItems = new HashMap<>();
         this.equipmentSystem = new EquipmentSystem();
         this.activeBuffs = new ArrayList<>();
@@ -80,8 +81,11 @@ public abstract class Character {
         this.inventory = inventory;
         this.passives = passives;
         this.damageOverTimeEffects = new ArrayList<>();
+        this.healOverTimeEffects = new ArrayList<>();
         this.equippedItems = new HashMap<>();
         this.equipmentSystem = new EquipmentSystem();
+        this.activeBuffs = new ArrayList<>();
+        this.activeDebuffs = new ArrayList<>();
     }
 
     public int getMaxHealth() {

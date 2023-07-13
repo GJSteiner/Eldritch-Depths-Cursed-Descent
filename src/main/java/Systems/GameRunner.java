@@ -58,6 +58,15 @@ public class GameRunner {
 //                System.out.println("Congratulations! You have cleared the floor!");
                 dungeon.moveToNextFloor();
 
+                currentRoom = dungeon.getCurrentFloorLayout().getStartingRoom();
+
+                System.out.println();
+                System.out.println("You have reached Floor " + (dungeon.getCurrentFloorIndex() + 1) + ".");
+            }
+            else {
+                // Dungeon exploration is complete
+//                System.out.println("Congratulations! You have completed the dungeon!");
+                break;
             }
 
         }

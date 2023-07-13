@@ -39,7 +39,7 @@ public class Combat {
             }
         }
         System.out.println();
-        player.displayCharacterStats();
+        player.displayPlayerStats();
 
         for (int i = 0; i < enemies.size(); i++) {
             Enemy enemy = enemies.get(i);
@@ -57,7 +57,9 @@ public class Combat {
 
                 if (!enemy.isAlive()) {
                     System.out.println(enemy.getName() + " has been defeated. " + player.getName() + " wins!");
-                    player.gainExperience(enemy.getXpYield());
+                    player.gainExperience(enemy.getXpYield(enemy.getLevel()));
+                    System.out.println("Exp: " + player.getExperience() + "/" + player.calculateExperienceThreshold());
+
                     int droppedGold = enemy.dropGold();
                     player.addGold(droppedGold);
                     System.out.println("You have gained " + droppedGold + " gold!");
@@ -112,7 +114,7 @@ public class Combat {
                 handleEnemyPassives(enemy, player);
             }
         }
-        if (bossEnemyRoom) {
+        if (player.getCurrentRoom().isEndRoom()) {
             System.out.println("Congratulations! You have defeated this floor's boss and cleared the floor!");
         }
         else if(enemies.size() == 1){

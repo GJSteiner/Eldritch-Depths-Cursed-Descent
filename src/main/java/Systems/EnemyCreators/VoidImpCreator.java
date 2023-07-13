@@ -42,7 +42,7 @@ public class VoidImpCreator extends EnemyCreator {
         int enemyHealth = enemyMaxHealth;
         int enemyMagic = (enemyLevel + 1) * 5;
         int enemyStrength = (enemyLevel + 1) * 5;
-        int enemyDefense = (enemyLevel + 1) * 2;
+        int enemyDefense = (enemyLevel + 1);
         boolean enemyAlive = true;
 
         VoidImp voidImp = new VoidImp(enemyName, enemyLevel, enemyMaxHealth, enemyHealth, enemyMagic, enemyStrength, enemyDefense, enemyAlive, enemyInventory, enemyAbilities, enemyPassives, enemyTags);

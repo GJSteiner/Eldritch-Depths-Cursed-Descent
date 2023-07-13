@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShadowImpaler extends Enemy {
-    private static final int XP_YIELD = 75;
+    private static final int XP_YIELD = 20;
     private static final String ENEMY_TYPE = "Shadow Impaler";
     private static final String DESCRIPTION = "A shadowy creature with elongated limbs and sharp claws. It can merge with the darkness, becoming nearly invisible before launching surprise attacks.";
 

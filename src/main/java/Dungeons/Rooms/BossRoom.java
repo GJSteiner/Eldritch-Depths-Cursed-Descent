@@ -47,13 +47,17 @@ public class BossRoom extends Room {
             }
         }
 
-        if (bossAlive || additionalEnemiesAlive) {
+        if (additionalEnemies.size() > 0){
+            System.out.println("There is a powerful boss, " + boss.getName() + " in the room!");
+        }else{
             System.out.println("There is a powerful boss, " + boss.getName() + ", and additional enemies in the room!");
+        }
+        if (bossAlive || additionalEnemiesAlive) {
             System.out.println("Prepare yourself for a challenging battle!");
 
             List<Enemy> allEnemies = new ArrayList<>();
-            allEnemies.add(boss);
             allEnemies.addAll(additionalEnemies);
+            allEnemies.add(boss);
 
             Combat.startCombat(player, allEnemies);
         } else {

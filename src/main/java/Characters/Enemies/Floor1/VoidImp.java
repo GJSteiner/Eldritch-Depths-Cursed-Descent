@@ -11,11 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VoidImp extends Enemy {
-    private static int XP_YIELD = 50;
+    private static int XP_YIELD = 15;
     private static final String ENEMY_TYPE = "Void Imp";
     private static final String DESCRIPTION = "A small imp from the void realm.";
 
-    private final EnemyTags allTags = new EnemyTags();
+//    private final EnemyTags allTags = new EnemyTags();
 
     VoidImpCreator creator = new VoidImpCreator();
 
@@ -53,24 +53,24 @@ public class VoidImp extends Enemy {
 
     public VoidImp level0Imp() {
         VoidImp voidImp = creator.create("Weak Void Imp", 0);
-        voidImp.getEnemyTags().add(allTags.getWeakEnemy());
-        voidImp.getEnemyTags().add(allTags.getNormalEnemy());
+        voidImp.addEnemyTag(allTags.getWeakEnemy());
+        voidImp.addEnemyTag(allTags.getNormalEnemy());
 
         return voidImp;
     }
 
     public VoidImp level1Imp() {
         VoidImp voidImp = creator.create("Average Void Imp", 1);
-        voidImp.getEnemyTags().add(allTags.getMediumEnemy());
-        voidImp.getEnemyTags().add(allTags.getNormalEnemy());
+        voidImp.addEnemyTag(allTags.getMediumEnemy());
+        voidImp.addEnemyTag(allTags.getNormalEnemy());
 
         return voidImp;
     }
 
     public VoidImp level2Imp() {
         VoidImp voidImp = creator.create("Strong Void Imp", 2);
-        voidImp.getEnemyTags().add(allTags.getStrongEnemy());
-        voidImp.getEnemyTags().add(allTags.getNormalEnemy());
+        voidImp.addEnemyTag(allTags.getStrongEnemy());
+        voidImp.addEnemyTag(allTags.getNormalEnemy());
 
         return voidImp;
     }

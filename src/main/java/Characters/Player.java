@@ -33,6 +33,16 @@ public class Player extends Character {
 //        this.inventory = inventory;
 //        this.passives = passives;
 //    }
+    public void displayPlayerStats(){
+        System.out.println();
+        System.out.println(getName() + ":");
+        System.out.println("Level: " + getLevel());
+        System.out.println("Experience: " + getExperience() + "/" + calculateExperienceThreshold());
+        System.out.println("Health: " + getHealth() + "/" + (maxHealth+equippedHealth) + " HP");
+        System.out.println("Magic: " + getMagic());
+        System.out.println("Strength: " + getStrength());
+        System.out.println("Defense: " + getDefense());
+    }
 
     @Override
     public double magicAttack(int magic) {
@@ -133,7 +143,7 @@ public class Player extends Character {
             makeChoice();
         }
         if (choice == 3) {
-            displayCharacterStats();
+            displayPlayerStats();
             makeChoice();
         }
         if (choice == 4){
@@ -187,6 +197,9 @@ public class Player extends Character {
             int newBaseMagic = baseMagic * 2;
             int newBaseDefense = baseDefense * 2;
             experience -= calculateExperienceThreshold();
+            if (experience < 0){
+                experience = 0;
+            }
             System.out.println("Max Health: " + baseHealth + " -> " + newBaseHealth);
             System.out.println("Magic: " + baseMagic + " -> " + newBaseMagic);
             System.out.println("Strength: " + baseStrength + " -> " + newBaseStrength);
@@ -209,7 +222,7 @@ public class Player extends Character {
             experienceThreshold = calculateExperienceThreshold();
         }
     }
-    private int calculateExperienceThreshold(){
+    public int calculateExperienceThreshold(){
         int baseExperienceThreshold = 100;
         int thresholdIncrease = 50;
         int newExperienceTreshold = baseExperienceThreshold + (thresholdIncrease * (level));

@@ -1,10 +1,12 @@
 package Dungeons.Floors.FirstFloor;
 
 import Characters.Enemies.Enemy;
+import Characters.Enemies.Floor1.ShadowImpaler;
 import Characters.Enemies.Floor1.VoidImp;
 import Dungeons.Floors.FloorLayout;
 import Items.Consumables.Potions.MediumHealthPotion;
 import Items.Consumables.Potions.SmallHealthPotion;
+import Items.Equipment.EquipableItem;
 import Items.Item;
 import Dungeons.Rooms.*;
 import Systems.Direction;
@@ -14,13 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FirstFloorLayout extends FloorLayout {
-    EnemyTags enemyTags = new EnemyTags();
 
     @Override
     protected void generateLayout() {
-        layout.clear();
-        VoidImp voidImp = new VoidImp();
+        EnemyTags enemyTags = new EnemyTags();
 
+        layout.clear();
 
         // Creating enemies for the floor
         /// enemyRoom1 enemies:
@@ -34,7 +35,8 @@ public class FirstFloorLayout extends FloorLayout {
         /// enemyRoom3 enemies:
         VoidImp enemy3 = voidImp.level1Imp();
         VoidImp enemy4 = voidImp.level1Imp();
-        VoidImp enemy5 = voidImp.level1Imp();
+//        VoidImp enemy5 = voidImp.level1Imp();
+        ShadowImpaler enemy5 = shadowImpaler.level2Shadow();
         List<Enemy> room3Enemies = new ArrayList<>();
         room3Enemies.add(enemy3);
         room3Enemies.add(enemy4);
@@ -42,8 +44,8 @@ public class FirstFloorLayout extends FloorLayout {
         setNamesForMultipleEnemies(room3Enemies);
         /// bossRoom enemies:
         VoidImp bossEnemy = voidImp.level2Imp();
-        bossEnemy.removeEnemyTag(enemyTags.getNormalEnemy());
         bossEnemy.addEnemyTag(enemyTags.getBossEnemy());
+        bossEnemy.removeEnemyTag(enemyTags.getNormalEnemy());
         List<Enemy> bossRoomEnemies = new ArrayList<>();
 
 
@@ -51,6 +53,8 @@ public class FirstFloorLayout extends FloorLayout {
         SmallHealthPotion smallPotion1 = new SmallHealthPotion();
         SmallHealthPotion smallPotion2 = new SmallHealthPotion();
         MediumHealthPotion mediumPotion1 = new MediumHealthPotion();
+        EquipableItem balancedStarterWeapon = weaponList.getByTypeAndTier("Balance Weapon", 1);
+
 //        MediumHealthPotion mediumPotion2 = new MediumHealthPotion();
 //        LargeHealthPotion largePotion1 = new LargeHealthPotion();
 
@@ -58,6 +62,8 @@ public class FirstFloorLayout extends FloorLayout {
         treasure.add(smallPotion1);
         treasure.add(smallPotion2);
         treasure.add(mediumPotion1);
+
+        treasure.add(balancedStarterWeapon);
 //        treasure.add(mediumPotion2);
 //        treasure.add(largePotion1);
 
@@ -89,13 +95,12 @@ public class FirstFloorLayout extends FloorLayout {
         addRoom(startingRoom);
         addRoom(enemyRoom1);
         addRoom(enemyRoom2);
+        addRoom(treasureRoom);
+        addRoom(enemyRoom3);
         addRoom(bossRoom);
 
         bossRoom.setEndRoom(true);
 
-    }
-    public Room getStartingRoom(){
-     return layout.get(0);
     }
 
 }

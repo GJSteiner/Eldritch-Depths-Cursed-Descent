@@ -11,37 +11,51 @@ import java.util.List;
 import java.util.Random;
 
 public abstract class Enemy extends Character {
-    EnemyTags tags = new EnemyTags();
+    protected static EnemyTags allTags = new EnemyTags();
     private int xpYield;
     private String enemyType;
     private String description;
-    private List<String> enemyTags = new ArrayList<>();
+    private static List<String> tags = new ArrayList<>();
     public Enemy(){
 
     }
 
-    public Enemy(String name, int level, int maxHealth, int health, int magic, int strength, int defense, boolean alive, int xpYield, String enemyType, String description, List<Item> inventory, List<Ability> abilities, List<Passive> passives, List<String> enemyTags) {
+    public Enemy(String name, int level, int maxHealth, int health, int magic, int strength, int defense, boolean alive, int xpYield, String enemyType, String description, List<Item> inventory, List<Ability> abilities, List<Passive> passives, List<String> tags) {
         super(name, level, maxHealth, health, magic, strength, defense, alive, inventory, abilities, passives);
         this.xpYield = xpYield;
         this.enemyType = enemyType;
         this.description = description;
-        this.enemyTags = enemyTags;
+        this.tags = tags;
     }
 
-    public int getXpYield() {
-        int adjustedXpYield = xpYield;
-        if(enemyTags.contains(tags.getBossEnemy())){
-            adjustedXpYield *= 2;
-        }
-         else if (enemyTags.contains(tags.getStrongEnemy())){
-            adjustedXpYield *= 1.5;
-        }
-        else if(enemyTags.contains(tags.getMediumEnemy())){
-            adjustedXpYield *= 1.25;
-        }
+//    public int getXpYield() {
+//        int adjustedXpYield = xpYield;
+//        if(tags.contains(allTags.getBossEnemy())){
+//            adjustedXpYield *= 2;
+//        }
+//         else if (tags.contains(allTags.getStrongEnemy())){
+//            adjustedXpYield *= 1.5;
+//        }
+//        else if(tags.contains(allTags.getMediumEnemy())){
+//            adjustedXpYield *= 1.25;
+//        }
+//
+//        return adjustedXpYield;
+//    }
+public int getXpYield(int level) {
+    int adjustedXpYield = xpYield;
+    double levelAdjustment = 1.0;
 
-        return adjustedXpYield;
+    for (int i = 0; i < level; i++) {
+        levelAdjustment += 1;
     }
+
+    if (level > 0) {
+        adjustedXpYield *= levelAdjustment;
+    }
+
+    return adjustedXpYield;
+}
 
     public void setXpYield(int xpYield) {
         this.xpYield = xpYield;
@@ -56,11 +70,11 @@ public abstract class Enemy extends Character {
     }
 
     public List<String> getEnemyTags() {
-        return enemyTags;
+        return tags;
     }
 
     public void setEnemyTags(List<String> enemyTags) {
-        this.enemyTags = enemyTags;
+        this.tags = enemyTags;
     }
 
     public String getDescription() {
@@ -77,10 +91,10 @@ public abstract class Enemy extends Character {
 
         Random random = new Random();
         int droppedGold = random.nextInt(maxGold-minGold+1) + minGold;
-        if(this.getEnemyTags().contains(tags.getMegaRichEnemy())){
+        if(this.getEnemyTags().contains(allTags.getMegaRichEnemy())){
             droppedGold*=3;
         }
-        else if(this.getEnemyTags().contains(tags.getRichEnemy())){
+        else if(this.getEnemyTags().contains(allTags.getRichEnemy())){
             droppedGold*=2;
         }
 
@@ -101,9 +115,9 @@ public abstract class Enemy extends Character {
         return droppedItem;
     }
     public void addEnemyTag(String tag) {
-        enemyTags.add(tag);
+        tags.add(tag);
     }
     public void removeEnemyTag(String tag){
-        enemyTags.remove(tag);
+        tags.remove(tag);
     }
 }
