@@ -78,7 +78,7 @@ public class FirstFloorLayout extends FloorLayout {
         Room enemyRoom1 = new EnemyRoom("Enemy Room 1", "A room filled with eerie silence.", room1Enemies);
         Room enemyRoom2 = new EnemyRoom("Enemy Room 2", "A small room with an ominous air.", room2Enemies);
         Room treasureRoom = new TreasureRoom("Treasure Room", "A small room with a locked chest in the middle.", treasure);
-        Room enemyRoom3 = new EnemyRoom("Enemy Room 3", "A room with three Void Imp dancing about.", room3Enemies);
+        Room enemyRoom3 = new EnemyRoom("Enemy Room 3", "A room with three enemies dancing about.", room3Enemies);
         Room bossRoom = new BossRoom("Boss Room", "A large chamber with an intimidating presence.", bossEnemy, bossRoomEnemies);
 
         // Connecting the rooms

@@ -34,10 +34,12 @@ public class Combat {
             System.out.println();
 
         }
-        for (int i = 0; i < enemies.size(); i++) {
-            enemies.get(i).displayCharacterStats();
-            if(enemies.get(i) != null && enemies.get(i).getTags() != null && checkBossEnemy(enemies.get(i))){
-                bossEnemyRoom = true;
+        if(enemies.size() > 1) {
+            for (int i = 0; i < enemies.size(); i++) {
+                enemies.get(i).displayCharacterStats();
+                if (enemies.get(i) != null && enemies.get(i).getTags() != null && checkBossEnemy(enemies.get(i))) {
+                    bossEnemyRoom = true;
+                }
             }
         }
         System.out.println();
@@ -134,7 +136,7 @@ public class Combat {
             System.out.println("The battle has ended.");
             enemies.clear();
         }
-
+        endCombat(player);
         player.makeChoice();
 
     }
@@ -235,6 +237,9 @@ public class Combat {
 
         System.out.println();
     }
+    private static void endCombat(Character player){
+       player.removeAllStatusEffects();
+    }
 
     private static void npcUseAbility(Character npc, Character target){
         List<Ability> abilities = npc.getAbilities();
@@ -270,6 +275,7 @@ public class Combat {
         for (Passive passive : character.getPassives()){
             if (passive instanceof Expunge){
                 ((Expunge) passive).applyExpunge(character, target);
+                break;
             }
         }
     }

@@ -22,7 +22,7 @@ public class DarkBlast extends Ability {
         double adjustedDamage = caster.getLevel()*DAMAGE;
         target.takeDamage(adjustedDamage);
 
-        System.out.println(caster.getName() + " casts Dark Bolt on " + target.getName() + "!");
+        System.out.println(caster.getName() + " casts Dark Blast on " + target.getName() + "!");
         System.out.println(caster.getName() + " deals " + adjustedDamage + " damage.");
     }
 }

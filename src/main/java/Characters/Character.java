@@ -521,6 +521,20 @@ public abstract class Character {
         activeBuffs.remove(buff);
         updateStats();
     }
+    public void removeAllBuffs(){
+        for (Buff buff : activeBuffs){
+            removeBuff(buff);
+        }
+    }
+    public void removeAllDebuffs(){
+        for(Debuff debuff : activeDebuffs){
+            removeDebuff(debuff);
+        }
+    }
+    public void removeAllStatusEffects(){
+        removeAllBuffs();
+        removeAllDebuffs();
+    }
     public void updateStats() {
         calculateTotalDefense();
         calculateTotalHealth();

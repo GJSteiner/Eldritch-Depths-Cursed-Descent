@@ -80,13 +80,13 @@ public class SecondFloorLayout extends FloorLayout {
 
 
         // Creating the rooms for the floor
-        Room startingRoom = new StartingRoom("Starting Room", "");
-        Room enemyRoom1 = new EnemyRoom("Enemy Room 1", "", room1Enemies);
-        Room enemyRoom2 = new EnemyRoom("Enemy Room 2", "", room2Enemies);
-        Room enemyRoom3 = new EnemyRoom("Enemy Room 3", "", room3Enemies);
-        Room treasureRoom = new TreasureRoom("Treasure Room", "", treasure);
-        Room enemyRoom4 = new EnemyRoom("Enemy Room 4", "", room4Enemies);
-        Room bossRoom = new BossRoom("Boss Room", "A large chamber with an intimidating presence.", bossEnemy, bossRoomEnemies);
+        Room startingRoom = new StartingRoom("Second Floor Starting Room", "The first room of the second floor.");
+        Room enemyRoom1 = new EnemyRoom("Enemy Room 1", "A room filled with an unknown sense of unease.", room1Enemies);
+        Room enemyRoom2 = new EnemyRoom("Enemy Room 2", "A small room with various benign void critters scurrying about.", room2Enemies);
+        Room enemyRoom3 = new EnemyRoom("Enemy Room 3", "A large room that seems to be a void leech hatchery.", room3Enemies);
+        Room treasureRoom = new TreasureRoom("Treasure Room", "A small room with a chest in the corner, covered in void tendrils.", treasure);
+        Room enemyRoom4 = new EnemyRoom("Enemy Room 4", "The room reeks of the abyss' miasma.", room4Enemies);
+        Room bossRoom = new BossRoom("Boss Room", "A large chamber exuding a strong and intimidating presence.", bossEnemy, bossRoomEnemies);
 
         // Connecting the rooms
 

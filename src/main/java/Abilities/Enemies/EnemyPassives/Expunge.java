@@ -16,6 +16,9 @@ public class Expunge extends Passive {
         double expungeDmg = character.getHealth()*.5;
         if(character.getHealth() >= character.getMaxHealth()){
             target.takeDamage(expungeDmg);
+            System.out.println(character.getName() + " is at full health and triggers its passive, " +
+                    "dealing " + expungeDmg + " damage to " + target.getName() + ".");
+
         }
     }
 }

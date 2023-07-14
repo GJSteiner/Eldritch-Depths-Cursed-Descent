@@ -32,6 +32,10 @@ public class GameRunner {
         dungeon.getFloors().add(new FirstFloorLayout());
         dungeon.getFloors().add(new SecondFloorLayout());
         dungeon.getFloors().get(0).addNextFloorExit();
+        System.out.println();
+        System.out.println("You find yourself in a dimly lit room. It seems to be the entrance to the dungeon.");
+        System.out.println("Your objective is to explore the dungeon, defeat enemies, and reach the end of each floor.");
+        System.out.println("There are five floors in this dungeon, a boss on each floor, and the Dungeon Boss on the end of floor five.");
 
         while (!dungeon.isGameCompleted()) {
             FloorLayout currentFloorLayout = dungeon.getCurrentFloorLayout();
@@ -52,13 +56,7 @@ public class GameRunner {
     private static void exploreDungeon(Player player, Dungeon dungeon) {
         while (true) {
             Room currentRoom = player.getCurrentRoom();
-//
-//            int x = 0;
-//            for (int i = 0; i < dungeon.getFloors().size(); i++) {
-//                x++;
-//
-//            }
-//            System.out.println(x);
+
             player.makeChoice();
 
             // Checking if the player has reached the end of the floor
