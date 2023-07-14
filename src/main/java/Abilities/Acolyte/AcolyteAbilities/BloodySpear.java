@@ -2,8 +2,10 @@ package Abilities.Acolyte.AcolyteAbilities;
 
 import Abilities.Acolyte.AcolyteAbility;
 import Characters.Character;
+import Characters.Enemies.Enemy;
 
 import java.util.AbstractCollection;
+import java.util.List;
 
 public class BloodySpear extends AcolyteAbility {
     private static final String NAME = "Bloody Spear";
@@ -36,5 +38,10 @@ public class BloodySpear extends AcolyteAbility {
         else {
             System.out.println(caster.getName() + " tried to use Bloody Spear, but doesn't have enough health to use this ability.");
         }
+    }
+
+    @Override
+    protected void executeAbilityAoe(Character caster, List<Enemy> targets) {
+
     }
 }

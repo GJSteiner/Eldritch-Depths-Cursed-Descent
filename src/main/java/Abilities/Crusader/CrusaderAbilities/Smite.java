@@ -3,6 +3,9 @@ package Abilities.Crusader.CrusaderAbilities;
 import Abilities.Ability;
 import Abilities.Crusader.CrusaderAbility;
 import Characters.Character;
+import Characters.Enemies.Enemy;
+
+import java.util.List;
 
 public class Smite extends CrusaderAbility {
     private static final String NAME = "Smite";
@@ -24,5 +27,10 @@ public class Smite extends CrusaderAbility {
 
         System.out.println(caster.getName() + " smites " + target.getName() + "!");
         System.out.println(caster.getName() + " deals " + DAMAGE + " damage.");
+    }
+
+    @Override
+    protected void executeAbilityAoe(Character caster, List<Enemy> targets) {
+
     }
 }

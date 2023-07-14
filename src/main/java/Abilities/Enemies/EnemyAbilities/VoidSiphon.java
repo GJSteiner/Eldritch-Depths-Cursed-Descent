@@ -2,6 +2,9 @@ package Abilities.Enemies.EnemyAbilities;
 
 import Abilities.Ability;
 import Characters.Character;
+import Characters.Enemies.Enemy;
+
+import java.util.List;
 
 public class VoidSiphon extends Ability {
     private static final String NAME = "Void Siphon";
@@ -26,5 +29,10 @@ public class VoidSiphon extends Ability {
         System.out.println(caster.getName() + " casts Void Siphon on " + target.getName() + "!");
         System.out.println(caster.getName() + " begins draining the target's health. The target is taking " + DAMAGE +
                 " damage each round for " + DOT_ROUND + " rounds.");
+    }
+
+    @Override
+    protected void executeAbilityAoe(Character caster, List<Enemy> targets) {
+
     }
 }

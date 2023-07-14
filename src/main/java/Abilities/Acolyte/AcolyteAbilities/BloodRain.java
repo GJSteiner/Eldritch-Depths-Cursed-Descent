@@ -3,6 +3,9 @@ package Abilities.Acolyte.AcolyteAbilities;
 import Abilities.Ability;
 import Abilities.Acolyte.AcolyteAbility;
 import Characters.Character;
+import Characters.Enemies.Enemy;
+
+import java.util.List;
 
 public class BloodRain extends AcolyteAbility {
     private static final String NAME = "Blood Rain";
@@ -20,20 +23,25 @@ public class BloodRain extends AcolyteAbility {
         super(NAME, DESCRIPTION, LEVEL_REQUIREMENT, 0, AOE, DOT, ABILITY_ELEMENT);
     }
 
-    @Override
-    public void executeAbility(Character caster, Character target) {
+    public void executeAbilityAoe(Character caster, List<Enemy> targets) {
         double modifiedSelfDamage = checkReserves(caster, SELF_DAMAGE);
-        if(caster.getHealth() > modifiedSelfDamage) {
+        if (caster.getHealth() > modifiedSelfDamage) {
             double totalDamage = DAMAGE + (caster.getMagic() * MAGIC_MULTIPLIER);
-            target.takeDamage(totalDamage);
+            for (Enemy target : targets) {
+                target.takeDamage(totalDamage);
+            }
             caster.takeDamage(modifiedSelfDamage);
 
             System.out.println(caster.getName() + " casts Blood Rain!");
-            System.out.println(caster.getName() + " deals " + totalDamage + " damage to " + target.getName() + " and loses " + modifiedSelfDamage + " health.");
+            System.out.println(caster.getName() + " deals " + totalDamage + " damage to all enemies and loses " + modifiedSelfDamage + " health.");
 
-        }
-        else {
+        } else {
             System.out.println(caster.getName() + " tried to use Blood Rain, but doesn't have enough health to use this ability.");
         }
+    }
+
+    @Override
+    protected void executeAbility(Character caster, Character target) {
+
     }
 }

@@ -3,6 +3,9 @@ package Abilities.Crusader.CrusaderAbilities;
 import Abilities.Ability;
 import Abilities.Crusader.CrusaderAbility;
 import Characters.Character;
+import Characters.Enemies.Enemy;
+
+import java.util.List;
 
 public class HolyInferno extends CrusaderAbility {
     private static final String NAME = "Holy Inferno";
@@ -27,6 +30,11 @@ public class HolyInferno extends CrusaderAbility {
 
             System.out.println(caster.getName() + " casts Holy Inferno!");
             System.out.println(caster.getName() + " deals " + totalDamage + " damage to " + target.getName() + ".");
+
+    }
+
+    @Override
+    protected void executeAbilityAoe(Character caster, List<Enemy> targets) {
 
     }
 }

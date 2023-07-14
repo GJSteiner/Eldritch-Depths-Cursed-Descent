@@ -2,6 +2,9 @@ package Abilities.Enemies.EnemyAbilities;
 
 import Abilities.Ability;
 import Characters.Character;
+import Characters.Enemies.Enemy;
+
+import java.util.List;
 
 public class VoidDrain extends Ability {
     private static final String NAME = "Void Siphon";
@@ -23,5 +26,10 @@ public class VoidDrain extends Ability {
         caster.heal(DAMAGE);
         System.out.println(caster.getName() + " casts Void Drain on " + target.getName() + "!");
         System.out.println(caster.getName() + " deals " + DAMAGE + " damage and heals for " + DAMAGE + ".");
+    }
+
+    @Override
+    protected void executeAbilityAoe(Character caster, List<Enemy> targets) {
+
     }
 }

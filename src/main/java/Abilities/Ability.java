@@ -101,6 +101,7 @@ public abstract class Ability {
     }
 
     protected abstract void executeAbility(Character caster, Character target);
+    protected abstract void executeAbilityAoe(Character caster, List<Enemy> targets);
 
     public void useAbility(Character caster, Character target){
         if (caster.getLevel() >= levelRequirement){
@@ -110,5 +111,16 @@ public abstract class Ability {
             System.out.println("You have not reached the required level for this ability.");
         }
     };
+    public void useAbilityAoe(Character caster, List<Enemy> targets) {
+        if (caster.getLevel() >= levelRequirement) {
+            if (aoe) {
+                executeAbilityAoe(caster, targets);
+            } else {
+                System.out.println("This ability cannot target multiple enemies. Use useAbility instead.");
+            }
+        } else {
+            System.out.println("You have not reached the required level for this ability.");
+        }
+    }
 
 }

@@ -3,6 +3,9 @@ package Abilities.Acolyte.AcolyteAbilities;
 import Abilities.Ability;
 import Abilities.Acolyte.AcolyteAbility;
 import Characters.Character;
+import Characters.Enemies.Enemy;
+
+import java.util.List;
 
 public class BloodBolt extends AcolyteAbility {
     private static final String NAME = "Blood Bolt";
@@ -37,6 +40,11 @@ public class BloodBolt extends AcolyteAbility {
         }
 
 
+
+    }
+
+    @Override
+    protected void executeAbilityAoe(Character caster, List<Enemy> targets) {
 
     }
 }

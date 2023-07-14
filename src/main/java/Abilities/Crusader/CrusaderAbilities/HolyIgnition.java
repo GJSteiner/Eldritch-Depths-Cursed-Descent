@@ -3,6 +3,9 @@ package Abilities.Crusader.CrusaderAbilities;
 import Abilities.Ability;
 import Abilities.Crusader.CrusaderAbility;
 import Characters.Character;
+import Characters.Enemies.Enemy;
+
+import java.util.List;
 
 public class HolyIgnition extends CrusaderAbility {
     private static final String NAME = "Holy Ignition";
@@ -29,6 +32,11 @@ public class HolyIgnition extends CrusaderAbility {
         System.out.println(caster.getName() + " casts Holy Ignition!");
         System.out.println(caster.getName() + " ignites the target. The target is taking " + totalDamage +
                 " damage each round for " + DOT_ROUNDS + " rounds.");
+
+    }
+
+    @Override
+    protected void executeAbilityAoe(Character caster, List<Enemy> targets) {
 
     }
 }

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AbyssElemental extends Enemy {
-    private static final int XP_YIELD = 100;
+    private static final int XP_YIELD = 20;
     private static final String ENEMY_TYPE = "Abyss Elemental";
     private static final String DESCRIPTION = "A malevolent creature born from the depths of the abyss. It harnesses the power of darkness and water to attack its foes.";
 

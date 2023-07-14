@@ -2,6 +2,9 @@ package Abilities.Acolyte.AcolyteAbilities;
 
 import Abilities.Ability;
 import Characters.Character;
+import Characters.Enemies.Enemy;
+
+import java.util.List;
 
 public class VoidBolt extends Ability {
     private static final String NAME = "Void Bolt";
@@ -23,5 +26,10 @@ public class VoidBolt extends Ability {
 
         System.out.println(caster.getName() + " casts Void Bolt on " + target.getName() + "!");
         System.out.println(caster.getName() + " deals " + DAMAGE + " damage.");
+    }
+
+    @Override
+    protected void executeAbilityAoe(Character caster, List<Enemy> targets) {
+
     }
 }

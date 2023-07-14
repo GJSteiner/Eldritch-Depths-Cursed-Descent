@@ -57,7 +57,7 @@ public class Combat {
                 System.out.println(player.getName() + "'s Health: " + player.getHealth() + " HP");
                 System.out.println(enemy.getName() + "'s Health: " + enemy.getHealth() + " HP");
                 System.out.println();
-                chooseActionOrItem(player, enemy);
+                chooseActionOrItem(player, enemy, enemies);
 
                 if (!enemy.isAlive()) {
                     System.out.println(enemy.getName() + " has been defeated. " + player.getName() + " wins!");
@@ -140,7 +140,7 @@ public class Combat {
         player.makeChoice();
 
     }
-    private static int chooseActionOrItem(Character player, Character target){
+    private static int chooseActionOrItem(Character player, Character target, List<Enemy> enemies){
         int choice = 0;
             System.out.println("1. Attack");
             System.out.println("2. Use Item");
@@ -149,15 +149,15 @@ public class Combat {
 
         switch(choice){
             case 1:
-                selectAndUseAbility(player, target);
+                selectAndUseAbility(player, target, enemies);
                 break;
             case 2:
-                selectAndUseItem(player, target);
+                selectAndUseItem(player, target, enemies);
                 break;
 
             case 3:
                 player.displayCharacterStats();
-                chooseActionOrItem(player, target);
+                chooseActionOrItem(player, target, enemies);
             default:
                 System.out.println("Invalid choice.");
         }
@@ -166,14 +166,14 @@ public class Combat {
         return choice;
     }
 
-    private static void selectAndUseItem(Character player, Character target){
+    private static void selectAndUseItem(Character player, Character target, List<Enemy> enemies){
         // Displaying available consumables in the inventory
         System.out.println("Available consumables:");
         List<Item> inventory = player.getInventory();
         if(inventory.size() < 1 || !player.hasUsableItems(inventory)){
             System.out.println("You don't have any usable items.");
             System.out.println();
-            chooseActionOrItem(player, target);
+            chooseActionOrItem(player, target, enemies);
             return;
         }
         for (int i = 0; i < inventory.size(); i++) {
@@ -201,14 +201,14 @@ public class Combat {
             System.out.println("You used " + usableItem.getName() + ".");
         }
         else{
-            chooseActionOrItem(player, target);
+            chooseActionOrItem(player, target, enemies);
             return;
         }
 
         System.out.println();
     }
 
-    private static void selectAndUseAbility(Character player, Character target) {
+    private static void selectAndUseAbility(Character player, Character target, List<Enemy> enemies) {
         // Displaying available abilities to the user
         System.out.println("Available abilities:");
         for (int i = 0; i < player.getAbilities().size(); i++) {
@@ -223,20 +223,21 @@ public class Combat {
         System.out.print("Select an ability by entering its number: ");
         System.out.println();
         int choice = getPlayerChoice(player.getAbilities().size());
-//        // Go back if they choose 0;
-//        if (choice == 0) {
-//            return;
-//        }
-
-        // Using the selected ability on the target
         if (choice <= player.getAbilities().size()) {
             int abilityIndex = choice;
             Ability selectedAbility = player.getAbilities().get(abilityIndex);
-            selectedAbility.useAbility(player, target);
+            if(selectedAbility.isAoe()){
+                selectedAbility.useAbilityAoe(player, enemies);
+            }
+            else{
+                selectedAbility.useAbility(player, target);
+            }
         }
+
 
         System.out.println();
     }
+
     private static void endCombat(Character player){
        player.removeAllStatusEffects();
     }

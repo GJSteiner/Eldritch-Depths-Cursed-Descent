@@ -4,6 +4,8 @@ import Abilities.Ability;
 import Characters.Character;
 import Characters.Enemies.Enemy;
 
+import java.util.List;
+
 public class ShadowStep extends Ability {
     private static final String NAME = "Shadow Step";
     private static final String DESCRIPTION = "Teleports behind the target and launches a surprise attack.";
@@ -34,5 +36,10 @@ public class ShadowStep extends Ability {
 
         System.out.println(caster.getName() + " casts Shadow Step on " + target.getName() + "!");
         System.out.println(caster.getName() + " deals " + adjustedDamage + " damage.");
+    }
+
+    @Override
+    protected void executeAbilityAoe(Character caster, List<Enemy> targets) {
+
     }
 }

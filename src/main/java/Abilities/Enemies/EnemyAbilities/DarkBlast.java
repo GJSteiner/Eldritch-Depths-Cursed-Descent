@@ -2,6 +2,9 @@ package Abilities.Enemies.EnemyAbilities;
 
 import Abilities.Ability;
 import Characters.Character;
+import Characters.Enemies.Enemy;
+
+import java.util.List;
 
 public class DarkBlast extends Ability {
     private static final String NAME = "Dark Blast";
@@ -24,5 +27,10 @@ public class DarkBlast extends Ability {
 
         System.out.println(caster.getName() + " casts Dark Blast on " + target.getName() + "!");
         System.out.println(caster.getName() + " deals " + adjustedDamage + " damage.");
+    }
+
+    @Override
+    protected void executeAbilityAoe(Character caster, List<Enemy> targets) {
+
     }
 }

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VoidLeech extends Enemy {
-    private static final int XP_YIELD = 60;
+    private static final int XP_YIELD = 20;
     private static final String ENEMY_TYPE = "Void Leech";
     private static final String DESCRIPTION = "A parasitic creature from the void, it drains life energy from its victims to sustain itself.";
 

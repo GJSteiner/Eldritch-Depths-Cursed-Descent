@@ -2,6 +2,9 @@ package Abilities.Acolyte.AcolyteAbilities;
 
 import Abilities.Ability;
 import Characters.Character;
+import Characters.Enemies.Enemy;
+
+import java.util.List;
 
 public class Drain extends Ability {
     private static final String NAME = "Drain";
@@ -25,5 +28,10 @@ public class Drain extends Ability {
         caster.heal(totalDamage);
         System.out.println(caster.getName() + " casts Drain on " + target.getName() + "!");
         System.out.println(caster.getName() + " deals " + totalDamage + " damage and heals for " + totalDamage + ".");
+    }
+
+    @Override
+    protected void executeAbilityAoe(Character caster, List<Enemy> targets) {
+
     }
 }

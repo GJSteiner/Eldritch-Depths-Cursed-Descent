@@ -43,4 +43,9 @@ public class AbyssalMaw extends Ability {
         System.out.println(caster.getName() + " casts Abyssal Maw and summons an eldritch creature to join the fight");
     }
 
+    @Override
+    protected void executeAbilityAoe(Character caster, List<Enemy> targets) {
+
+    }
+
 }

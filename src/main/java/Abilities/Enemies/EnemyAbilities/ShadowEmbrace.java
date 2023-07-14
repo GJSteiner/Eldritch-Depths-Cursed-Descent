@@ -2,7 +2,10 @@ package Abilities.Enemies.EnemyAbilities;
 
 import Abilities.Ability;
 import Characters.Character;
+import Characters.Enemies.Enemy;
 import Systems.Debuff;
+
+import java.util.List;
 
 public class ShadowEmbrace extends Ability {
     private static final String NAME = "Shadow Embrace";
@@ -28,5 +31,10 @@ public class ShadowEmbrace extends Ability {
         System.out.println(caster.getName() + " casts Shadow Embrace on " + target.getName() + "!");
         System.out.println(caster.getName() + " deals " + DAMAGE + " damage.");
         System.out.println(target.getName() + "'s defense has been weakened by " + defenseDebuffIntensity + ".");
+    }
+
+    @Override
+    protected void executeAbilityAoe(Character caster, List<Enemy> targets) {
+
     }
 }
