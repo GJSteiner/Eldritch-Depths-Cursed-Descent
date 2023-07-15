@@ -2,7 +2,10 @@ package Systems.EnemyCreators;
 
 import Abilities.Ability;
 import Abilities.Enemies.EnemyAbilities.*;
+import Abilities.Enemies.EnemyPassives.CallOfTheVoid;
 import Abilities.Enemies.EnemyPassives.Expunge;
+import Abilities.Enemies.EnemyPassives.HighWaters;
+import Abilities.Enemies.EnemyPassives.VoidVenom;
 import Abilities.Passive;
 import Characters.Enemies.Enemy;
 import Items.Consumables.Potions.*;
@@ -35,13 +38,14 @@ public abstract class EnemyCreator {
     protected final Ability voidFire = new VoidFire();
     protected final Ability viciousBite = new ViciousBite();
     protected final Ability hellBlitz = new HellBlitz();
-    protected final Ability
-    protected final Ability
-    protected final Ability
-    protected final Ability
+    protected final Ability abyssalTides = new AbyssalTides();
+    protected final Ability voidSlash = new VoidSlash();
 
     // passives
     protected final Passive expunge = new Expunge();
+    protected final Passive voidVenom = new VoidVenom();
+    protected final Passive callOfTheVoid = new CallOfTheVoid();
+    protected final Passive highWaters = new HighWaters();
 
     //add private final Ability lines for every enemy ability
 

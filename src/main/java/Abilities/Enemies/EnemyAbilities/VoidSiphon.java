@@ -24,10 +24,11 @@ public class VoidSiphon extends Ability {
 
     @Override
     public void executeAbility(Character caster, Character target) {
-        target.applyDamageOverTime(NAME, DAMAGE, DOT_ROUND);
-        caster.applyHealOverTime(NAME, DAMAGE, DOT_ROUND);
+        double adjustedDamage = getLevelAdjustment(caster)*DAMAGE;
+        target.applyDamageOverTime(NAME, adjustedDamage, DOT_ROUND);
+        caster.applyHealOverTime(NAME, adjustedDamage, DOT_ROUND);
         System.out.println(caster.getName() + " casts " + NAME + " on " + target.getName() + "!");
-        System.out.println(caster.getName() + " begins draining the target's health. The target is taking " + DAMAGE +
+        System.out.println(caster.getName() + " begins draining the target's health. The target is taking " + adjustedDamage +
                 " damage each round for " + DOT_ROUND + " rounds.");
     }
 

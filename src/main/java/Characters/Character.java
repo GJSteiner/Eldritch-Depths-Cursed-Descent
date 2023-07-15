@@ -14,22 +14,23 @@ import Systems.StatusEffects.StatusEffect;
 import java.util.*;
 
 public abstract class Character {
-    String name = "";
-    int level = 1;
-    int maxHealth;
-    int baseHealth = maxHealth;
-    int equippedHealth = 0;
-    int health = 1;
-    int magic = 1;
-    int equippedMagic =0;
-    int baseMagic = magic;
-    int strength = 1;
-    int equippedStrength = 0;
-    int baseStrength = strength;
-    int defense = 1;
-    int equippedDefense=0;
-    int baseDefense = defense;
-    boolean alive = true;
+   private String name = "";
+   private int level = 1;
+   private int maxHealth;
+   private int baseHealth = maxHealth;
+  private  int equippedHealth = 0;
+   private int health = 1;
+   private int magic = 1;
+   private int equippedMagic =0;
+   private int baseMagic = magic;
+   private int strength = 1;
+   private int equippedStrength = 0;
+   private int baseStrength = strength;
+   private int defense = 1;
+  private  int equippedDefense=0;
+   private int baseDefense = defense;
+  private  boolean alive = true;
+  private  Ability lastAbility;
 
 
     protected List<Item> inventory;
@@ -198,6 +199,14 @@ public abstract class Character {
 
     public int getEquippedHealth() {
         return equippedHealth;
+    }
+
+    public Ability getLastAbility() {
+        return lastAbility;
+    }
+
+    public void setLastAbility(Ability lastAbility) {
+        this.lastAbility = lastAbility;
     }
 
     public void setEquippedHealth(int equippedHealth) {
@@ -391,10 +400,13 @@ public abstract class Character {
     public void applyDamageOverTime(String dotName, double damagePerRound, int numRounds) {
         DamageOverTime existingDot = getExistingDamageOverTimeEffect(dotName);
         if(existingDot != null){
-            //This stacks the intensity
-//            existingDot.setDamagePerRound(existingDot.getDamagePerRound() + damagePerRound);
+
             //This stacks the duration
             existingDot.setRemainingRounds(existingDot.getRemainingRounds() + numRounds);
+            if(existingDot.isStacking()){
+                //This stacks the intensity
+                existingDot.setDamagePerRound(existingDot.getDamagePerRound() + damagePerRound);
+            }
         }
         else {
             DamageOverTime dot = new DamageOverTime(dotName, damagePerRound, numRounds);
@@ -446,6 +458,16 @@ public abstract class Character {
             if (dot.getRemainingRounds() <= 0) {
                 iterator.remove();
             }
+        }
+    }
+    public void removeDamageOverTime(){
+        for(DamageOverTime dot : damageOverTimeEffects){
+            damageOverTimeEffects.remove(dot);
+        }
+    }
+    public void removeHealOverTime(){
+        for(HealOverTime hot : healOverTimeEffects){
+            healOverTimeEffects.remove(hot);
         }
     }
     public void equip(EquipableItem equipment) {
@@ -566,7 +588,6 @@ public abstract class Character {
 //                return;
 //            }
 //        }
-
         activeStatusEffects.add(statusEffect);
     }
 }

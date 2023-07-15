@@ -14,22 +14,22 @@ public class HellhoundCreator extends EnemyCreator{
         if(enemyLevel == 6){
             enemyInventory.add(veryStrongPotion);
             enemyInventory.add(veryStrongPotion);
-            createArmor("Helmet", 5);
-            createArmor("Feet", 5);
+            createArmor("Helmet", 4);
+            createArmor("Feet", 4);
         }
         if(enemyLevel == 7){
             enemyInventory.add(veryStrongPotion);
-            createWeapon("BalancedWeapon", 5);
-            createWeapon("StrengthOffHand", 5);
-            createWeapon("MagicOffHand", 5);
-            createWeapon("DefenseOffHand", 5);
+            createWeapon("BalancedWeapon", 4);
+            createWeapon("StrengthOffHand", 4);
+            createWeapon("MagicOffHand", 4);
+            createWeapon("DefenseOffHand", 4);
         }
         if(enemyLevel == 8){
             enemyInventory.add(veryStrongPotion);
-            createWeapon("StrengthWeapon", 5);
-            createWeapon("MagicWeapon", 5);
-            createArmor("Chest", 5);
-            createArmor("Legs", 5);
+            createWeapon("StrengthWeapon", 4);
+            createWeapon("MagicWeapon", 4);
+            createArmor("Chest", 4);
+            createArmor("Legs", 4);
         }
 
         int enemyMaxHealth = (enemyLevel + 1) * 10;

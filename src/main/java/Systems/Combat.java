@@ -1,6 +1,9 @@
 package Systems;
 
+import Abilities.Enemies.EnemyPassives.CallOfTheVoid;
 import Abilities.Enemies.EnemyPassives.Expunge;
+import Abilities.Enemies.EnemyPassives.HighWaters;
+import Abilities.Enemies.EnemyPassives.VoidVenom;
 import Abilities.Passive;
 import Characters.Character;
 import Abilities.Ability;
@@ -22,7 +25,7 @@ public class Combat {
     private static List<Enemy> enemies = new ArrayList<>();
 
     public static void startCombat(Player player, List<Enemy> aliveEnemies) {
-
+        int roundsPassed = 0;
         enemies = aliveEnemies;
         boolean bossEnemyRoom = false;
         if (enemies.size() == 1) {
@@ -123,7 +126,9 @@ public class Combat {
                 }
                 System.out.println();
 
-                handleEnemyPassives(enemy, player);
+                handleEnemyPassives(enemy, player, roundsPassed);
+                roundsPassed++;
+
             }
         }
         if (player.getCurrentRoom().isEndRoom()) {
@@ -248,6 +253,8 @@ public class Combat {
 
     private static void endCombat(Character player) {
         player.removeAllStatusEffects();
+        player.removeHealOverTime();
+        player.removeDamageOverTime();
     }
     private static void checkStun(Character character){
         for (StatusEffect effect : character.getActiveStatusEffects()) {
@@ -288,11 +295,23 @@ public class Combat {
         }
     }
 
-    public static void handleEnemyPassives(Character character, Character target) {
+    public static void handleEnemyPassives(Character character, Character target, int roundCounter) {
         //expunge
         for (Passive passive : character.getPassives()) {
             if (passive instanceof Expunge) {
                 ((Expunge) passive).applyExpunge(character, target);
+                break;
+            }
+            if (passive instanceof VoidVenom){
+                ((VoidVenom) passive).applyVoidVenom(character, target);
+                break;
+            }
+            if (passive instanceof HighWaters){
+                ((HighWaters) passive).applyHighWaters(character, target);
+                break;
+            }
+            if (passive instanceof CallOfTheVoid){
+                ((CallOfTheVoid) passive).applyCallOfTheVoid(character, target);
                 break;
             }
         }

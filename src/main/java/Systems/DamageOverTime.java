@@ -4,11 +4,13 @@ public class DamageOverTime {
     private String dotName;
     private double damagePerRound;
     private int remainingRounds;
+    private boolean stacking;
 
     public DamageOverTime(String dotName, double damagePerRound, int numRounds) {
         this.dotName = dotName;
         this.damagePerRound = damagePerRound;
         this.remainingRounds = numRounds;
+        this.stacking = false;
     }
 
     public double getDamagePerRound() {
@@ -40,5 +42,13 @@ public class DamageOverTime {
 
     public void setRemainingRounds(int remainingRounds) {
         this.remainingRounds = remainingRounds;
+    }
+
+    public boolean isStacking() {
+        return stacking;
+    }
+
+    public void setStacking(boolean stacking) {
+        this.stacking = stacking;
     }
 }

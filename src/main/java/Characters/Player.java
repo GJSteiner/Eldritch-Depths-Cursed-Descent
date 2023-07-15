@@ -38,7 +38,7 @@ public class Player extends Character {
         System.out.println(getName() + ":");
         System.out.println("Level: " + getLevel());
         System.out.println("Experience: " + getExperience() + "/" + calculateExperienceThreshold());
-        System.out.println("Health: " + getHealth() + "/" + (maxHealth+equippedHealth) + " HP");
+        System.out.println("Health: " + getHealth() + "/" + (getMaxHealth()+getEquippedHealth()) + " HP");
         System.out.println("Magic: " + getMagic());
         System.out.println("Strength: " + getStrength());
         System.out.println("Defense: " + getDefense());
@@ -186,33 +186,33 @@ public class Player extends Character {
     private void levelUp(){
         int experienceThreshold = calculateExperienceThreshold();
         while(experience >= experienceThreshold){
-            level++;
+            setLevel(getLevel()+1);
             System.out.println(getName() + " has leveled up!");
-            System.out.println(getName() + " is now level " + level + "!");
+            System.out.println(getName() + " is now level " + getLevel() + "!");
             System.out.println();
             Map<EquipmentSlot, EquipableItem> currentEquipment = getEquippedItems();
 //            unequipAll();
 
-            int newBaseHealth = baseHealth * 2;
-            int newBaseStrength = baseStrength * 2;
-            int newBaseMagic = baseMagic * 2;
-            int newBaseDefense = baseDefense * 2;
+            int newBaseHealth = getBaseHealth() * 2;
+            int newBaseStrength = getBaseStrength() * 2;
+            int newBaseMagic = getBaseMagic() * 2;
+            int newBaseDefense = getBaseDefense() * 2;
             experience -= calculateExperienceThreshold();
             if (experience < 0){
                 experience = 0;
             }
-            System.out.println("Max Health: " + baseHealth + " -> " + newBaseHealth);
-            System.out.println("Magic: " + baseMagic + " -> " + newBaseMagic);
-            System.out.println("Strength: " + baseStrength + " -> " + newBaseStrength);
-            System.out.println("Defense: " + baseDefense + " -> " + newBaseDefense);
+            System.out.println("Max Health: " + getBaseHealth() + " -> " + newBaseHealth);
+            System.out.println("Magic: " + getBaseMagic() + " -> " + newBaseMagic);
+            System.out.println("Strength: " + getBaseStrength() + " -> " + newBaseStrength);
+            System.out.println("Defense: " + getBaseDefense() + " -> " + newBaseDefense);
 
-            baseHealth=newBaseHealth;
+            setBaseHealth(newBaseHealth);
             calculateTotalHealth();
-            baseStrength=newBaseStrength;
+            setBaseStrength(newBaseStrength);
             calculateTotalStrength();
-            baseDefense=newBaseDefense;
+            setBaseDefense(newBaseDefense);
             calculateTotalDefense();
-            baseMagic=newBaseMagic;
+            setBaseMagic(newBaseMagic);
             calculateTotalMagic();
 //            displayCharacterStats();
 //            for (EquipableItem item : currentEquipment.values()) {
@@ -226,8 +226,8 @@ public class Player extends Character {
     public int calculateExperienceThreshold(){
         int baseExperienceThreshold = 100;
         int thresholdIncrease = 50;
-        int newExperienceTreshold = baseExperienceThreshold + (thresholdIncrease * (level));
-        if(level == 0){
+        int newExperienceTreshold = baseExperienceThreshold + (thresholdIncrease * (getLevel()));
+        if(getLevel() == 0){
             return baseExperienceThreshold;
         }
         else {

@@ -14,7 +14,7 @@ import java.util.List;
 
 public class AbyssKnight extends Enemy {
     private static final int XP_YIELD = 35;
-    private static final String ENEMY_TYPE = "Void Leech";
+    private static final String ENEMY_TYPE = "Abyss Knight";
     private static final String DESCRIPTION = "A heavily armored knight wielding a massive, sinister blade that channels the corrupted waters of the abyss.";
 
 

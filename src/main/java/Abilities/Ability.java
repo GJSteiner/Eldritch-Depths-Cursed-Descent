@@ -110,6 +110,7 @@ public abstract class Ability {
         else {
             System.out.println("You have not reached the required level for this ability.");
         }
+        caster.setLastAbility(this);
     };
     public void useAbilityAoe(Character caster, List<Enemy> targets) {
         if (caster.getLevel() >= levelRequirement) {
@@ -121,6 +122,7 @@ public abstract class Ability {
         } else {
             System.out.println("You have not reached the required level for this ability.");
         }
+        caster.setLastAbility(this);
     }
 
     //gets how many levels above the requirement the user is. to be used as a scaling multiplier.

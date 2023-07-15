@@ -14,22 +14,22 @@ public class CultistSummonerCreator extends EnemyCreator{
         if(enemyLevel == 6){
             enemyInventory.add(strongPotion);
             enemyInventory.add(strongPotion);
-            createArmor("Helmet", 4);
-            createArmor("Feet", 4);
+            createArmor("Helmet", 3);
+            createArmor("Feet", 3);
         }
         if(enemyLevel == 7){
             enemyInventory.add(strongPotion);
-            createWeapon("BalancedWeapon", 4);
-            createWeapon("StrengthOffHand", 4);
-            createWeapon("MagicOffHand", 4);
-            createWeapon("DefenseOffHand", 4);
+            createWeapon("BalancedWeapon", 3);
+            createWeapon("StrengthOffHand", 3);
+            createWeapon("MagicOffHand", 3);
+            createWeapon("DefenseOffHand", 3);
         }
         if(enemyLevel == 8){
             enemyInventory.add(strongPotion);
-            createWeapon("StrengthWeapon", 4);
-            createWeapon("MagicWeapon", 4);
-            createArmor("Chest", 4);
-            createArmor("Legs", 4);
+            createWeapon("StrengthWeapon", 3);
+            createWeapon("MagicWeapon", 3);
+            createArmor("Chest", 3);
+            createArmor("Legs", 3);
         }
 
         int enemyMaxHealth = (enemyLevel + 1) * 10;
