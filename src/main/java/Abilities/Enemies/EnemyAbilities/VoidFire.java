@@ -6,26 +6,31 @@ import Characters.Enemies.Enemy;
 
 import java.util.List;
 
-public class ImpFire extends Ability {
-    private static final String NAME = "Imp Fire";
-    private static final String DESCRIPTION = "Launches a fast-moving ball of purple flame.";
-    private static final int LEVEL_REQUIREMENT = 2;
+public class VoidFire extends Ability {
+    private static final String NAME = "Void Fire";
+    private static final String DESCRIPTION = "Ignites the target with a blaze of purple flame.";
+    private static final int LEVEL_REQUIREMENT = 6;
     private static final double DAMAGE = 30;
+    private static final double DOT_DAMAGE = 10;
+    private static final int DOT_ROUNDS = 2;
     private static final boolean AOE = false;
-    private static final boolean DOT = false;
+    private static final boolean DOT = true;
     private static final String ABILITY_ELEMENT = "Fire";
 
 
-    public ImpFire() {
+    public VoidFire() {
         super(NAME, DESCRIPTION, LEVEL_REQUIREMENT, DAMAGE, AOE, DOT, ABILITY_ELEMENT);
     }
 
     @Override
     public void executeAbility(Character caster, Character target) {
         target.takeDamage(DAMAGE);
+        double adjustedDot = DOT_DAMAGE*getLevelAdjustment(caster);
+        target.applyDamageOverTime(NAME, adjustedDot, DOT_ROUNDS);
 
         System.out.println(caster.getName() + " casts " + NAME + " on " + target.getName() + "!");
-        System.out.println(caster.getName() + " deals " + DAMAGE + " damage.");
+        System.out.println(caster.getName() + " deals " + DAMAGE + " damage and ignites the target for " + adjustedDot + " for " + DOT_ROUNDS +".");
+
     }
 
     @Override

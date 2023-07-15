@@ -3,7 +3,7 @@ package Abilities.Enemies.EnemyAbilities;
 import Abilities.Ability;
 import Characters.Character;
 import Characters.Enemies.Enemy;
-import Systems.Debuff;
+import Systems.StatusEffects.Debuff;
 
 import java.util.List;
 
@@ -28,7 +28,7 @@ public class ShadowEmbrace extends Ability {
         Debuff defenseDebuff = new Debuff("Defense Debuff", "Defense", 5, defenseDebuffIntensity);
         target.applyDebuff(defenseDebuff);
 
-        System.out.println(caster.getName() + " casts Shadow Embrace on " + target.getName() + "!");
+        System.out.println(caster.getName() + " casts " + NAME + " on " + target.getName() + "!");
         System.out.println(caster.getName() + " deals " + DAMAGE + " damage.");
         System.out.println(target.getName() + "'s defense has been weakened by " + defenseDebuffIntensity + ".");
     }

@@ -7,6 +7,9 @@ import Items.Equipment.EquipableItem;
 import Items.Equipment.EquipmentSlot;
 import Items.Item;
 import Systems.*;
+import Systems.StatusEffects.Buff;
+import Systems.StatusEffects.Debuff;
+import Systems.StatusEffects.StatusEffect;
 
 import java.util.*;
 
@@ -38,6 +41,7 @@ public abstract class Character {
     private EquipmentSystem equipmentSystem;
     private List<Debuff> activeDebuffs;
     private List<Buff> activeBuffs;
+    private List<StatusEffect> activeStatusEffects = new ArrayList<>();
 
 
 
@@ -540,5 +544,29 @@ public abstract class Character {
         calculateTotalHealth();
         calculateTotalStrength();
         calculateTotalMagic();
+    }
+
+    public List<Debuff> getActiveDebuffs() {
+        return activeDebuffs;
+    }
+
+    public List<Buff> getActiveBuffs() {
+        return activeBuffs;
+    }
+
+    public List<StatusEffect> getActiveStatusEffects() {
+        return activeStatusEffects;
+    }
+    public void applyStatusEffect(StatusEffect statusEffect) {
+//        // Checking if the character is already affected by the same status effect
+//        for (StatusEffect effect : activeStatusEffects) {
+//            if (effect.getName().equals(statusEffect.getName())) {
+//                // Update the duration if the effect is already active
+//                effect.setDuration(statusEffect.getDuration());
+//                return;
+//            }
+//        }
+
+        activeStatusEffects.add(statusEffect);
     }
 }

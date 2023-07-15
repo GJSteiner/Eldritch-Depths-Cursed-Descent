@@ -18,7 +18,14 @@ public class EnemyTags {
     private final String waterEnemy = "Water";
     private final String abyssEnemy = "Abyss";
     private final String elementalEnemy = "Elemental";
-
+    private final String cultistEnemy = "Cultist";
+    private final String casterEnemy = "Caster";
+    private final String summonerEnemy = "Summoner";
+    private final String beastEnemy = "Beast";
+    private final String canineEnemy = "Canine";
+    private final String spiderEnemy = "Spider";
+    private final String championEnemy = "Champion";
+    private final String knightEnemy = "Knight";
 
     public String getWeakEnemy() {
         return weakEnemy;
@@ -86,4 +93,37 @@ public class EnemyTags {
     public String getElementalEnemy() {
         return elementalEnemy;
     }
+
+    public String getCultistEnemy() {
+        return cultistEnemy;
+    }
+
+    public String getCasterEnemy() {
+        return casterEnemy;
+    }
+
+    public String getSummonerEnemy() {
+        return summonerEnemy;
+    }
+
+    public String getBeastEnemy() {
+        return beastEnemy;
+    }
+    public String getCanineEnemy() {
+        return canineEnemy;
+    }
+
+    public String getSpiderEnemy() {
+        return spiderEnemy;
+    }
+
+    public String getChampionEnemy() {
+        return championEnemy;
+    }
+
+    public String getKnightEnemy() {
+        return knightEnemy;
+    }
+
+
 }

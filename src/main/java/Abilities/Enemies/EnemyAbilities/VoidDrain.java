@@ -22,10 +22,11 @@ public class VoidDrain extends Ability {
 
     @Override
     public void executeAbility(Character caster, Character target) {
-        target.takeDamage(DAMAGE);
-        caster.heal(DAMAGE);
-        System.out.println(caster.getName() + " casts Void Drain on " + target.getName() + "!");
-        System.out.println(caster.getName() + " deals " + DAMAGE + " damage and heals for " + DAMAGE + ".");
+        double adjustedDamage = DAMAGE*getLevelAdjustment(caster);
+        target.takeDamage(adjustedDamage);
+        caster.heal(adjustedDamage);
+        System.out.println(caster.getName() + " casts " + NAME + " on " + target.getName() + "!");
+        System.out.println(caster.getName() + " deals " + adjustedDamage + " damage and heals for " + adjustedDamage + ".");
     }
 
     @Override

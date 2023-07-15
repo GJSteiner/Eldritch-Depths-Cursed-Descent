@@ -15,11 +15,6 @@ public class ShadowImpaler extends Enemy {
     private static final int XP_YIELD = 15;
     private static final String ENEMY_TYPE = "Shadow Impaler";
     private static final String DESCRIPTION = "A shadowy creature with elongated limbs and sharp claws. It can merge with the darkness, becoming nearly invisible before launching surprise attacks.";
-
-
-    private final EnemyTags allTags = new EnemyTags();
-    private final List<String> enemyTags = new ArrayList<>();
-
     ShadowImpalerCreator creator = new ShadowImpalerCreator();
 
     public ShadowImpaler(){
@@ -44,31 +39,29 @@ public class ShadowImpaler extends Enemy {
 
     public ShadowImpaler level1Shadow() {
         ShadowImpaler shadowImpaler = creator.create("Weak Shadow Impaler", 1);
-        shadowImpaler.getEnemyTags().add(allTags.getWeakEnemy());
-        shadowImpaler.getEnemyTags().add(allTags.getNormalEnemy());
+        shadowImpaler.addTag(allTags.getWeakEnemy());
+        shadowImpaler.addTag(allTags.getNormalEnemy());
 
         return shadowImpaler;
     }
 
         public ShadowImpaler level2Shadow() {
         ShadowImpaler shadowImpaler = creator.create("Average Shadow Impaler", 2);
-        shadowImpaler.getEnemyTags().add(allTags.getMediumEnemy());
-        shadowImpaler.getEnemyTags().add(allTags.getNormalEnemy());
+        shadowImpaler.addTag(allTags.getMediumEnemy());
+        shadowImpaler.addTag(allTags.getNormalEnemy());
 
         return shadowImpaler;
     }
 
     public ShadowImpaler level3Shadow() {
         ShadowImpaler shadowImpaler = creator.create("Strong Shadow Impaler", 3);
-        shadowImpaler.getEnemyTags().add(allTags.getStrongEnemy());
-        shadowImpaler.getEnemyTags().add(allTags.getUniqueEnemy());
+        shadowImpaler.addTag(allTags.getStrongEnemy());
+        shadowImpaler.addTag(allTags.getUniqueEnemy());
+
 
         return shadowImpaler;
     }
 
-    public List<String> getEnemyTags() {
-        return enemyTags;
-    }
 
 
 }

@@ -1,6 +1,8 @@
-package Systems;
+package Systems.StatusEffects;
 
-public class Debuff extends StatusEffect{
+import Systems.StatusEffects.StatusEffect;
+
+public class Debuff extends StatusEffect {
     public Debuff(String name, String tag, int duration, double intensity) {
         super(name, tag, duration, intensity);
     }

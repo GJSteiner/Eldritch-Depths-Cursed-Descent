@@ -40,7 +40,7 @@ public class AbyssalMaw extends Ability {
         summons.add(impaler);
         summons.add(leech);
 
-        System.out.println(caster.getName() + " casts Abyssal Maw and summons an eldritch creature to join the fight");
+        System.out.println(caster.getName() + " casts " + NAME + " and summons an eldritch creature to join the fight");
     }
 
     @Override

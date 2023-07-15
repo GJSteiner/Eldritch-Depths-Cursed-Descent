@@ -9,6 +9,7 @@ import Characters.Player;
 import Dungeons.Floors.FirstFloor.FirstFloorLayout;
 import Items.Consumables.UsableItem;
 import Items.Item;
+import Systems.StatusEffects.StatusEffect;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -141,6 +142,7 @@ public class Combat {
     }
 
     private static int chooseActionOrItem(Player player, Enemy target, List<Enemy> enemies) {
+
         int choice = 0;
         System.out.println("1. Attack");
         System.out.println("2. Use Item");
@@ -167,6 +169,7 @@ public class Combat {
     }
 
     private static void selectAndUseItem(Player player, Enemy target, List<Enemy> enemies) {
+        checkStun(player);
         // Displaying available consumables in the inventory
         System.out.println("Available consumables:");
         List<Item> inventory = player.getInventory();
@@ -208,6 +211,7 @@ public class Combat {
     }
 
     private static void selectAndUseAbility(Player player, Enemy target, List<Enemy> enemies) {
+        checkStun(player);
         // Displaying available abilities to the user
         System.out.println("Available abilities:");
         for (int i = 0; i < player.getAbilities().size(); i++) {
@@ -245,8 +249,17 @@ public class Combat {
     private static void endCombat(Character player) {
         player.removeAllStatusEffects();
     }
+    private static void checkStun(Character character){
+        for (StatusEffect effect : character.getActiveStatusEffects()) {
+            if (effect.getTag().equals("Stun")) {
+                System.out.println(character.getName() + " is stunned and cannot take any action this turn.");
+                return;
+            }
+        }
+    }
 
     private static void npcUseAbility(Character npc, Character target) {
+        checkStun(npc);
         List<Ability> abilities = npc.getAbilities();
 
         if (abilities.isEmpty()) {
@@ -286,6 +299,10 @@ public class Combat {
     }
 
     private static void handleDefeatedEnemy(Player player, Enemy enemy) {
+        if (!player.isAlive()) {
+            // if the player is defeated, do nothing
+            return;
+        }
         System.out.println();
         System.out.println(enemy.getName() + " has been defeated. " + player.getName() + " wins!");
 

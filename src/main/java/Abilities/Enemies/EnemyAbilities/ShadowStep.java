@@ -34,7 +34,7 @@ public class ShadowStep extends Ability {
 
         target.takeDamage(adjustedDamage);
 
-        System.out.println(caster.getName() + " casts Shadow Step on " + target.getName() + "!");
+        System.out.println(caster.getName() + " casts " + NAME + " on " + target.getName() + "!");
         System.out.println(caster.getName() + " deals " + adjustedDamage + " damage.");
     }
 

@@ -1,4 +1,4 @@
-package Systems;
+package Systems.StatusEffects;
 
 public abstract class StatusEffect {
     private String name;
@@ -27,6 +27,10 @@ public abstract class StatusEffect {
 
     public void decrementDuration() {
         duration--;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 
     public boolean isExpired() {

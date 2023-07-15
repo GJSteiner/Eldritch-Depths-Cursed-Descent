@@ -5,9 +5,7 @@ import Abilities.Enemies.EnemyAbilities.*;
 import Abilities.Enemies.EnemyPassives.Expunge;
 import Abilities.Passive;
 import Characters.Enemies.Enemy;
-import Items.Consumables.Potions.LargeHealthPotion;
-import Items.Consumables.Potions.MediumHealthPotion;
-import Items.Consumables.Potions.SmallHealthPotion;
+import Items.Consumables.Potions.*;
 import Items.Equipment.Armors.*;
 import Items.Equipment.EquipableItem;
 import Items.Equipment.EquipmentSlot;
@@ -34,6 +32,13 @@ public abstract class EnemyCreator {
     protected final Ability impFire = new ImpFire();
     protected final Ability shadowEmbrace = new ShadowEmbrace();
     protected final Ability abyssalMaw = new AbyssalMaw();
+    protected final Ability voidFire = new VoidFire();
+    protected final Ability viciousBite = new ViciousBite();
+    protected final Ability hellBlitz = new HellBlitz();
+    protected final Ability
+    protected final Ability
+    protected final Ability
+    protected final Ability
 
     // passives
     protected final Passive expunge = new Expunge();
@@ -46,7 +51,9 @@ public abstract class EnemyCreator {
     List<Passive> enemyPassives = new ArrayList<>();
     SmallHealthPotion weakPotion = new SmallHealthPotion();
     MediumHealthPotion averagePotion = new MediumHealthPotion();
-    LargeHealthPotion largePotion = new LargeHealthPotion();
+    LargeHealthPotion strongPotion = new LargeHealthPotion();
+    XlHealthPotion veryStrongPotion = new XlHealthPotion();
+    XxlHealthPotion extremelyStrongPotion = new XxlHealthPotion();
     ArmorList armorList = new ArmorList();
     WeaponList weaponList = new WeaponList();
     protected List<Item> enemyInventory = new ArrayList<>();

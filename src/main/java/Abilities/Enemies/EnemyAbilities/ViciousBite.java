@@ -6,17 +6,17 @@ import Characters.Enemies.Enemy;
 
 import java.util.List;
 
-public class DarkBlast extends Ability {
-    private static final String NAME = "Dark Blast";
-    private static final String DESCRIPTION = "Unleashes a blast of dark energy.";
-    private static final int LEVEL_REQUIREMENT = 0;
-    private static final double DAMAGE = 5;
+public class ViciousBite extends Ability {
+    private static final String NAME = "Vicious Bite";
+    private static final String DESCRIPTION = "Bites the target, tearing into their flesh.";
+    private static final int LEVEL_REQUIREMENT = 7;
+    private static final double DAMAGE = 40;
     private static final boolean AOE = false;
     private static final boolean DOT = false;
-    private static final String ABILITY_ELEMENT = "Void";
+    private static final String ABILITY_ELEMENT = "Physical";
 
 
-    public DarkBlast() {
+    public ViciousBite() {
         super(NAME, DESCRIPTION, LEVEL_REQUIREMENT, DAMAGE, AOE, DOT, ABILITY_ELEMENT);
     }
 
@@ -25,7 +25,7 @@ public class DarkBlast extends Ability {
         double adjustedDamage = caster.getLevel()*DAMAGE;
         target.takeDamage(adjustedDamage);
 
-        System.out.println(caster.getName() + " casts " + NAME +  " on " + target.getName() + "!");
+        System.out.println(caster.getName() + " bites " + target.getName() + "!");
         System.out.println(caster.getName() + " deals " + adjustedDamage + " damage.");
     }
 

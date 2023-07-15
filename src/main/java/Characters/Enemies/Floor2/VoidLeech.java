@@ -15,9 +15,6 @@ public class VoidLeech extends Enemy {
     private static final String ENEMY_TYPE = "Void Leech";
     private static final String DESCRIPTION = "A parasitic creature from the void, it drains life energy from its victims to sustain itself.";
 
-    private final EnemyTags allTags = new EnemyTags();
-    private final List<String> enemyTags = new ArrayList<>();
-
     VoidLeechCreator creator = new VoidLeechCreator();
 
     public VoidLeech() {
@@ -37,29 +34,26 @@ public class VoidLeech extends Enemy {
 
     public VoidLeech level2Leech() {
         VoidLeech voidLeech = creator.create("Fresh Void Leech", 2);
-        voidLeech.getEnemyTags().add(allTags.getWeakEnemy());
-        voidLeech.getEnemyTags().add(allTags.getNormalEnemy());
+        voidLeech.addTag(allTags.getWeakEnemy());
+        voidLeech.addTag(allTags.getNormalEnemy());
 
         return voidLeech;
     }
 
     public VoidLeech level3Leech() {
         VoidLeech voidLeech = creator.create("Plump Void Leech", 3);
-        voidLeech.getEnemyTags().add(allTags.getMediumEnemy());
-        voidLeech.getEnemyTags().add(allTags.getNormalEnemy());
+        voidLeech.addTag(allTags.getMediumEnemy());
+        voidLeech.addTag(allTags.getNormalEnemy());
 
         return voidLeech;
     }
 
     public VoidLeech level4Leech() {
         VoidLeech voidLeech = creator.create("Gluttonous Void Leech", 4);
-        voidLeech.getEnemyTags().add(allTags.getStrongEnemy());
-        voidLeech.getEnemyTags().add(allTags.getNormalEnemy());
+        voidLeech.addTag(allTags.getStrongEnemy());
+        voidLeech.addTag(allTags.getNormalEnemy());
 
         return voidLeech;
     }
 
-    public List<String> getEnemyTags() {
-        return enemyTags;
-    }
 }

@@ -123,4 +123,22 @@ public abstract class Ability {
         }
     }
 
+    //gets how many levels above the requirement the user is. to be used as a scaling multiplier.
+    public double getLevelAdjustment(Character caster){
+        double adjustment = 1;
+        int levelDifference =  caster.getLevel() - levelRequirement;
+        //if user is 1 level above the requirement, then it'll do 1.5x dmg
+        //if user is 2 levels above, it'll do 2x dmg:
+            // (leveldifference = 2)
+            // 2*.5 = 1
+            // 1+1 = 2
+            // 2x multiplier
+        //may need to be tuned down.
+        if(levelDifference > 0) {
+            adjustment = (levelDifference*.5)+1;
+        }
+
+        return adjustment;
+    }
+
 }
