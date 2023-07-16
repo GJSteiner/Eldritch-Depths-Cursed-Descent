@@ -10,6 +10,7 @@ import Dungeons.Rooms.*;
 import Items.Consumables.Potions.LargeHealthPotion;
 import Items.Consumables.Potions.MediumHealthPotion;
 import Items.Consumables.Potions.SmallHealthPotion;
+import Items.Equipment.EquipableItem;
 import Items.Item;
 import Systems.Direction;
 import Systems.EnemyTags;
@@ -31,36 +32,54 @@ public class SecondFloorLayout extends FloorLayout {
         // Creating enemies for the floor
         /// enemyRoom1 enemies:
         VoidLeech enemy1 = voidLeech.level2Leech();
+
         List<Enemy> room1Enemies = new ArrayList<>();
+
         room1Enemies.add(enemy1);
+
         /// enemyRoom2 enemies:
         VoidLeech enemy2 = voidLeech.level2Leech();
+
         List<Enemy> room2Enemies = new ArrayList<>();
+
         room2Enemies.add(enemy2);
+
         /// enemyRoom3 enemies:
         VoidLeech enemy3 = voidLeech.level3Leech();
         VoidLeech enemy4 = voidLeech.level3Leech();
         VoidLeech enemy5 = voidLeech.level3Leech();
         VoidLeech enemy6 = voidLeech.level3Leech();
+
         List<Enemy> room3Enemies = new ArrayList<>();
+
         room3Enemies.add(enemy3);
         room3Enemies.add(enemy4);
         room3Enemies.add(enemy5);
         room3Enemies.add(enemy6);
+
         setNamesForMultipleEnemies(room3Enemies);
+
         /// enemyRoom4 enemies:
         AbyssElemental enemy7 = abyssElemental.level3Abyss();
         AbyssElemental enemy8 = abyssElemental.level3Abyss();
+
         List<Enemy> room4Enemies = new ArrayList<>();
+
         room4Enemies.add(enemy7);
         room4Enemies.add(enemy8);
+
         setNamesForMultipleEnemies(room4Enemies);
+
         /// bossRoom enemies:
         AbyssElemental bossEnemy = abyssElemental.level4Abyss();
+
         bossEnemy.removeTag(enemyTags.getNormalEnemy());
         bossEnemy.addTag(enemyTags.getBossEnemy());
+
         List<Enemy> bossRoomEnemies = new ArrayList<>();
+
         VoidLeech bossRoomAdd1 = voidLeech.level4Leech();
+
         bossRoomEnemies.add(bossRoomAdd1);
 
 
@@ -69,6 +88,8 @@ public class SecondFloorLayout extends FloorLayout {
         MediumHealthPotion mediumPotion2 = new MediumHealthPotion();
         MediumHealthPotion mediumPotion3 = new MediumHealthPotion();
         LargeHealthPotion largePotion1 = new LargeHealthPotion();
+        EquipableItem balancedStarterWeapon = weaponList.getByTypeAndTier("Balance Weapon", 2);
+
 
 
         List<Item> treasure = new ArrayList<>();
@@ -114,23 +135,17 @@ public class SecondFloorLayout extends FloorLayout {
         bossRoom.setEndRoom(true);
 
     }
-    public Room getStartingRoom(){
-        return layout.get(0);
-    }
 
     @Override
     public void addNextFloorExit() {
+        int lastIndex = getLayout().size()-1;
+
+        Room nextFloorStartingRoom = getNextFloorLayout().getStartingRoom();
+        Room bossRoom = this.getLayout().get(lastIndex);
+        bossRoom.addExit(nextFloorStartingRoom, Direction.SOUTH);
+        nextFloorStartingRoom.addExit(bossRoom, Direction.NORTH);
 
     }
 
-    protected FloorLayout getNextFloorLayout(Dungeon dungeon) {
-        List<FloorLayout> floors = dungeon.getFloors();
-        int currentFloorIndex = dungeon.getCurrentFloorIndex();
 
-        if (currentFloorIndex + 1 < floors.size()) {
-            return floors.get(currentFloorIndex + 1);
-        } else {
-            return null;
-        }
-    }
 }

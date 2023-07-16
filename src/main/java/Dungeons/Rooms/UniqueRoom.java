@@ -34,7 +34,7 @@ public class UniqueRoom extends Room{
     }
 
     public void enterRoom(Player player) {
-        System.out.println("You have entered the " + getName());
+        System.out.println("You have entered the " + getName() + ". You feel an unusually strong presence here.");
         System.out.println(getDescription());
 
         // Check if the boss and additional enemies are still alive

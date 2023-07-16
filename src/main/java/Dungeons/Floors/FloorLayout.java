@@ -5,6 +5,12 @@ import Characters.Enemies.Floor1.ShadowImpaler;
 import Characters.Enemies.Floor1.VoidImp;
 import Characters.Enemies.Floor2.AbyssElemental;
 import Characters.Enemies.Floor2.VoidLeech;
+import Characters.Enemies.Floor3.CultistAcolyte;
+import Characters.Enemies.Floor3.CultistSummoner;
+import Characters.Enemies.Floor4.Hellhound;
+import Characters.Enemies.Floor4.VoidScuttler;
+import Characters.Enemies.Floor5.AbyssKnight;
+import Characters.Enemies.Floor5.VoidLord;
 import Dungeons.Dungeon;
 import Dungeons.Rooms.Room;
 import Items.Equipment.Armors.ArmorList;
@@ -21,6 +27,12 @@ public abstract class FloorLayout {
     protected ShadowImpaler shadowImpaler = new ShadowImpaler();
     protected AbyssElemental abyssElemental = new AbyssElemental();
     protected VoidLeech voidLeech = new VoidLeech();
+    protected CultistAcolyte cultistAcolyte = new CultistAcolyte();
+    protected CultistSummoner cultistSummoner = new CultistSummoner();
+    protected Hellhound hellhound = new Hellhound();
+    protected VoidScuttler voidScuttler = new VoidScuttler();
+    protected AbyssKnight abyssKnight = new AbyssKnight();
+    protected VoidLord voidLord = new VoidLord();
     protected WeaponList weaponList = new WeaponList();
     protected ArmorList armorList = new ArmorList();
     private Dungeon dungeon = new Dungeon();
@@ -83,4 +95,15 @@ public abstract class FloorLayout {
     public Dungeon getDungeon() {
         return dungeon;
     }
+    protected FloorLayout getNextFloorLayout(Dungeon dungeon) {
+        List<FloorLayout> floors = dungeon.getFloors();
+        int currentFloorIndex = dungeon.getCurrentFloorIndex();
+
+        if (currentFloorIndex + 1 < floors.size()) {
+            return floors.get(currentFloorIndex + 1);
+        } else {
+            return null;
+        }
+    }
+
 }

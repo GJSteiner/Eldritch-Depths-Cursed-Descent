@@ -30,26 +30,38 @@ public class FirstFloorLayout extends FloorLayout {
         // Creating enemies for the floor
         /// enemyRoom1 enemies:
         VoidImp enemy1 = voidImp.level0Imp();
+
         List<Enemy> room1Enemies = new ArrayList<>();
+
         room1Enemies.add(enemy1);
+
         /// enemyRoom2 enemies:
         VoidImp enemy2 = voidImp.level1Imp();
+
         List<Enemy> room2Enemies = new ArrayList<>();
+
         room2Enemies.add(enemy2);
+
         /// enemyRoom3 enemies:
+
         VoidImp enemy3 = voidImp.level1Imp();
         VoidImp enemy4 = voidImp.level1Imp();
-//        VoidImp enemy5 = voidImp.level1Imp();
         ShadowImpaler enemy5 = shadowImpaler.level1Shadow();
+
         List<Enemy> room3Enemies = new ArrayList<>();
+
         room3Enemies.add(enemy3);
         room3Enemies.add(enemy4);
         room3Enemies.add(enemy5);
+
         setNamesForMultipleEnemies(room3Enemies);
+
         /// bossRoom enemies:
         VoidImp bossEnemy = voidImp.level2Imp();
+
         bossEnemy.addTag(enemyTags.getBossEnemy());
         bossEnemy.removeTag(enemyTags.getNormalEnemy());
+
         List<Enemy> bossRoomEnemies = new ArrayList<>();
 
 
@@ -111,21 +123,9 @@ public class FirstFloorLayout extends FloorLayout {
         int lastIndex = getLayout().size()-1;
 
             Room nextFloorStartingRoom = getNextFloorLayout().getStartingRoom();
-        Room bossRoom = this.getLayout().get(lastIndex);
+            Room bossRoom = this.getLayout().get(lastIndex);
             bossRoom.addExit(nextFloorStartingRoom, Direction.SOUTH);
             nextFloorStartingRoom.addExit(bossRoom, Direction.NORTH);
 
     }
-//    protected FloorLayout getNextFloorLayout(Dungeon dungeon) {
-//        List<FloorLayout> floors = dungeon.getFloors();
-//        int currentFloorIndex = dungeon.getCurrentFloorIndex();
-//
-//        if (currentFloorIndex + 1 < floors.size()) {
-//            return floors.get(currentFloorIndex + 1);
-//        } else {
-//            return null;
-//        }
-//    }
-
-
 }
