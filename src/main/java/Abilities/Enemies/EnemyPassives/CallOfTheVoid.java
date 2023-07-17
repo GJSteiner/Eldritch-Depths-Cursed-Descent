@@ -9,6 +9,8 @@ public class CallOfTheVoid extends Passive {
     private static final String DESCRIPTION = "Applies a stacking DoT with each attack.";
     private static final Double DAMAGE = 20.0;
     private static final int DURATION = 5;
+    private static final boolean STACKING = true;
+
     private static final int LEVEL_REQUIREMENT = 10;
     private static final String DOT_ELEMENT = "Void";
 
@@ -18,7 +20,7 @@ public class CallOfTheVoid extends Passive {
     }
 
     public void applyCallOfTheVoid(Character character, Character target){
-        DamageOverTime cotv = new DamageOverTime("Call of the Void", DAMAGE, DURATION, DOT_ELEMENT);
+        DamageOverTime cotv = new DamageOverTime("Call of the Void", DAMAGE, DURATION, DOT_ELEMENT, STACKING);
         cotv.setStacking(true);
 
         DamageOverTime existingDot = target.getExistingDamageOverTimeEffect(cotv.getDotName());
@@ -28,7 +30,7 @@ public class CallOfTheVoid extends Passive {
         }
 
 
-        target.applyDamageOverTime(cotv.getDotName(), cotv.getDamagePerRound(), cotv.getRemainingRounds(), cotv.getElement());
+        target.applyDamageOverTime(cotv.getDotName(), cotv.getDamagePerRound(), cotv.getRemainingRounds(), cotv.getElement(), STACKING);
         DamageOverTime updatedDot = target.getExistingDamageOverTimeEffect(cotv.getDotName());
         System.out.println(cotv.getDotName() + " applied to " + target.getName() + "!");
         if(existingDot != null && existingDot.isStacking()) {

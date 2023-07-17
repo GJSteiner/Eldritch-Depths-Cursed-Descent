@@ -73,21 +73,6 @@ public class Combat {
                 chooseActionOrItem(player, enemy, enemies);
 
                 if (!enemy.isAlive()) {
-                    //condensed into its own handleDefeatedEnemy method
-//                    System.out.println(enemy.getName() + " has been defeated. " + player.getName() + " wins!");
-//                    player.gainExperience(enemy.getXpYield(enemy.getLevel()));
-//                    System.out.println("Exp: " + player.getExperience() + "/" + player.calculateExperienceThreshold());
-//
-//                    int droppedGold = enemy.dropGold();
-//                    player.addGold(droppedGold);
-//                    System.out.println("You have gained " + droppedGold + " gold!");
-//                    System.out.println("You now have " + player.getGold() + " gold.");
-//                    System.out.println();
-//                    // boss drops 2 items
-//                    if(checkBossEnemy(enemy)){
-//                        dropAndPickupItem(player, enemy);
-//                    }
-//                    dropAndPickupItem(player, enemy);
                     break;
                 }
 
@@ -114,6 +99,9 @@ public class Combat {
                 // Displaying dot damage for enemy
                 for (DamageOverTime dot : enemy.getDamageOverTimeEffects()) {
                     System.out.println(enemy.getName() + " takes " + dot.getDamagePerRound() + " damage from " + dot.getDotName() + ".");
+                    if(!enemy.isAlive()){
+                        handleDefeatedEnemy(player, enemy);
+                    }
                 }
                 System.out.println();
 

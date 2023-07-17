@@ -10,10 +10,10 @@ import java.util.List;
 public class ShadowStrike extends CorruptedAbility {
 
     private static final String NAME = "Shadow Strike";
-    private static final String DESCRIPTION = "Deals .1 strength each round, stacking";
+    private static final String DESCRIPTION = "Deals .2 strength each round, stacking";
     private static final int LEVEL_REQUIREMENT = 0;
     private static final double DAMAGE = 0;
-    private static final double strengthMultiplier = 0.1;
+    private static final double strengthMultiplier = 0.2;
     private static final boolean AOE = false;
     private static final boolean DOT = true;
     private static final int DOT_ROUNDS = 3;
@@ -28,12 +28,13 @@ public class ShadowStrike extends CorruptedAbility {
 
     @Override
     public void executeAbility(Character caster, Character target) {
+
         checkEmpoweredCurses(caster, target);
         checkSiphoningCurses(caster, target);
 
         double totalDamage = (caster.getStrength() * strengthMultiplier);
 
-        DamageOverTime shadowStrikeCurse = new DamageOverTime("Shadow Strike Curse", totalDamage, DOT_ROUNDS, DOT_ELEMENT);
+        DamageOverTime shadowStrikeCurse = new DamageOverTime("Shadow Strike Curse", totalDamage, DOT_ROUNDS, DOT_ELEMENT, STACKING);
         shadowStrikeCurse.setStacking(STACKING);
 
 
@@ -45,7 +46,7 @@ public class ShadowStrike extends CorruptedAbility {
         // guaranteed damage
         target.takeDamage(totalDamage);
         // dot application
-        target.applyDamageOverTime(shadowStrikeCurse.getDotName(), shadowStrikeCurse.getDamagePerRound(), shadowStrikeCurse.getRemainingRounds(), shadowStrikeCurse.getElement());
+        target.applyDamageOverTime(shadowStrikeCurse.getDotName(), shadowStrikeCurse.getDamagePerRound(), shadowStrikeCurse.getRemainingRounds(), shadowStrikeCurse.getElement(), STACKING);
 
         System.out.println(caster.getName() + " strikes with " + NAME + "!");
         System.out.println(caster.getName() + " deals " + totalDamage + " damage.");
@@ -54,7 +55,7 @@ public class ShadowStrike extends CorruptedAbility {
 
         DamageOverTime updatedDot = target.getExistingDamageOverTimeEffect(shadowStrikeCurse.getDotName());
         if(existingDot != null && existingDot.isStacking()) {
-            System.out.println(shadowStrikeCurse.getDotName() + " is now doing + " + updatedDot.getDamagePerRound() + " damage per round.");
+            System.out.println(shadowStrikeCurse.getDotName() + " is now doing " + updatedDot.getDamagePerRound() + " damage per round.");
         }
         else if (existingDot != null){
             System.out.println(shadowStrikeCurse.getDotName() + " has " + updatedDot.getRemainingRounds() + " rounds remaining");

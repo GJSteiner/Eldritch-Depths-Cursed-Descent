@@ -27,20 +27,7 @@ public abstract class Enemy extends Character {
         this.description = description;
         }
 
-//    public int getXpYield() {
-//        int adjustedXpYield = xpYield;
-//        if(tags.contains(allTags.getBossEnemy())){
-//            adjustedXpYield *= 2;
-//        }
-//         else if (tags.contains(allTags.getStrongEnemy())){
-//            adjustedXpYield *= 1.5;
-//        }
-//        else if(tags.contains(allTags.getMediumEnemy())){
-//            adjustedXpYield *= 1.25;
-//        }
-//
-//        return adjustedXpYield;
-//    }
+
 public int getXpYield(int level) {
     int adjustedXpYield = xpYield;
     double levelAdjustment = 1.0;

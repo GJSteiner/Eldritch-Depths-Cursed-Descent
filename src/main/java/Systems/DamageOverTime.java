@@ -8,12 +8,12 @@ public class DamageOverTime {
     private String element;
 
 
-    public DamageOverTime(String dotName, double damagePerRound, int numRounds, String element) {
+    public DamageOverTime(String dotName, double damagePerRound, int numRounds, String element, boolean stacking) {
         this.dotName = dotName;
         this.damagePerRound = damagePerRound;
         this.remainingRounds = numRounds;
         this.element = element;
-        this.stacking = false;
+        this.stacking = stacking;
     }
 
     public double getDamagePerRound() {

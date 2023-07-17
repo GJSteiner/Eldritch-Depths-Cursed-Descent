@@ -402,19 +402,19 @@ public abstract class Character {
         }
     }
 
-    public void applyDamageOverTime(String dotName, double damagePerRound, int numRounds, String dotElement) {
+    public void applyDamageOverTime(String dotName, double damagePerRound, int numRounds, String dotElement, boolean stacking) {
         DamageOverTime existingDot = getExistingDamageOverTimeEffect(dotName);
         if(existingDot != null){
 
             //This stacks the duration
             existingDot.setRemainingRounds(existingDot.getRemainingRounds() + numRounds);
-            if(existingDot.isStacking()){
+            if(stacking){
                 //This stacks the intensity
                 existingDot.setDamagePerRound(existingDot.getDamagePerRound() + damagePerRound);
             }
         }
         else {
-            DamageOverTime dot = new DamageOverTime(dotName, damagePerRound, numRounds, dotElement);
+            DamageOverTime dot = new DamageOverTime(dotName, damagePerRound, numRounds, dotElement, stacking);
             damageOverTimeEffects.add(dot);
         }
     }
@@ -433,7 +433,7 @@ public abstract class Character {
                 return dot;
             }
         }
-        return null; // No existing effect found
+        return null;
     }
 
     public void updateHealOverTime(){

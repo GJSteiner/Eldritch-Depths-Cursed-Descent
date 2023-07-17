@@ -33,7 +33,7 @@ public class VoidStrike extends CorruptedAbility {
 
         double totalDamage = (caster.getStrength() * strengthMultiplier);
 
-        DamageOverTime voidStrikeCurse = new DamageOverTime("Void Strike Curse", totalDamage, DOT_ROUNDS, DOT_ELEMENT);
+        DamageOverTime voidStrikeCurse = new DamageOverTime("Void Strike Curse", totalDamage, DOT_ROUNDS, DOT_ELEMENT, STACKING);
         voidStrikeCurse.setStacking(STACKING);
 
 
@@ -45,7 +45,7 @@ public class VoidStrike extends CorruptedAbility {
         // guaranteed damage
         target.takeDamage(totalDamage);
         // dot application
-        target.applyDamageOverTime(voidStrikeCurse.getDotName(), voidStrikeCurse.getDamagePerRound(), voidStrikeCurse.getRemainingRounds(), voidStrikeCurse.getElement());
+        target.applyDamageOverTime(voidStrikeCurse.getDotName(), voidStrikeCurse.getDamagePerRound(), voidStrikeCurse.getRemainingRounds(), voidStrikeCurse.getElement(), STACKING);
 
         System.out.println(caster.getName() + " strikes with " + NAME + "!");
         System.out.println(caster.getName() + " deals " + totalDamage + " damage.");
@@ -54,7 +54,7 @@ public class VoidStrike extends CorruptedAbility {
 
         DamageOverTime updatedDot = target.getExistingDamageOverTimeEffect(voidStrikeCurse.getDotName());
         if(existingDot != null && existingDot.isStacking()) {
-            System.out.println(voidStrikeCurse.getDotName() + " is now doing + " + updatedDot.getDamagePerRound() + " damage per round.");
+            System.out.println(voidStrikeCurse.getDotName() + " is now doing " + updatedDot.getDamagePerRound() + " damage per round.");
         }
         else if (existingDot != null){
             System.out.println(voidStrikeCurse.getDotName() + " has " + updatedDot.getRemainingRounds() + " rounds remaining");

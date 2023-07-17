@@ -32,7 +32,7 @@ public class Doom extends CorruptedAbility {
 
         double totalDamage = (caster.getStrength() * strengthMultiplier);
 
-        DamageOverTime doomCurse = new DamageOverTime("Shadow Strike Curse", totalDamage, DOT_ROUNDS, DOT_ELEMENT);
+        DamageOverTime doomCurse = new DamageOverTime("Shadow Strike Curse", totalDamage, DOT_ROUNDS, DOT_ELEMENT, STACKING);
         doomCurse.setStacking(STACKING);
 
 
@@ -44,7 +44,7 @@ public class Doom extends CorruptedAbility {
         // guaranteed damage
         target.takeDamage(totalDamage);
         // dot application
-        target.applyDamageOverTime(doomCurse.getDotName(), doomCurse.getDamagePerRound(), doomCurse.getRemainingRounds(), doomCurse.getElement());
+        target.applyDamageOverTime(doomCurse.getDotName(), doomCurse.getDamagePerRound(), doomCurse.getRemainingRounds(), doomCurse.getElement(), STACKING);
 
         System.out.println(caster.getName() + " strikes with " + NAME + "!");
         System.out.println(caster.getName() + " deals " + totalDamage + " damage.");
@@ -53,7 +53,7 @@ public class Doom extends CorruptedAbility {
 
         DamageOverTime updatedDot = target.getExistingDamageOverTimeEffect(doomCurse.getDotName());
         if(existingDot != null && existingDot.isStacking()) {
-            System.out.println(doomCurse.getDotName() + " is now doing + " + updatedDot.getDamagePerRound() + " damage per round.");
+            System.out.println(doomCurse.getDotName() + " is now doing " + updatedDot.getDamagePerRound() + " damage per round.");
         }
         else if (existingDot != null){
             System.out.println(doomCurse.getDotName() + " has " + updatedDot.getRemainingRounds() + " rounds remaining");

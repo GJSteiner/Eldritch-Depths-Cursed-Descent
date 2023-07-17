@@ -33,7 +33,7 @@ public class AbyssalStrike extends CorruptedAbility {
 
         double totalDamage = (caster.getStrength() * strengthMultiplier);
 
-        DamageOverTime abyssalStrikeCurse = new DamageOverTime("Abyssal Strike Curse", totalDamage, DOT_ROUNDS, DOT_ELEMENT);
+        DamageOverTime abyssalStrikeCurse = new DamageOverTime("Abyssal Strike Curse", totalDamage, DOT_ROUNDS, DOT_ELEMENT, STACKING);
         abyssalStrikeCurse.setStacking(STACKING);
 
 
@@ -45,7 +45,7 @@ public class AbyssalStrike extends CorruptedAbility {
         // guaranteed damage
         target.takeDamage(totalDamage);
         // dot application
-        target.applyDamageOverTime(abyssalStrikeCurse.getDotName(), abyssalStrikeCurse.getDamagePerRound(), abyssalStrikeCurse.getRemainingRounds(), abyssalStrikeCurse.getElement());
+        target.applyDamageOverTime(abyssalStrikeCurse.getDotName(), abyssalStrikeCurse.getDamagePerRound(), abyssalStrikeCurse.getRemainingRounds(), abyssalStrikeCurse.getElement(), STACKING);
 
         System.out.println(caster.getName() + " strikes with " + NAME + "!");
         System.out.println(caster.getName() + " deals " + totalDamage + " damage.");
@@ -54,7 +54,7 @@ public class AbyssalStrike extends CorruptedAbility {
 
         DamageOverTime updatedDot = target.getExistingDamageOverTimeEffect(abyssalStrikeCurse.getDotName());
         if(existingDot != null && existingDot.isStacking()) {
-            System.out.println(abyssalStrikeCurse.getDotName() + " is now doing + " + updatedDot.getDamagePerRound() + " damage per round.");
+            System.out.println(abyssalStrikeCurse.getDotName() + " is now doing " + updatedDot.getDamagePerRound() + " damage per round.");
         }
         else if (existingDot != null){
             System.out.println(abyssalStrikeCurse.getDotName() + " has " + updatedDot.getRemainingRounds() + " rounds remaining");
