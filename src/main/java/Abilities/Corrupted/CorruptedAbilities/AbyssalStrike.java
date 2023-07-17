@@ -13,7 +13,7 @@ public class AbyssalStrike extends CorruptedAbility {
     private static final String DESCRIPTION = "Deals .3 strength each round.";
     private static final int LEVEL_REQUIREMENT = 1;
     private static final double DAMAGE = 0;
-    private static final double STRENGTH_MULTIPLIER = 0.3;
+    private static final double strengthMultiplier = 0.3;
     private static final boolean AOE = false;
     private static final boolean DOT = true;
     private static final int DOT_ROUNDS = 5;
@@ -28,7 +28,10 @@ public class AbyssalStrike extends CorruptedAbility {
 
     @Override
     public void executeAbility(Character caster, Character target) {
-        double totalDamage = (caster.getStrength() * STRENGTH_MULTIPLIER);
+        checkEmpoweredCurses(caster, target);
+        checkSiphoningCurses(caster, target);
+
+        double totalDamage = (caster.getStrength() * strengthMultiplier);
 
         DamageOverTime abyssalStrikeCurse = new DamageOverTime("Abyssal Strike Curse", totalDamage, DOT_ROUNDS, DOT_ELEMENT);
         abyssalStrikeCurse.setStacking(STACKING);

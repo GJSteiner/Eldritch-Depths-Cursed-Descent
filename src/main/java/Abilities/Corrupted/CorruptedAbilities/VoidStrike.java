@@ -13,7 +13,7 @@ public class VoidStrike extends CorruptedAbility {
     private static final String DESCRIPTION = "Deals .2 strength each round.";
     private static final int LEVEL_REQUIREMENT = 1;
     private static final double DAMAGE = 0;
-    private static final double STRENGTH_MULTIPLIER = 0.2;
+    private static  double strengthMultiplier = 0.2;
     private static final boolean AOE = false;
     private static final boolean DOT = true;
     private static final int DOT_ROUNDS = 4;
@@ -28,7 +28,10 @@ public class VoidStrike extends CorruptedAbility {
 
     @Override
     public void executeAbility(Character caster, Character target) {
-        double totalDamage = (caster.getStrength() * STRENGTH_MULTIPLIER);
+        checkEmpoweredCurses(caster, target);
+        checkSiphoningCurses(caster, target);
+
+        double totalDamage = (caster.getStrength() * strengthMultiplier);
 
         DamageOverTime voidStrikeCurse = new DamageOverTime("Void Strike Curse", totalDamage, DOT_ROUNDS, DOT_ELEMENT);
         voidStrikeCurse.setStacking(STACKING);
