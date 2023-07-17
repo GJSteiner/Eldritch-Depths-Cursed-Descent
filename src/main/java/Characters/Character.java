@@ -402,7 +402,7 @@ public abstract class Character {
         }
     }
 
-    public void applyDamageOverTime(String dotName, double damagePerRound, int numRounds) {
+    public void applyDamageOverTime(String dotName, double damagePerRound, int numRounds, String dotElement) {
         DamageOverTime existingDot = getExistingDamageOverTimeEffect(dotName);
         if(existingDot != null){
 
@@ -414,7 +414,7 @@ public abstract class Character {
             }
         }
         else {
-            DamageOverTime dot = new DamageOverTime(dotName, damagePerRound, numRounds);
+            DamageOverTime dot = new DamageOverTime(dotName, damagePerRound, numRounds, dotElement);
             damageOverTimeEffects.add(dot);
         }
     }
@@ -426,7 +426,7 @@ public abstract class Character {
         }
         return null;
     }
-    private DamageOverTime getExistingDamageOverTimeEffect(String dotName) {
+    public DamageOverTime getExistingDamageOverTimeEffect(String dotName) {
         // Iterating over the damageOverTimeEffects list and checking if any effect already exists
         for (DamageOverTime dot : damageOverTimeEffects) {
             if (dot.getDotName().equals(dotName)) {

@@ -16,6 +16,8 @@ public class VoidFire extends Ability {
     private static final boolean AOE = false;
     private static final boolean DOT = true;
     private static final String ABILITY_ELEMENT = "Fire";
+    private static final String DOT_ELEMENT = "Fire";
+
 
 
     public VoidFire() {
@@ -26,7 +28,7 @@ public class VoidFire extends Ability {
     public void executeAbility(Character caster, Character target) {
         double realDamage = target.takeDamage(DAMAGE);
         double adjustedDot = DOT_DAMAGE*getLevelAdjustment(caster);
-        target.applyDamageOverTime(NAME, adjustedDot, DOT_ROUNDS);
+        target.applyDamageOverTime(NAME, adjustedDot, DOT_ROUNDS, DOT_ELEMENT);
 
         System.out.println(caster.getName() + " casts " + NAME + " on " + target.getName() + "!");
         System.out.println(caster.getName() + " deals " + realDamage + " damage and ignites the target for " + adjustedDot + " for " + DOT_ROUNDS +".");

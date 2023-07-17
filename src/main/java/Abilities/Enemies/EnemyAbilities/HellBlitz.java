@@ -16,6 +16,8 @@ public class HellBlitz extends Ability {
     private static final boolean AOE = false;
     private static final boolean DOT = true;
     private static final String ABILITY_ELEMENT = "Fire";
+    private static final String DOT_ELEMENT = "Fire";
+
 
 
     public HellBlitz() {
@@ -26,7 +28,7 @@ public class HellBlitz extends Ability {
     public void executeAbility(Character caster, Character target) {
         double adjustedDamage = caster.getLevel()*DAMAGE;
         double realDamage = target.takeDamage(adjustedDamage);
-        target.applyDamageOverTime(NAME, DOT_DAMAGE, DOT_ROUNDS);
+        target.applyDamageOverTime(NAME, DOT_DAMAGE, DOT_ROUNDS, DOT_ELEMENT);
 
 
         System.out.println(caster.getName() + " charges " + target.getName() + " with" + NAME + "!");

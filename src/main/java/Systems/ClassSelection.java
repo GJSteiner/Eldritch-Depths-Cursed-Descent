@@ -131,11 +131,11 @@ public class ClassSelection {
     private static Player createCorruptedPlayer(String name) {
         // Initial stats for Corrupted
         int level = 0;
-        int maxHealth = 50;
+        int maxHealth = 60;
         int health = maxHealth;
-        int magic = 10;
-        int strength = 1;
-        int defense = 5;
+        int magic = 1;
+        int strength = 10;
+        int defense = 3;
         boolean alive = true;
 
         Player player = new Player(name, level, maxHealth, health, magic, strength, defense, alive);

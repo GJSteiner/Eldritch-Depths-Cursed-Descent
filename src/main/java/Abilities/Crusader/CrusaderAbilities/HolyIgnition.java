@@ -17,6 +17,7 @@ public class HolyIgnition extends CrusaderAbility {
     private static final boolean DOT = true;
     private static final int DOT_ROUNDS = 6;
     private static final String ABILITY_ELEMENT = "Fire";
+    private static final String DOT_ELEMENT = "Fire";
 
     public HolyIgnition() {
         super(NAME, DESCRIPTION, LEVEL_REQUIREMENT, 0, AOE, DOT, ABILITY_ELEMENT);
@@ -27,7 +28,7 @@ public class HolyIgnition extends CrusaderAbility {
         checkHFM(caster, target);
 
         double totalDamage = DAMAGE + (caster.getMagic() * MAGIC_MULTIPLIER);
-        target.applyDamageOverTime(NAME, totalDamage, DOT_ROUNDS);
+        target.applyDamageOverTime(NAME, totalDamage, DOT_ROUNDS, DOT_ELEMENT);
 
         System.out.println(caster.getName() + " casts Holy Ignition!");
         System.out.println(caster.getName() + " ignites the target. The target is taking " + totalDamage +

@@ -5,11 +5,14 @@ public class DamageOverTime {
     private double damagePerRound;
     private int remainingRounds;
     private boolean stacking;
+    private String element;
 
-    public DamageOverTime(String dotName, double damagePerRound, int numRounds) {
+
+    public DamageOverTime(String dotName, double damagePerRound, int numRounds, String element) {
         this.dotName = dotName;
         this.damagePerRound = damagePerRound;
         this.remainingRounds = numRounds;
+        this.element = element;
         this.stacking = false;
     }
 
@@ -50,5 +53,13 @@ public class DamageOverTime {
 
     public void setStacking(boolean stacking) {
         this.stacking = stacking;
+    }
+
+    public String getElement() {
+        return element;
+    }
+
+    public void setElement(String element) {
+        this.element = element;
     }
 }
