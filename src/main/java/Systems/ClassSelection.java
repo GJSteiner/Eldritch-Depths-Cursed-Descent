@@ -2,6 +2,12 @@ package Systems;
 
 import Abilities.Acolyte.AcolyteAbilities.*;
 import Abilities.Acolyte.AcolytePassives.Reserves;
+import Abilities.Corrupted.CorruptedAbilities.AbyssalStrike;
+import Abilities.Corrupted.CorruptedAbilities.Doom;
+import Abilities.Corrupted.CorruptedAbilities.ShadowStrike;
+import Abilities.Corrupted.CorruptedAbilities.VoidStrike;
+import Abilities.Corrupted.CorruptedPassives.EmpoweredCurses;
+import Abilities.Corrupted.CorruptedPassives.SiphoningCurses;
 import Abilities.Crusader.CrusaderAbilities.*;
 import Abilities.Crusader.Passives.HolyFireMastery;
 import Characters.Player;
@@ -138,10 +144,17 @@ public class ClassSelection {
         int defense = 3;
         boolean alive = true;
 
+        // Create a Corrupted player instance
+
         Player player = new Player(name, level, maxHealth, health, magic, strength, defense, alive);
 
+        player.addAbility(new ShadowStrike());
+        player.addAbility(new VoidStrike());
+        player.addAbility(new AbyssalStrike());
+        player.addAbility(new Doom());
+        player.addPassive(new SiphoningCurses());
+        player.addPassive(new EmpoweredCurses());
 
-        // Create a Corrupted player instance
         player.setPlayerClass("Corrupted");
         player.setBaseStats();
         return player;
