@@ -23,10 +23,10 @@ public class Smite extends CrusaderAbility {
     @Override
     public void executeAbility(Character caster, Character target) {
         checkHFM(caster, target);
-        target.takeDamage(DAMAGE);
+        double realDamage = target.takeDamage(DAMAGE);
 
         System.out.println(caster.getName() + " smites " + target.getName() + "!");
-        System.out.println(caster.getName() + " deals " + DAMAGE + " damage.");
+        System.out.println(caster.getName() + " deals " + realDamage + " damage.");
     }
 
     @Override

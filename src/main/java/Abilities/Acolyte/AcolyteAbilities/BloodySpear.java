@@ -29,11 +29,11 @@ public class BloodySpear extends AcolyteAbility {
         double modifiedSelfDamage = checkReserves(caster, SELF_DAMAGE);
         if (caster.getHealth() > modifiedSelfDamage){
             double totalDamage = (DAMAGE + (caster.getMagic() * MAGIC_MULTIPLIER));
-            target.takeDamage(totalDamage);
+            double realDamage = target.takeDamage(totalDamage);
             caster.takeDamage(modifiedSelfDamage);
 
             System.out.println(caster.getName() + " casts Bloody Spear on " + target.getName() + "!");
-            System.out.println(caster.getName() + " deals " + totalDamage + " damage and loses " + modifiedSelfDamage + " health.");
+            System.out.println(caster.getName() + " deals " + realDamage + " damage and loses " + modifiedSelfDamage + " health.");
         }
         else {
             System.out.println(caster.getName() + " tried to use Bloody Spear, but doesn't have enough health to use this ability.");

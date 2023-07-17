@@ -113,6 +113,7 @@ public class ThirdFloorLayout extends FloorLayout{
         treasure.add(largePotion2);
         treasure.add(largePotion3);
         treasure.add(xlHealthPotion);
+        treasure.add(balancedStarterWeapon);
 
 
         // Creating the rooms for the floor

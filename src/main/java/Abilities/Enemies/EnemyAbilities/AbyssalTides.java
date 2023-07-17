@@ -23,11 +23,11 @@ public class AbyssalTides extends Ability {
     @Override
     public void executeAbility(Character caster, Character target) {
         double adjustedDamage = caster.getLevel()*DAMAGE;
-        target.takeDamage(adjustedDamage);
+        double realDamage = target.takeDamage(adjustedDamage);
         caster.removeDamageOverTime();
 
         System.out.println(caster.getName() + " casts " + NAME +  " on " + target.getName() + "!");
-        System.out.println(caster.getName() + " deals " + adjustedDamage + " damage.");
+        System.out.println(caster.getName() + " deals " + realDamage + " damage.");
         System.out.println(caster.getName() + " cleanses all damage over time effects.");
     }
 

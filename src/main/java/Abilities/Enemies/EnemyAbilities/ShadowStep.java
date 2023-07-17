@@ -32,10 +32,10 @@ public class ShadowStep extends Ability {
             }
         }
 
-        target.takeDamage(adjustedDamage);
+        double realDamage = target.takeDamage(adjustedDamage);
 
         System.out.println(caster.getName() + " casts " + NAME + " on " + target.getName() + "!");
-        System.out.println(caster.getName() + " deals " + adjustedDamage + " damage.");
+        System.out.println(caster.getName() + " deals " + realDamage + " damage.");
     }
 
     @Override

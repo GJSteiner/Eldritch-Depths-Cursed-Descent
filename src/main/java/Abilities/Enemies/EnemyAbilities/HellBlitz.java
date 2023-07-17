@@ -25,12 +25,12 @@ public class HellBlitz extends Ability {
     @Override
     public void executeAbility(Character caster, Character target) {
         double adjustedDamage = caster.getLevel()*DAMAGE;
-        target.takeDamage(adjustedDamage);
+        double realDamage = target.takeDamage(adjustedDamage);
         target.applyDamageOverTime(NAME, DOT_DAMAGE, DOT_ROUNDS);
 
 
         System.out.println(caster.getName() + " charges " + target.getName() + " with" + NAME + "!");
-        System.out.println(caster.getName() + " deals " + adjustedDamage + " damage and ignites the target for " + DOT_DAMAGE + " for " + DOT_ROUNDS +".");
+        System.out.println(caster.getName() + " deals " + realDamage + " damage and ignites the target for " + DOT_DAMAGE + " for " + DOT_ROUNDS +".");
     }
 
     @Override

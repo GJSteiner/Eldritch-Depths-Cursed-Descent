@@ -8,56 +8,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UniqueRoom extends Room{
-    private Enemy boss;
-    private List<Enemy> additionalEnemies;
+    private Enemy unique;
+    private List<Enemy> enemies;
 
-    public UniqueRoom(String name, String description, Enemy boss, List<Enemy> additionalEnemies) {
+
+    public UniqueRoom(String name, String description, List<Enemy> enemies) {
         super(name, description);
-        this.boss = boss;
-        this.additionalEnemies = additionalEnemies;
+        this.enemies = enemies;
     }
 
-    public Enemy getBoss() {
-        return boss;
+    public Enemy getUnique() {
+        return unique;
     }
 
-    public void setBoss(Enemy boss) {
-        this.boss = boss;
-    }
-
-    public List<Enemy> getAdditionalEnemies() {
-        return additionalEnemies;
-    }
-
-    public void setAdditionalEnemies(List<Enemy> additionalEnemies) {
-        this.additionalEnemies = additionalEnemies;
+    public void setUnique(Enemy unique) {
+        this.unique = unique;
     }
 
     public void enterRoom(Player player) {
-        System.out.println("You have entered the " + getName() + ". You feel an unusually strong presence here.");
+        System.out.println("You have entered the " + getName() + ". You feel an unusually strong and ominous presence here.");
         System.out.println(getDescription());
 
         // Check if the boss and additional enemies are still alive
-        boolean bossAlive = boss.isAlive();
-        boolean additionalEnemiesAlive = false;
-        for (Enemy enemy : additionalEnemies) {
-            if (enemy.isAlive()) {
-                additionalEnemiesAlive = true;
-                break;
-            }
-        }
+        boolean uniqueAlive = unique.isAlive();
+            System.out.println("There is a powerful enemy, " + unique.getName() + " in the room!");
 
-        if (additionalEnemies.size() > 0){
-            System.out.println("There is a powerful boss, " + boss.getName() + " in the room!");
-        }else{
-            System.out.println("There is a powerful boss, " + boss.getName() + ", and additional enemies in the room!");
-        }
-        if (bossAlive || additionalEnemiesAlive) {
+        if (uniqueAlive) {
             System.out.println("Prepare yourself for a challenging battle!");
 
             List<Enemy> allEnemies = new ArrayList<>();
-            allEnemies.addAll(additionalEnemies);
-            allEnemies.add(boss);
+            allEnemies.add(unique);
 
             Combat.startCombat(player, allEnemies);
         } else {

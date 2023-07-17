@@ -22,10 +22,10 @@ public class VoidBolt extends Ability {
 
     @Override
     public void executeAbility(Character caster, Character target) {
-        target.takeDamage(DAMAGE);
+        double realDamage = target.takeDamage(DAMAGE);
 
         System.out.println(caster.getName() + " casts Void Bolt on " + target.getName() + "!");
-        System.out.println(caster.getName() + " deals " + DAMAGE + " damage.");
+        System.out.println(caster.getName() + " deals " + realDamage + " damage.");
     }
 
     @Override

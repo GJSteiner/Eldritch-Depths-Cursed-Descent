@@ -24,17 +24,21 @@ public class HolyRadiance extends CrusaderAbility {
 
     @Override
     public void executeAbility(Character caster, Character target) {
-        checkHFM(caster, target);
-        double totalDamage = DAMAGE + (caster.getMagic() * MAGIC_MULTIPLIER);
-        target.takeDamage(totalDamage);
-
-        System.out.println(caster.getName() + " casts Holy Radiance!");
-        System.out.println(caster.getName() + " deals " + totalDamage + " damage to " + target.getName() + ".");
 
     }
 
     @Override
     protected void executeAbilityAoe(Character caster, List<Enemy> targets) {
+        System.out.println(caster.getName() + " casts Holy Radiance!");
+        double totalDamage = DAMAGE + (caster.getMagic() * MAGIC_MULTIPLIER);
+
+        for (Enemy target : targets) {
+            checkHFM(caster, target);
+            double realDamage = target.takeDamage(totalDamage);
+            System.out.println(caster.getName() + " deals " + realDamage + " damage to " + target.getName() +  ".");
+
+        }
+
 
     }
 }

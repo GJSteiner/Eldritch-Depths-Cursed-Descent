@@ -26,10 +26,10 @@ public class HolyInferno extends CrusaderAbility {
         checkHFM(caster, target);
 
         double totalDamage = DAMAGE + (caster.getMagic() * MAGIC_MULTIPLIER);
-            target.takeDamage(totalDamage);
+        double realDamage = target.takeDamage(totalDamage);
 
             System.out.println(caster.getName() + " casts Holy Inferno!");
-            System.out.println(caster.getName() + " deals " + totalDamage + " damage to " + target.getName() + ".");
+            System.out.println(caster.getName() + " deals " + realDamage + " damage to " + target.getName() + ".");
 
     }
 

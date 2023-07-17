@@ -6,6 +6,7 @@ import Characters.Enemies.Floor3.CultistAcolyte;
 import Characters.Enemies.Floor3.CultistSummoner;
 import Characters.Enemies.Floor4.Hellhound;
 import Characters.Enemies.Floor4.VoidScuttler;
+import Characters.Enemies.Floor5.AbyssKnight;
 import Dungeons.Floors.FloorLayout;
 import Dungeons.Rooms.*;
 import Items.Consumables.Potions.LargeHealthPotion;
@@ -81,16 +82,12 @@ public class FourthFloorLayout extends FloorLayout {
 
         setNamesForMultipleEnemies(room4Enemies);
 
-        /// enemyRoom5 enemies:
-//        CultistAcolyte enemy10 = cultistAcolyte.level6Acolyte();
-//        CultistAcolyte enemy11 = cultistAcolyte.level6Acolyte();
+        /// uniqueRoom enemies:
+        AbyssKnight uniqueEnemy = abyssKnight.level8Knight();
+
+        List<Enemy> uniqueEnemies = new ArrayList<>();
 //
-//        List<Enemy> room5Enemies = new ArrayList<>();
-//
-//        room4Enemies.add(enemy10);
-//        room4Enemies.add(enemy11);
-//
-//        setNamesForMultipleEnemies(room5Enemies);
+        uniqueEnemies.add(uniqueEnemy);
 
         /// bossRoom enemies:
         VoidScuttler bossEnemy = voidScuttler.level8Spider();
@@ -124,34 +121,35 @@ public class FourthFloorLayout extends FloorLayout {
         treasure.add(xlHealthPotion2);
         treasure.add(xlHealthPotion3);
         treasure.add(xxlHealthPotion);
+        treasure.add(balancedStarterWeapon);
 
 
         // Creating the rooms for the floor
         Room startingRoom = new StartingRoom("Fourth Floor Starting Room", "The first room of the fourth floor.");
-        Room enemyRoom1 = new EnemyRoom("Enemy Room 1", "A room with a cultist altar at its center.", room1Enemies);
-        Room enemyRoom2 = new EnemyRoom("Enemy Room 2", "A small room with a shrine to an eldritch horror against the side wall.", room2Enemies);
-        Room enemyRoom3 = new EnemyRoom("Enemy Room 3", "A large room that seems to be the main congregation of the Abyssal Cult.", room3Enemies);
-        Room treasureRoom = new TreasureRoom("Treasure Room", "A small room with a shining chest in the middle.", treasure);
-        Room enemyRoom4 = new EnemyRoom("Enemy Room 4", "A spacious room that seems to have been the site of a failed, profane ritual.", room4Enemies);
-        Room enemyRoom5 = new EnemyRoom("Enemy Room 5", "A narrow hallway with large, ornate double doors at one end.", room5Enemies);
-        Room bossRoom = new BossRoom("Boss Room", "A large chamber housing the cult's elite and recently summoned denizens of the Abyss.", bossEnemy, bossRoomEnemies);
+        Room enemyRoom1 = new EnemyRoom("Enemy Room 1", "A room filled with howls and growls as hellhounds guard the entrance.", room1Enemies);
+        Room enemyRoom2 = new EnemyRoom("Enemy Room 2", "A small room with an eerie red glow emanating from the shrine to an eldritch horror.", room2Enemies);
+        Room enemyRoom3 = new EnemyRoom("Enemy Room 3", "A large room that seems to be a long since abandoned chapel of the Abyssal Cult, now infested with void scuttlers.", room3Enemies);
+        Room treasureRoom = new TreasureRoom("Treasure Room", "A small room with a shining chest in the middle, guarded by tiny spiders and a mess of purple spiderwebs.", treasure);
+        Room enemyRoom4 = new EnemyRoom("Enemy Room 4", "The remnants of a failed, profane ritual, where hellhounds roam restlessly.", room4Enemies);
+        Room uniqueRoom = new UniqueRoom("Unique Room", "A mysterious room where an Abyss Knight stands guard, protecting the secrets ahead.", uniqueEnemies);
+        Room bossRoom = new BossRoom("Boss Room", "A massive chamber that's now home to a gathering of void scuttlers and their broodmother.", bossEnemy, bossRoomEnemies);
 
         // Connecting the rooms
 
-        startingRoom.addExit(enemyRoom1, Direction.WEST);
-        enemyRoom1.addExit(startingRoom, Direction.EAST);
-        enemyRoom1.addExit(enemyRoom2, Direction.SOUTH);
-        enemyRoom2.addExit(enemyRoom1, Direction.NORTH);
+        startingRoom.addExit(enemyRoom1, Direction.EAST);
+        enemyRoom1.addExit(startingRoom, Direction.WEST);
+        enemyRoom1.addExit(enemyRoom2, Direction.EAST);
+        enemyRoom2.addExit(enemyRoom1, Direction.WEST);
+        enemyRoom2.addExit(uniqueRoom, Direction.NORTH);
         enemyRoom2.addExit(enemyRoom3, Direction.SOUTH);
         enemyRoom3.addExit(enemyRoom2, Direction.NORTH);
-        enemyRoom3.addExit(enemyRoom4, Direction.WEST);
-        enemyRoom3.addExit(treasureRoom, Direction.EAST);
-        treasureRoom.addExit(enemyRoom3, Direction.WEST);
-        enemyRoom4.addExit(enemyRoom3, Direction.EAST);
-        enemyRoom4.addExit(enemyRoom5, Direction.WEST);
-        enemyRoom5.addExit(enemyRoom4, Direction.EAST);
-        enemyRoom5.addExit(bossRoom, Direction.WEST);
-        bossRoom.addExit(enemyRoom5, Direction.EAST);
+        enemyRoom3.addExit(enemyRoom4, Direction.EAST);
+        treasureRoom.addExit(uniqueRoom, Direction.WEST);
+        enemyRoom4.addExit(enemyRoom3, Direction.WEST);
+        enemyRoom4.addExit(bossRoom, Direction.EAST);
+        uniqueRoom.addExit(enemyRoom2, Direction.SOUTH);
+        uniqueRoom.addExit(treasureRoom, Direction.EAST);
+        bossRoom.addExit(enemyRoom4, Direction.WEST);
 
         // Adding the rooms to the layout list
         addRoom(startingRoom);
@@ -160,7 +158,7 @@ public class FourthFloorLayout extends FloorLayout {
         addRoom(enemyRoom3);
         addRoom(treasureRoom);
         addRoom(enemyRoom4);
-        addRoom(enemyRoom5);
+        addRoom(uniqueRoom);
         addRoom(bossRoom);
 
         bossRoom.setEndRoom(true);

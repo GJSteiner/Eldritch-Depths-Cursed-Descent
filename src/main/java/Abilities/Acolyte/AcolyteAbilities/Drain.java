@@ -24,7 +24,7 @@ public class Drain extends Ability {
     @Override
     public void executeAbility(Character caster, Character target) {
         double totalDamage = (caster.getMagic() * MAGIC_MULTIPLIER);
-        target.takeDamage(totalDamage);
+        target.takeUnmitigatedDamage(totalDamage);
         caster.heal(totalDamage);
         System.out.println(caster.getName() + " casts Drain on " + target.getName() + "!");
         System.out.println(caster.getName() + " deals " + totalDamage + " damage and heals for " + totalDamage + ".");

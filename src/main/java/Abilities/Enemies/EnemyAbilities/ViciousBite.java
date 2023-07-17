@@ -23,10 +23,10 @@ public class ViciousBite extends Ability {
     @Override
     public void executeAbility(Character caster, Character target) {
         double adjustedDamage = caster.getLevel()*DAMAGE;
-        target.takeDamage(adjustedDamage);
+        double realDamage = target.takeDamage(adjustedDamage);
 
         System.out.println(caster.getName() + " bites " + target.getName() + "!");
-        System.out.println(caster.getName() + " deals " + adjustedDamage + " damage.");
+        System.out.println(caster.getName() + " deals " + realDamage + " damage.");
     }
 
     @Override

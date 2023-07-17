@@ -22,14 +22,14 @@ public class ShadowEmbrace extends Ability {
 
     @Override
     public void executeAbility(Character caster, Character target) {
-        target.takeDamage(DAMAGE);
+        double realDamage = target.takeDamage(DAMAGE);
 
         double defenseDebuffIntensity = 5;
         Debuff defenseDebuff = new Debuff("Defense Debuff", "Defense", 5, defenseDebuffIntensity);
         target.applyDebuff(defenseDebuff);
 
         System.out.println(caster.getName() + " casts " + NAME + " on " + target.getName() + "!");
-        System.out.println(caster.getName() + " deals " + DAMAGE + " damage.");
+        System.out.println(caster.getName() + " deals " + realDamage + " damage.");
         System.out.println(target.getName() + "'s defense has been weakened by " + defenseDebuffIntensity + ".");
     }
 

@@ -62,7 +62,9 @@ public class Combat {
                 break;
             }
             while (player.isAlive() && enemy.isAlive()) {
+
                 // Player's turn
+
                 System.out.println(player.getName() + "'s turn:");
                 System.out.println();
                 System.out.println(player.getName() + "'s Health: " + player.getHealth() + " HP");

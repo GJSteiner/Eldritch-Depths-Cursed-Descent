@@ -97,7 +97,7 @@ public class SecondFloorLayout extends FloorLayout {
         treasure.add(mediumPotion2);
         treasure.add(mediumPotion3);
         treasure.add(largePotion1);
-//        treasure.add(largePotion1);
+        treasure.add(balancedStarterWeapon);
 
 
         // Creating the rooms for the floor

@@ -314,18 +314,23 @@ public abstract class Character {
         this.healOverTimeEffects = healOverTimeEffects;
     }
 
-    public void takeDamage(double damage) {
+    public double takeDamage(double damage) {
 
+
+        health -= getActualDamgage(damage);
+        if(health <= 0){
+            alive = false;
+        }
+        return getActualDamgage(damage);
+    }
+    public double getActualDamgage(double damage){
         double damageReduction = defense * 0.5;
 
         double reducedDamage = damage - damageReduction;
         if (reducedDamage < 0) {
             reducedDamage = 0;
         }
-        health -= reducedDamage;
-        if(health <= 0){
-            alive = false;
-        }
+        return reducedDamage;
     }
     public void takeUnmitigatedDamage(double damage){
         health -= damage;

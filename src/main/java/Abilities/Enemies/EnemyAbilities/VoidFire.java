@@ -24,12 +24,12 @@ public class VoidFire extends Ability {
 
     @Override
     public void executeAbility(Character caster, Character target) {
-        target.takeDamage(DAMAGE);
+        double realDamage = target.takeDamage(DAMAGE);
         double adjustedDot = DOT_DAMAGE*getLevelAdjustment(caster);
         target.applyDamageOverTime(NAME, adjustedDot, DOT_ROUNDS);
 
         System.out.println(caster.getName() + " casts " + NAME + " on " + target.getName() + "!");
-        System.out.println(caster.getName() + " deals " + DAMAGE + " damage and ignites the target for " + adjustedDot + " for " + DOT_ROUNDS +".");
+        System.out.println(caster.getName() + " deals " + realDamage + " damage and ignites the target for " + adjustedDot + " for " + DOT_ROUNDS +".");
 
     }
 
