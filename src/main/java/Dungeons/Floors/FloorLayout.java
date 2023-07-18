@@ -38,6 +38,7 @@ public abstract class FloorLayout {
     private Dungeon dungeon = new Dungeon();
 
     protected List<Room> layout;
+    private int floorIndex;
 
     public FloorLayout() {
         layout = new ArrayList<>();
@@ -90,20 +91,23 @@ public abstract class FloorLayout {
             return null;
         }
     }
+//    protected FloorLayout getSecondFloorLayout(){
+//        dungeon = GameRunner.dungeon;
+//        List<FloorLayout> floors = dungeon.getFloors();
+//
+//    }
     public abstract void addNextFloorExit();
 
     public Dungeon getDungeon() {
         return dungeon;
     }
-    protected FloorLayout getNextFloorLayout(Dungeon dungeon) {
-        List<FloorLayout> floors = dungeon.getFloors();
-        int currentFloorIndex = dungeon.getCurrentFloorIndex();
 
-        if (currentFloorIndex + 1 < floors.size()) {
-            return floors.get(currentFloorIndex + 1);
-        } else {
-            return null;
-        }
+
+    public int getFloorIndex() {
+        return floorIndex;
     }
 
+    public void setFloorIndex(int floorIndex) {
+        this.floorIndex = floorIndex;
+    }
 }

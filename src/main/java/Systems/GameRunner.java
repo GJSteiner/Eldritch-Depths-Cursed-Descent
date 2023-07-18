@@ -2,9 +2,12 @@ package Systems;
 
 import Characters.Player;
 import Dungeons.Dungeon;
+import Dungeons.Floors.FifthFloor.FifthFloorLayout;
 import Dungeons.Floors.FirstFloor.FirstFloorLayout;
 import Dungeons.Floors.FloorLayout;
+import Dungeons.Floors.FourthFloor.FourthFloorLayout;
 import Dungeons.Floors.SecondFloor.SecondFloorLayout;
+import Dungeons.Floors.ThirdFloor.ThirdFloorLayout;
 import Dungeons.Rooms.Room;
 import Items.Equipment.Armors.ArmorList;
 
@@ -31,7 +34,13 @@ public class GameRunner {
     private static void initializeGame() {
         dungeon.getFloors().add(new FirstFloorLayout());
         dungeon.getFloors().add(new SecondFloorLayout());
+        dungeon.getFloors().add(new ThirdFloorLayout());
+        dungeon.getFloors().add(new FourthFloorLayout());
+        dungeon.getFloors().add(new FifthFloorLayout());
         dungeon.getFloors().get(0).addNextFloorExit();
+//        dungeon.getFloors().get(1).addNextFloorExit();
+//        dungeon.getFloors().get(2).addNextFloorExit();
+//        dungeon.getFloors().get(3).addNextFloorExit();
         System.out.println();
         System.out.println("You find yourself in a dimly lit room. It seems to be the entrance to the dungeon.");
         System.out.println("Your objective is to explore the dungeon, defeat enemies, and reach the end of each floor.");
@@ -55,6 +64,7 @@ public class GameRunner {
 
     private static void exploreDungeon(Player player, Dungeon dungeon) {
         while (true) {
+            int i = 0;
             Room currentRoom = player.getCurrentRoom();
 
             player.makeChoice();
@@ -62,6 +72,11 @@ public class GameRunner {
             // Checking if the player has reached the end of the floor
             if (currentRoom.isEndRoom()) {
                 dungeon.moveToNextFloor();
+                //attempt at using the existing methods to generate the room exit whenever the player moves
+                //to the next floor. didn't work. need to try something else. 
+                i++;
+                dungeon.getFloors().get(i).addNextFloorExit();
+
 
                 currentRoom = dungeon.getCurrentFloorLayout().getStartingRoom();
 

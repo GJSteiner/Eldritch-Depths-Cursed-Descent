@@ -27,7 +27,7 @@ public class Hellhound extends Enemy {
         List<String> hellhoundTags = new ArrayList<>();
         hellhoundTags.add(allTags.getBeastEnemy());
         hellhoundTags.add(allTags.getCanineEnemy());
-        return setHellhoundTags();
+        return hellhoundTags;
     }
 
     public Hellhound(String name, int level, int maxHealth, int health, int magic, int strength, int defense, boolean alive, List<Item> inventory, List<Ability> abilities, List<Passive> passives) {

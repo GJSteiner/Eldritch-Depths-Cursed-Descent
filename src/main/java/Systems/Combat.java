@@ -247,6 +247,15 @@ public class Combat {
     }
 
     private static void endCombat(Character player) {
+        for (DamageOverTime dot : player.getDamageOverTimeEffects()){
+            dot.setRemainingRounds(0);
+        }
+        for (StatusEffect status : player.getActiveStatusEffects()){
+            status.setDuration(0);
+        }
+        for (HealOverTime hot : player.getHealOverTimeEffects()){
+            hot.setRemainingRounds(0);
+        }
         player.removeAllStatusEffects();
         player.removeHealOverTime();
         player.removeDamageOverTime();
@@ -254,6 +263,15 @@ public class Combat {
         // removing3
         // the DoT effects from the enemies.
         for (Enemy enemy : enemies) {
+            for (DamageOverTime dot : enemy.getDamageOverTimeEffects()){
+                dot.setRemainingRounds(0);
+            }
+            for (StatusEffect status : enemy.getActiveStatusEffects()){
+                status.setDuration(0);
+            }
+            for (HealOverTime hot : enemy.getHealOverTimeEffects()){
+                hot.setRemainingRounds(0);
+            }
             enemy.removeAllStatusEffects();
             enemy.removeHealOverTime();
             enemy.removeDamageOverTime();

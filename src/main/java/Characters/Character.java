@@ -465,16 +465,25 @@ public abstract class Character {
             }
         }
     }
-    public void removeDamageOverTime(){
-        if(damageOverTimeEffects.size() > 0)
-        for(DamageOverTime dot : damageOverTimeEffects){
-            damageOverTimeEffects.remove(dot);
+    public void removeDamageOverTime() {
+        List<DamageOverTime> toRemove = new ArrayList<>();
+        for (DamageOverTime dot : damageOverTimeEffects) {
+            if (dot.getRemainingRounds() <= 0) {
+                toRemove.add(dot);
+            }
         }
+        damageOverTimeEffects.removeAll(toRemove);
     }
     public void removeHealOverTime(){
+        List<HealOverTime> toRemove = new ArrayList<>();
+
         for(HealOverTime hot : healOverTimeEffects){
-            healOverTimeEffects.remove(hot);
+            if (hot.getRemainingRounds() <= 0) {
+                toRemove.add(hot);
+            }
         }
+        healOverTimeEffects.removeAll(toRemove);
+
     }
     public void equip(EquipableItem equipment) {
         EquipmentSlot equipmentSlot = equipment.getEquipmentSlot();
@@ -554,14 +563,26 @@ public abstract class Character {
         updateStats();
     }
     public void removeAllBuffs(){
+        List<Buff> toRemove = new ArrayList<>();
+
         for (Buff buff : activeBuffs){
-            removeBuff(buff);
+            if (buff.getDuration() <= 0) {
+                toRemove.add(buff);
+            }
         }
+        getActiveBuffs().removeAll(toRemove);
     }
+
+
     public void removeAllDebuffs(){
-        for(Debuff debuff : activeDebuffs){
-            removeDebuff(debuff);
+        List<Debuff> toRemove = new ArrayList<>();
+
+        for (Debuff debuff : activeDebuffs){
+            if (debuff.getDuration() <= 0) {
+                toRemove.add(debuff);
+            }
         }
+        getActiveDebuffs().removeAll(toRemove);
     }
     public void removeAllStatusEffects(){
         removeAllBuffs();

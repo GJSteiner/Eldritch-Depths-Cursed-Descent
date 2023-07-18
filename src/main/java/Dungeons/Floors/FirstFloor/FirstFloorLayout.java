@@ -23,6 +23,7 @@ public class FirstFloorLayout extends FloorLayout {
 
     @Override
     protected void generateLayout() {
+        setFloorIndex(1);
         EnemyTags enemyTags = new EnemyTags();
 
         layout.clear();

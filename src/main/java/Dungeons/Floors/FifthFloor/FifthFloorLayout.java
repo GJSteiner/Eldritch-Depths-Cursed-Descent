@@ -24,10 +24,13 @@ import java.util.List;
 public class FifthFloorLayout extends FloorLayout {
 
          public FifthFloorLayout() {
+
         }
 
         @Override
         protected void generateLayout() {
+            setFloorIndex(5);
+
             EnemyTags enemyTags = new EnemyTags();
 
             layout.clear();

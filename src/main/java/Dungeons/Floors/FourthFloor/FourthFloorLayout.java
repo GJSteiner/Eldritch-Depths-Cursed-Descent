@@ -26,6 +26,8 @@ public class FourthFloorLayout extends FloorLayout {
 
     @Override
     protected void generateLayout() {
+        setFloorIndex(4);
+
         EnemyTags enemyTags = new EnemyTags();
 
         layout.clear();

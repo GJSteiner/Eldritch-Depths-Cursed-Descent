@@ -25,6 +25,8 @@ public class SecondFloorLayout extends FloorLayout {
 
     @Override
     protected void generateLayout() {
+        setFloorIndex(2);
+
         EnemyTags enemyTags = new EnemyTags();
 
         layout.clear();
