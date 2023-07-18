@@ -208,6 +208,7 @@ public class Player extends Character {
 
             setBaseHealth(newBaseHealth);
             calculateTotalHealth();
+            setHealth(getMaxHealth());
             setBaseStrength(newBaseStrength);
             calculateTotalStrength();
             setBaseDefense(newBaseDefense);

@@ -32,7 +32,7 @@ public class ShadowStrike extends CorruptedAbility {
         checkEmpoweredCurses(caster, target);
         checkSiphoningCurses(caster, target);
 
-        double totalDamage = (caster.getStrength() * strengthMultiplier);
+        double totalDamage = Math.round(caster.getStrength() * strengthMultiplier);
 
         DamageOverTime shadowStrikeCurse = new DamageOverTime("Shadow Strike Curse", totalDamage, DOT_ROUNDS, DOT_ELEMENT, STACKING);
         shadowStrikeCurse.setStacking(STACKING);

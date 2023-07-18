@@ -10,10 +10,10 @@ import java.util.List;
 public class AbyssalStrike extends CorruptedAbility {
 
     private static final String NAME = "Abyssal Strike";
-    private static final String DESCRIPTION = "Deals .3 strength each round.";
-    private static final int LEVEL_REQUIREMENT = 1;
+    private static final String DESCRIPTION = "Deals .4 strength each round.";
+    private static final int LEVEL_REQUIREMENT = 2;
     private static final double DAMAGE = 0;
-    private static final double strengthMultiplier = 0.3;
+    private static final double strengthMultiplier = 0.4;
     private static final boolean AOE = false;
     private static final boolean DOT = true;
     private static final int DOT_ROUNDS = 5;
@@ -31,7 +31,7 @@ public class AbyssalStrike extends CorruptedAbility {
         checkEmpoweredCurses(caster, target);
         checkSiphoningCurses(caster, target);
 
-        double totalDamage = (caster.getStrength() * strengthMultiplier);
+        double totalDamage = Math.round(caster.getStrength() * strengthMultiplier);
 
         DamageOverTime abyssalStrikeCurse = new DamageOverTime("Abyssal Strike Curse", totalDamage, DOT_ROUNDS, DOT_ELEMENT, STACKING);
         abyssalStrikeCurse.setStacking(STACKING);
@@ -43,12 +43,12 @@ public class AbyssalStrike extends CorruptedAbility {
                     " active. Current intensity: " + existingDot.getDamagePerRound());
         }
         // guaranteed damage
-        target.takeDamage(totalDamage);
+//        target.takeDamage(totalDamage);
         // dot application
         target.applyDamageOverTime(abyssalStrikeCurse.getDotName(), abyssalStrikeCurse.getDamagePerRound(), abyssalStrikeCurse.getRemainingRounds(), abyssalStrikeCurse.getElement(), STACKING);
 
         System.out.println(caster.getName() + " strikes with " + NAME + "!");
-        System.out.println(caster.getName() + " deals " + totalDamage + " damage.");
+//        System.out.println(caster.getName() + " deals " + totalDamage + " damage.");
         System.out.println(caster.getName() + " curses " + target.getName() +".");
 
 

@@ -10,10 +10,10 @@ import java.util.List;
 public class VoidStrike extends CorruptedAbility {
 
     private static final String NAME = "Void Strike";
-    private static final String DESCRIPTION = "Deals .2 strength each round.";
+    private static final String DESCRIPTION = "Deals .3 strength each round.";
     private static final int LEVEL_REQUIREMENT = 1;
     private static final double DAMAGE = 0;
-    private static  double strengthMultiplier = 0.2;
+    private static  double strengthMultiplier = 0.3;
     private static final boolean AOE = false;
     private static final boolean DOT = true;
     private static final int DOT_ROUNDS = 4;
@@ -31,7 +31,7 @@ public class VoidStrike extends CorruptedAbility {
         checkEmpoweredCurses(caster, target);
         checkSiphoningCurses(caster, target);
 
-        double totalDamage = (caster.getStrength() * strengthMultiplier);
+        double totalDamage = Math.round(caster.getStrength() * strengthMultiplier);
 
         DamageOverTime voidStrikeCurse = new DamageOverTime("Void Strike Curse", totalDamage, DOT_ROUNDS, DOT_ELEMENT, STACKING);
         voidStrikeCurse.setStacking(STACKING);
@@ -43,12 +43,12 @@ public class VoidStrike extends CorruptedAbility {
                     " active. Current intensity: " + existingDot.getDamagePerRound());
         }
         // guaranteed damage
-        target.takeDamage(totalDamage);
+//        target.takeDamage(totalDamage);
         // dot application
         target.applyDamageOverTime(voidStrikeCurse.getDotName(), voidStrikeCurse.getDamagePerRound(), voidStrikeCurse.getRemainingRounds(), voidStrikeCurse.getElement(), STACKING);
 
         System.out.println(caster.getName() + " strikes with " + NAME + "!");
-        System.out.println(caster.getName() + " deals " + totalDamage + " damage.");
+//        System.out.println(caster.getName() + " deals " + totalDamage + " damage.");
         System.out.println(caster.getName() + " curses " + target.getName() +".");
 
 

@@ -86,10 +86,15 @@ public class Combat {
                     break;
                 }
 
-                player.updateDamageOverTime();
-                enemy.updateDamageOverTime();
-                player.updateHealOverTime();
-                enemy.updateHealOverTime();
+                if(enemy.isAlive()) {
+                    enemy.updateDamageOverTime();
+                    enemy.updateHealOverTime();
+                }
+                if(player.isAlive()) {
+                    player.updateDamageOverTime();
+                    player.updateHealOverTime();
+                }
+
 
                 // Displaying dot damage for player
                 for (DamageOverTime dot : player.getDamageOverTimeEffects()) {
@@ -245,6 +250,14 @@ public class Combat {
         player.removeAllStatusEffects();
         player.removeHealOverTime();
         player.removeDamageOverTime();
+
+        // removing3
+        // the DoT effects from the enemies.
+        for (Enemy enemy : enemies) {
+            enemy.removeAllStatusEffects();
+            enemy.removeHealOverTime();
+            enemy.removeDamageOverTime();
+        }
     }
     private static void checkStun(Character character){
         for (StatusEffect effect : character.getActiveStatusEffects()) {

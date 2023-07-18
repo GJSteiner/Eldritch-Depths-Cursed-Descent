@@ -30,7 +30,7 @@ public class Doom extends CorruptedAbility {
         checkEmpoweredCurses(caster, target);
         checkSiphoningCurses(caster, target);
 
-        double totalDamage = (caster.getStrength() * strengthMultiplier);
+        double totalDamage = Math.round(caster.getStrength() * strengthMultiplier);
 
         DamageOverTime doomCurse = new DamageOverTime("Shadow Strike Curse", totalDamage, DOT_ROUNDS, DOT_ELEMENT, STACKING);
         doomCurse.setStacking(STACKING);
@@ -42,12 +42,12 @@ public class Doom extends CorruptedAbility {
                     " active. Current intensity: " + existingDot.getDamagePerRound());
         }
         // guaranteed damage
-        target.takeDamage(totalDamage);
+//        target.takeDamage(totalDamage);
         // dot application
         target.applyDamageOverTime(doomCurse.getDotName(), doomCurse.getDamagePerRound(), doomCurse.getRemainingRounds(), doomCurse.getElement(), STACKING);
 
         System.out.println(caster.getName() + " strikes with " + NAME + "!");
-        System.out.println(caster.getName() + " deals " + totalDamage + " damage.");
+//        System.out.println(caster.getName() + " deals " + totalDamage + " damage.");
         System.out.println(caster.getName() + " curses " + target.getName() +".");
 
 

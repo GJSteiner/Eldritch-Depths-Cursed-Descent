@@ -24,7 +24,7 @@ public class ShadowStep extends Ability {
     public void executeAbility(Character caster, Character target) {
 
         System.out.println();
-        double adjustedDamage = DAMAGE;
+        double adjustedDamage = (caster.getLevel()+1)*DAMAGE;
         // if the enemy is a Shadow enemy, target takes double damage
         if(caster instanceof Enemy){
            if (((Enemy) caster).getTags().contains("Shadow")){

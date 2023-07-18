@@ -324,7 +324,7 @@ public abstract class Character {
         return getActualDamgage(damage);
     }
     public double getActualDamgage(double damage){
-        double damageReduction = defense * 0.5;
+        double damageReduction = defense * 0.25;
 
         double reducedDamage = damage - damageReduction;
         if (reducedDamage < 0) {
@@ -466,6 +466,7 @@ public abstract class Character {
         }
     }
     public void removeDamageOverTime(){
+        if(damageOverTimeEffects.size() > 0)
         for(DamageOverTime dot : damageOverTimeEffects){
             damageOverTimeEffects.remove(dot);
         }
