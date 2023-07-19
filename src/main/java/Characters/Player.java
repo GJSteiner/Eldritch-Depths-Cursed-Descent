@@ -1,5 +1,6 @@
 package Characters;
 
+import Dungeons.Floors.FloorLayout;
 import Items.Consumables.Potions.Potion;
 import Items.Equipment.EquipableItem;
 import Items.Equipment.EquipmentSlot;
@@ -11,9 +12,12 @@ import Systems.Direction;
 
 import java.util.*;
 
+import static Systems.GameRunner.dungeon;
+
 public class Player extends Character {
 
     private Room currentRoom;
+    private FloorLayout currentFloor;
     private int experience;
     private int gold;
     private String playerClass;
@@ -61,6 +65,14 @@ public class Player extends Character {
 
     public void setCurrentRoom(Room room) {
         currentRoom = room;
+    }
+
+    public FloorLayout getCurrentFloor() {
+        return currentFloor;
+    }
+
+    public void setCurrentFloor(FloorLayout currentFloor) {
+        this.currentFloor = currentFloor;
     }
 
     public int getExperience() {
@@ -113,7 +125,12 @@ public class Player extends Character {
 
             if (chosenDirection != null && availableDirections.contains(chosenDirection)) {
                 Room nextRoom = currentRoom.getExit(chosenDirection);
+//                if (currentRoom.isEndRoom()) {
+//                     int currentFloorIndex = dungeon.getCurrentFloorIndex();
+//                       int nextFloorIndex = currentFloorIndex + 1;
+//                }
                 currentRoom = nextRoom;
+
                 currentRoom.enterRoom(this); // Update the current room
                 validDirection = true;
 

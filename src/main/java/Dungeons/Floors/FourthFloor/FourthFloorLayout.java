@@ -16,6 +16,7 @@ import Items.Equipment.EquipableItem;
 import Items.Item;
 import Systems.Direction;
 import Systems.EnemyTags;
+import Systems.GameRunner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -170,7 +171,7 @@ public class FourthFloorLayout extends FloorLayout {
     public void addNextFloorExit() {
         int lastIndex = getLayout().size()-1;
 
-        Room nextFloorStartingRoom = getNextFloorLayout().getStartingRoom();
+        Room nextFloorStartingRoom = GameRunner.dungeon.getFloors().get(4).getStartingRoom();
         Room bossRoom = this.getLayout().get(lastIndex);
         bossRoom.addExit(nextFloorStartingRoom, Direction.EAST);
         nextFloorStartingRoom.addExit(bossRoom, Direction.WEST);

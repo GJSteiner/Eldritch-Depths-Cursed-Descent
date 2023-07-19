@@ -15,6 +15,7 @@ public class BossRoom extends Room {
         super(name, description);
         this.boss = boss;
         this.additionalEnemies = additionalEnemies;
+        this.setEndRoom(true);
     }
 
     public Enemy getBoss() {

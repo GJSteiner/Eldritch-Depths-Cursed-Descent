@@ -38,9 +38,9 @@ public class GameRunner {
         dungeon.getFloors().add(new FourthFloorLayout());
         dungeon.getFloors().add(new FifthFloorLayout());
         dungeon.getFloors().get(0).addNextFloorExit();
-//        dungeon.getFloors().get(1).addNextFloorExit();
-//        dungeon.getFloors().get(2).addNextFloorExit();
-//        dungeon.getFloors().get(3).addNextFloorExit();
+        dungeon.getFloors().get(1).addNextFloorExit();
+        dungeon.getFloors().get(2).addNextFloorExit();
+        dungeon.getFloors().get(3).addNextFloorExit();
         System.out.println();
         System.out.println("You find yourself in a dimly lit room. It seems to be the entrance to the dungeon.");
         System.out.println("Your objective is to explore the dungeon, defeat enemies, and reach the end of each floor.");
@@ -64,25 +64,25 @@ public class GameRunner {
 
     private static void exploreDungeon(Player player, Dungeon dungeon) {
         while (true) {
-            int i = 0;
+            player.setCurrentFloor(dungeon.getCurrentFloorLayout());
             Room currentRoom = player.getCurrentRoom();
 
             player.makeChoice();
 
             // Checking if the player has reached the end of the floor
-            if (currentRoom.isEndRoom()) {
-                dungeon.moveToNextFloor();
-                //attempt at using the existing methods to generate the room exit whenever the player moves
-                //to the next floor. didn't work. need to try something else. 
-                i++;
-                dungeon.getFloors().get(i).addNextFloorExit();
-
-
-                currentRoom = dungeon.getCurrentFloorLayout().getStartingRoom();
-
-                System.out.println();
-                System.out.println("You have reached Floor " + (dungeon.getCurrentFloorIndex() + 1) + ".");
-            }
+//            if (currentRoom.isEndRoom()) {
+//                dungeon.moveToNextFloor();
+//                //attempt at using the existing methods to generate the room exit whenever the player moves
+//                //to the next floor. didn't work. need to try something else.
+//                i++;
+//                dungeon.getFloors().get(i).addNextFloorExit();
+//
+//
+//                currentRoom = dungeon.getCurrentFloorLayout().getStartingRoom();
+//
+//                System.out.println();
+//                System.out.println("You have reached Floor " + (dungeon.getCurrentFloorIndex() + 1) + ".");
+//            }
 
             if (currentRoom.isVisited()) {
                 System.out.println("You have already visited this room.");
