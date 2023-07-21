@@ -112,7 +112,7 @@ public class ClassSelection {
 
     private static Player createCrusaderPlayer(String name) {
         // Initial stats for Crusader
-        int level = 0;
+        int level = 5;
         int maxHealth = 50;
         int health = maxHealth;
         int magic = 5;
@@ -136,7 +136,7 @@ public class ClassSelection {
     }
     private static Player createCorruptedPlayer(String name) {
         // Initial stats for Corrupted
-        int level = 0;
+        int level = 5;
         int maxHealth = 60;
         int health = maxHealth;
         int magic = 1;

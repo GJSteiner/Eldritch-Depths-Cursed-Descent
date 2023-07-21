@@ -65,12 +65,13 @@ public class Combat {
 
                 // Player's turn
 
-                System.out.println(player.getName() + "'s turn:");
-                System.out.println();
-                System.out.println(player.getName() + "'s Health: " + player.getHealth() + " HP");
-                System.out.println(enemy.getName() + "'s Health: " + enemy.getHealth() + " HP");
-                System.out.println();
-                chooseActionOrItem(player, enemy, enemies);
+
+                    System.out.println(player.getName() + "'s turn:");
+                    System.out.println();
+                    System.out.println(player.getName() + "'s Health: " + player.getHealth() + " HP");
+                    System.out.println(enemy.getName() + "'s Health: " + enemy.getHealth() + " HP");
+                    System.out.println();
+                    chooseActionOrItem(player, enemy, enemies);
 
                 if (!enemy.isAlive()) {
                     break;
@@ -89,10 +90,12 @@ public class Combat {
                 if(enemy.isAlive()) {
                     enemy.updateDamageOverTime();
                     enemy.updateHealOverTime();
+                    enemy.updateStatusEffect();
                 }
                 if(player.isAlive()) {
                     player.updateDamageOverTime();
                     player.updateHealOverTime();
+                    player.updateStatusEffect();
                 }
 
 
@@ -144,10 +147,16 @@ public class Combat {
     private static int chooseActionOrItem(Player player, Enemy target, List<Enemy> enemies) {
 
         int choice = 0;
-        System.out.println("1. Attack");
-        System.out.println("2. Use Item");
-        System.out.println("3. Check Stats");
-        choice = getPlayerChoice(3) + 1;
+
+
+        if(checkStun(player)){
+            choice = 4;
+        }else{
+            System.out.println("1. Attack");
+            System.out.println("2. Use Item");
+            System.out.println("3. Check Stats");
+            choice = getPlayerChoice(3) + 1;
+        }
 
         switch (choice) {
             case 1:
@@ -160,6 +169,10 @@ public class Combat {
             case 3:
                 player.displayCharacterStats();
                 chooseActionOrItem(player, target, enemies);
+                break;
+            case 4:
+                System.out.println(player.getName() + " is stunned.");
+                break;
             default:
                 System.out.println("Invalid choice.");
         }
@@ -169,7 +182,6 @@ public class Combat {
     }
 
     private static void selectAndUseItem(Player player, Enemy target, List<Enemy> enemies) {
-        checkStun(player);
         // Displaying available consumables in the inventory
         System.out.println("Available consumables:");
         List<Item> inventory = player.getInventory();
@@ -211,7 +223,7 @@ public class Combat {
     }
 
     private static void selectAndUseAbility(Player player, Enemy target, List<Enemy> enemies) {
-        checkStun(player);
+//        checkStun(player);
         // Displaying available abilities to the user
         System.out.println("Available abilities:");
         for (int i = 0; i < player.getAbilities().size(); i++) {
@@ -251,7 +263,7 @@ public class Combat {
             dot.setRemainingRounds(0);
         }
         for (StatusEffect status : player.getActiveStatusEffects()){
-            status.setDuration(0);
+            status.setRemainingRounds(0);
         }
         for (HealOverTime hot : player.getHealOverTimeEffects()){
             hot.setRemainingRounds(0);
@@ -267,7 +279,7 @@ public class Combat {
                 dot.setRemainingRounds(0);
             }
             for (StatusEffect status : enemy.getActiveStatusEffects()){
-                status.setDuration(0);
+                status.setRemainingRounds(0);
             }
             for (HealOverTime hot : enemy.getHealOverTimeEffects()){
                 hot.setRemainingRounds(0);
@@ -277,17 +289,21 @@ public class Combat {
             enemy.removeDamageOverTime();
         }
     }
-    private static void checkStun(Character character){
+    private static boolean checkStun(Character character){
+        boolean isStunned = false;
         for (StatusEffect effect : character.getActiveStatusEffects()) {
             if (effect.getTag().equals("Stun")) {
                 System.out.println(character.getName() + " is stunned and cannot take any action this turn.");
-                return;
+               isStunned = true;
             }
         }
+        return isStunned;
     }
 
     private static void npcUseAbility(Character npc, Character target) {
-        checkStun(npc);
+        if(checkStun(npc)){
+            return;
+        }
         List<Ability> abilities = npc.getAbilities();
 
         if (abilities.isEmpty()) {
@@ -312,7 +328,7 @@ public class Combat {
             int randomIndex = random.nextInt(randomAbility.getSummons().size());
             Enemy randomEnemy = randomAbility.getSummons().get(randomIndex);
             enemies.add(randomEnemy);
-            System.out.println(npc + " has summoned a " + randomEnemy.getName() + "!");
+            System.out.println(npc.getName() + " has summoned a " + randomEnemy.getName() + "!");
         }
     }
 

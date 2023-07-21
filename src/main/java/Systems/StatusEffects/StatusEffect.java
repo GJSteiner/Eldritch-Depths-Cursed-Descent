@@ -2,14 +2,14 @@ package Systems.StatusEffects;
 
 public abstract class StatusEffect {
     private String name;
-    private int duration;
+    private int remainingRounds;
     private double intensity;
     private String tag;
 
     public StatusEffect(String name, String tag, int duration, double intensity) {
         this.name = name;
         this.tag = tag;
-        this.duration = duration;
+        this.remainingRounds = duration;
         this.intensity = intensity;
     }
 
@@ -17,28 +17,27 @@ public abstract class StatusEffect {
         return name;
     }
 
-    public int getDuration() {
-        return duration;
+    public int getRemainingRounds() {
+        return remainingRounds;
     }
 
     public double getIntensity() {
         return intensity;
     }
 
-    public void decrementDuration() {
-        duration--;
-    }
-
-    public void setDuration(int duration) {
-        this.duration = duration;
+    public void setRemainingRounds(int remainingRounds) {
+        this.remainingRounds = remainingRounds;
     }
 
     public boolean isExpired() {
-        return duration <= 0;
+        return remainingRounds <= 0;
     }
 
     public String getTag() {
         return tag;
+    }
+    public void decrementRounds() {
+        remainingRounds--;
     }
 
 }

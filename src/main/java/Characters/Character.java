@@ -566,7 +566,7 @@ public abstract class Character {
         List<Buff> toRemove = new ArrayList<>();
 
         for (Buff buff : activeBuffs){
-            if (buff.getDuration() <= 0) {
+            if (buff.getRemainingRounds() <= 0) {
                 toRemove.add(buff);
             }
         }
@@ -578,7 +578,7 @@ public abstract class Character {
         List<Debuff> toRemove = new ArrayList<>();
 
         for (Debuff debuff : activeDebuffs){
-            if (debuff.getDuration() <= 0) {
+            if (debuff.getRemainingRounds() <= 0) {
                 toRemove.add(debuff);
             }
         }
@@ -617,4 +617,16 @@ public abstract class Character {
 //        }
         activeStatusEffects.add(statusEffect);
     }
+    public void updateStatusEffect() {
+
+        Iterator<StatusEffect> iterator = activeStatusEffects.iterator();
+        while (iterator.hasNext()) {
+            StatusEffect statusEffect = iterator.next();
+            statusEffect.decrementRounds();
+            if (statusEffect.getRemainingRounds() <= 0) {
+                iterator.remove();
+            }
+        }
+    }
+    public abstract void levelUp();
 }

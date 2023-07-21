@@ -82,8 +82,8 @@ public class ThirdFloorLayout extends FloorLayout{
 
         List<Enemy> room5Enemies = new ArrayList<>();
 
-        room4Enemies.add(enemy10);
-        room4Enemies.add(enemy11);
+        room5Enemies.add(enemy10);
+        room5Enemies.add(enemy11);
 
         setNamesForMultipleEnemies(room5Enemies);
 
@@ -166,8 +166,8 @@ public class ThirdFloorLayout extends FloorLayout{
 
         Room nextFloorStartingRoom = GameRunner.dungeon.getFloors().get(3).getStartingRoom();
         Room bossRoom = this.getLayout().get(lastIndex);
-        bossRoom.addExit(nextFloorStartingRoom, Direction.WEST);
-        nextFloorStartingRoom.addExit(bossRoom, Direction.EAST);
+        bossRoom.addExit(nextFloorStartingRoom, Direction.SOUTH);
+        nextFloorStartingRoom.addExit(bossRoom, Direction.NORTH);
 
     }
 

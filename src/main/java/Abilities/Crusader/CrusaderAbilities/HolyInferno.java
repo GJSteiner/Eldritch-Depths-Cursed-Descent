@@ -9,10 +9,10 @@ import java.util.List;
 
 public class HolyInferno extends CrusaderAbility {
     private static final String NAME = "Holy Inferno";
-    private static final String DESCRIPTION = "Deals 20 damage to all enemies + 0.1 magic.";
+    private static final String DESCRIPTION = "Deals 20 damage to all enemies + 0.5 magic.";
     private static final int LEVEL_REQUIREMENT = 5;
     private static final double DAMAGE = 20;
-    private static final double MAGIC_MULTIPLIER = 0.1;
+    private static final double MAGIC_MULTIPLIER = 0.5;
     private static final boolean AOE = true;
     private static final boolean DOT = false;
     private static final String ABILITY_ELEMENT = "Fire";
@@ -23,18 +23,20 @@ public class HolyInferno extends CrusaderAbility {
 
     @Override
     public void executeAbility(Character caster, Character target) {
-        checkHFM(caster, target);
-
-        double totalDamage = DAMAGE + (caster.getMagic() * MAGIC_MULTIPLIER);
-        double realDamage = target.takeDamage(totalDamage);
-
-            System.out.println(caster.getName() + " casts Holy Inferno!");
-            System.out.println(caster.getName() + " deals " + realDamage + " damage to " + target.getName() + ".");
 
     }
 
     @Override
     protected void executeAbilityAoe(Character caster, List<Enemy> targets) {
 
+        for(Enemy target : targets) {
+            checkHFM(caster, target);
+
+            double totalDamage = DAMAGE + (caster.getMagic() * MAGIC_MULTIPLIER);
+            double realDamage = target.takeDamage(totalDamage);
+
+            System.out.println(caster.getName() + " casts Holy Inferno!");
+            System.out.println(caster.getName() + " deals " + realDamage + " damage to " + target.getName() + ".");
+        }
     }
 }

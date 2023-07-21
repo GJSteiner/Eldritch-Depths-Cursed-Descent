@@ -81,9 +81,9 @@ public class FifthFloorLayout extends FloorLayout {
 
             List<Enemy> room5Enemies = new ArrayList<>();
 
-            room4Enemies.add(enemy6);
+            room5Enemies.add(enemy6);
 
-            setNamesForMultipleEnemies(room4Enemies);
+            setNamesForMultipleEnemies(room5Enemies);
 
             /// uniqueRoom enemies:
             AbyssKnight uniqueEnemy1 = abyssKnight.level9Knight();
@@ -91,7 +91,6 @@ public class FifthFloorLayout extends FloorLayout {
 
             List<Enemy> uniqueEnemies = new ArrayList<>();
 //
-            uniqueEnemies.add(uniqueEnemy1);
             uniqueEnemies.add(uniqueEnemy2);
 
             /// bossRoom enemies:
@@ -137,7 +136,7 @@ public class FifthFloorLayout extends FloorLayout {
             Room treasureRoom = new TreasureRoom("Treasure Room", "A dimly lit room with treasure glinting in the shadows.", treasure);
             Room enemyRoom4 = new EnemyRoom("Enemy Room 4", "A spacious room with ancient runes etched into the stone walls.", room4Enemies);
             Room enemyRoom5 = new EnemyRoom("Enemy Room 5", "A narrow hallway with chilling drafts and unsettling whispers.", room5Enemies);
-            Room uniqueRoom = new UniqueRoom("Unique Room", "A room with strange artifacts and enigmatic symbols covering every surface.", uniqueEnemies);
+            Room uniqueRoom = new UniqueRoom("Unique Room", "A room with strange artifacts and enigmatic symbols covering every surface.", uniqueEnemy1, uniqueEnemies);
             Room bossRoom = new BossRoom("Boss Room", "A grand chamber with a sinister aura and the smell of sulfur.", bossEnemy, bossRoomEnemies);
 
             // Connecting the rooms

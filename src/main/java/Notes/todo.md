@@ -34,7 +34,10 @@
 34) ~~adjust enemy xpYield to scale with enemy level. will need to tweak to balance though.~~
 35) randomize enemy encounters from the floor's enemy table
 36) create a method to automatically generate treasure room loot based on floor level
-37) add an option in combat to choose 0 to go back if the player chose attack or use item and change their mind.
+37) lower xp gains by a lot and add random spawns
+38) check enemy inventories for weapons to drop
+38) floor 3, room 5 enemies aren't populating
+39) add an option in combat to choose 0 to go back if the player chose attack or use item and change their mind.
 
 
 ~~add loot to level 1 and 2 voidImps in the VoidImpCreator~~

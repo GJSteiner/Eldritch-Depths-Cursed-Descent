@@ -60,6 +60,7 @@ public class FirstFloorLayout extends FloorLayout {
         /// bossRoom enemies:
         VoidImp bossEnemy = voidImp.level2Imp();
 
+
         bossEnemy.addTag(enemyTags.getBossEnemy());
         bossEnemy.removeTag(enemyTags.getNormalEnemy());
 

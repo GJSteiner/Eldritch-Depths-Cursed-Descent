@@ -90,7 +90,7 @@ public class FourthFloorLayout extends FloorLayout {
 
         List<Enemy> uniqueEnemies = new ArrayList<>();
 //
-        uniqueEnemies.add(uniqueEnemy);
+//        uniqueEnemies.add();
 
         /// bossRoom enemies:
         VoidScuttler bossEnemy = voidScuttler.level8Spider();
@@ -134,7 +134,7 @@ public class FourthFloorLayout extends FloorLayout {
         Room enemyRoom3 = new EnemyRoom("Enemy Room 3", "A large room that seems to be a long since abandoned chapel of the Abyssal Cult, now infested with void scuttlers.", room3Enemies);
         Room treasureRoom = new TreasureRoom("Treasure Room", "A small room with a shining chest in the middle, guarded by tiny spiders and a mess of purple spiderwebs.", treasure);
         Room enemyRoom4 = new EnemyRoom("Enemy Room 4", "The remnants of a failed, profane ritual, where hellhounds roam restlessly.", room4Enemies);
-        Room uniqueRoom = new UniqueRoom("Unique Room", "A mysterious room where an Abyss Knight stands guard, protecting the secrets ahead.", uniqueEnemies);
+        Room uniqueRoom = new UniqueRoom("Unique Room", "A mysterious room where an Abyss Knight stands guard, protecting the secrets ahead.", uniqueEnemy, uniqueEnemies );
         Room bossRoom = new BossRoom("Boss Room", "A massive chamber that's now home to a gathering of void scuttlers and their broodmother.", bossEnemy, bossRoomEnemies);
 
         // Connecting the rooms

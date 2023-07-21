@@ -200,7 +200,8 @@ public class Player extends Character {
         levelUp();
     }
 
-    private void levelUp(){
+    @Override
+    public void levelUp(){
         int experienceThreshold = calculateExperienceThreshold();
         while(experience >= experienceThreshold){
             setLevel(getLevel()+1);

@@ -7,14 +7,15 @@ import Systems.Combat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UniqueRoom extends Room{
+public class UniqueRoom extends Room {
     private Enemy unique;
     private List<Enemy> enemies;
 
 
-    public UniqueRoom(String name, String description, List<Enemy> enemies) {
+    public UniqueRoom(String name, String description, Enemy unique, List<Enemy> enemies) {
         super(name, description);
         this.enemies = enemies;
+        this.unique = unique;
     }
 
     public Enemy getUnique() {
@@ -30,19 +31,24 @@ public class UniqueRoom extends Room{
         System.out.println(getDescription());
 
         // Check if the boss and additional enemies are still alive
-        boolean uniqueAlive = unique.isAlive();
+        if (unique != null) {
+            boolean uniqueAlive = unique.isAlive();
             System.out.println("There is a powerful enemy, " + unique.getName() + " in the room!");
 
-        if (uniqueAlive) {
-            System.out.println("Prepare yourself for a challenging battle!");
+            if (uniqueAlive) {
+                System.out.println("Prepare yourself for a challenging battle!");
 
-            List<Enemy> allEnemies = new ArrayList<>();
-            allEnemies.add(unique);
+                List<Enemy> allEnemies = new ArrayList<>();
+                if(enemies.size() >0){
+                    allEnemies.addAll(enemies);
+                }
+                allEnemies.add(unique);
 
-            Combat.startCombat(player, allEnemies);
-        } else {
-            // All enemies have already been defeated
-            System.out.println("You have already defeated all enemies in this room.");
+                Combat.startCombat(player, allEnemies);
+            } else {
+                // All enemies have already been defeated
+                System.out.println("You have already defeated all enemies in this room.");
+            }
         }
     }
 }

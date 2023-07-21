@@ -13,9 +13,10 @@ public class HighWaters extends Passive {
     }
 
     public void applyHighWaters(Character character, Character target) {
-        int currentLevel = character.getLevel();
-        character.setLevel(currentLevel + 1);
-        System.out.println(character.getName() + " has triggered " + NAME + "and leveled up to level " + character.getLevel() + "!");
+//        int currentLevel = character.getLevel();
+//        character.setLevel(currentLevel + 1);
+        character.levelUp();
+        System.out.println(character.getName() + " has triggered " + NAME + " and leveled up to level " + character.getLevel() + "!");
 
     }
 }

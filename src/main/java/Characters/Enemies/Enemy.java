@@ -3,11 +3,14 @@ package Characters.Enemies;
 import Abilities.Ability;
 import Abilities.Passive;
 import Characters.Character;
+import Items.Equipment.EquipableItem;
+import Items.Equipment.EquipmentSlot;
 import Items.Item;
 import Systems.EnemyTags;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public abstract class Enemy extends Character {
@@ -105,5 +108,42 @@ public int getXpYield(int level) {
     }
     public void removeTag(String tag){
         tags.remove(tag);
+    }
+    @Override
+    public void levelUp(){
+
+            setLevel(getLevel()+1);
+
+            System.out.println();
+            Map<EquipmentSlot, EquipableItem> currentEquipment = getEquippedItems();
+
+            int newBaseHealth = getBaseHealth() * 2;
+            int newBaseStrength = getBaseStrength() * 2;
+            int newBaseMagic = getBaseMagic() * 2;
+            int newBaseDefense = getBaseDefense() * 2;
+
+
+            setBaseHealth(newBaseHealth);
+            calculateTotalHealth();
+            setHealth(getMaxHealth());
+            setBaseStrength(newBaseStrength);
+            calculateTotalStrength();
+            setBaseDefense(newBaseDefense);
+            calculateTotalDefense();
+            setBaseMagic(newBaseMagic);
+            calculateTotalMagic();
+
+
+    }
+    public int calculateExperienceThreshold(){
+        int baseExperienceThreshold = 100;
+        int thresholdIncrease = 50;
+        int newExperienceTreshold = baseExperienceThreshold + (thresholdIncrease * (getLevel()));
+        if(getLevel() == 0){
+            return baseExperienceThreshold;
+        }
+        else {
+            return newExperienceTreshold;
+        }
     }
 }
