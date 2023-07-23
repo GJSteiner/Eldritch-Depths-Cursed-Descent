@@ -34,7 +34,7 @@ public class CallOfTheVoid extends Passive {
         DamageOverTime updatedDot = target.getExistingDamageOverTimeEffect(cotv.getDotName());
         System.out.println(cotv.getDotName() + " applied to " + target.getName() + "!");
         if(existingDot != null && existingDot.isStacking()) {
-            System.out.println(cotv.getDotName() + " is now doing + " + updatedDot.getDamagePerRound() + " damage per round.");
+            System.out.println(cotv.getDotName() + " is now doing " + updatedDot.getDamagePerRound() + " damage per round.");
         }
     }
 }

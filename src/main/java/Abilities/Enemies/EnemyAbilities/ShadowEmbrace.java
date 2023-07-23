@@ -22,6 +22,7 @@ public class ShadowEmbrace extends Ability {
 
     @Override
     public void executeAbility(Character caster, Character target) {
+        double scaledDamage = DAMAGE + (2 * caster.getLevel());
         double realDamage = target.takeDamage(DAMAGE);
 
         double defenseDebuffIntensity = 5;

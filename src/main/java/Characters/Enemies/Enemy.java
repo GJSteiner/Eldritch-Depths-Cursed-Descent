@@ -117,23 +117,12 @@ public int getXpYield(int level) {
             System.out.println();
             Map<EquipmentSlot, EquipableItem> currentEquipment = getEquippedItems();
 
-            int newBaseHealth = getBaseHealth() * 2;
-            int newBaseStrength = getBaseStrength() * 2;
-            int newBaseMagic = getBaseMagic() * 2;
-            int newBaseDefense = getBaseDefense() * 2;
-
-
-            setBaseHealth(newBaseHealth);
-            calculateTotalHealth();
-            setHealth(getMaxHealth());
-            setBaseStrength(newBaseStrength);
-            calculateTotalStrength();
-            setBaseDefense(newBaseDefense);
-            calculateTotalDefense();
-            setBaseMagic(newBaseMagic);
-            calculateTotalMagic();
-
-
+            int newStrength = getStrength()*2;
+            int newMagic = getMagic()*2;
+            int newDefense = getDefense()*2;
+            setStrength(newStrength);
+            setMagic(newMagic);
+            setDefense(newDefense);
     }
     public int calculateExperienceThreshold(){
         int baseExperienceThreshold = 100;

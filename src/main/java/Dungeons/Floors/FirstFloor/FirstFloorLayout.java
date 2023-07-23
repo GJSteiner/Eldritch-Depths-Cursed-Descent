@@ -3,6 +3,8 @@ package Dungeons.Floors.FirstFloor;
 import Characters.Enemies.Enemy;
 import Characters.Enemies.Floor1.ShadowImpaler;
 import Characters.Enemies.Floor1.VoidImp;
+import Characters.Enemies.Floor5.AbyssKnight;
+import Characters.Enemies.Floor5.VoidLord;
 import Dungeons.Floors.FloorLayout;
 import Items.Consumables.Potions.MediumHealthPotion;
 import Items.Consumables.Potions.SmallHealthPotion;
@@ -68,6 +70,9 @@ public class FirstFloorLayout extends FloorLayout {
 
 
 
+
+
+
         // Treasure(items available for pickup, rather than defeating enemies)
         SmallHealthPotion smallPotion1 = new SmallHealthPotion();
         SmallHealthPotion smallPotion2 = new SmallHealthPotion();
@@ -119,6 +124,24 @@ public class FirstFloorLayout extends FloorLayout {
         addRoom(bossRoom);
 
         bossRoom.setEndRoom(true);
+
+
+        // testRoom
+        AbyssKnight abyssKnight1 = abyssKnight.level9Knight();
+        VoidLord voidLord1 = voidLord.level9Lord();
+        VoidLord voidLord2 = voidLord.level10Lord();
+        AbyssKnight abyssKnight2 = abyssKnight.level10Knight();
+
+        List<Enemy> testRoomEnemies = new ArrayList<>();
+        testRoomEnemies.add(abyssKnight1);
+        testRoomEnemies.add(abyssKnight2);
+        testRoomEnemies.add(voidLord1);
+        testRoomEnemies.add(voidLord2);
+
+        Room testRoom = new EnemyRoom("Test Room", "Test", testRoomEnemies);
+        startingRoom.addExit(testRoom, Direction.SOUTH);
+        testRoom.addExit(startingRoom, Direction.NORTH);
+        addRoom(testRoom);
 
     }
     public void addNextFloorExit(){

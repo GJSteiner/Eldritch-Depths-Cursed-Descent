@@ -3,6 +3,7 @@ package Abilities.Enemies.EnemyAbilities;
 import Abilities.Ability;
 import Characters.Character;
 import Characters.Enemies.Enemy;
+import Systems.DamageOverTime;
 
 import java.util.List;
 
@@ -24,11 +25,16 @@ public class AbyssalTides extends Ability {
     public void executeAbility(Character caster, Character target) {
         double adjustedDamage = caster.getLevel()*DAMAGE;
         double realDamage = target.takeDamage(adjustedDamage);
-        caster.removeDamageOverTime();
+//        caster.removeDamageOverTime();
 
         System.out.println(caster.getName() + " casts " + NAME +  " on " + target.getName() + "!");
         System.out.println(caster.getName() + " deals " + realDamage + " damage.");
         System.out.println(caster.getName() + " cleanses all damage over time effects.");
+        
+        for(DamageOverTime dot : caster.getDamageOverTimeEffects()){
+            System.out.println(NAME + " has removed " + dot.getDotName());
+        }
+        caster.removeAllDots();
     }
 
     @Override

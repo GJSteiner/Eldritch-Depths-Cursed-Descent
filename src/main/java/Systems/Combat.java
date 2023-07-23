@@ -123,8 +123,9 @@ public class Combat {
                     System.out.println(enemy.getName() + " heals " + hot.getHealthPerRound() + " health from " + hot.getHotName() + ".");
                 }
                 System.out.println();
-
-                handleEnemyPassives(enemy, player, roundsPassed);
+                if(enemy.isAlive()) {
+                    handleEnemyPassives(enemy, player, roundsPassed);
+                }
                 roundsPassed++;
 
             }
@@ -259,34 +260,41 @@ public class Combat {
     }
 
     private static void endCombat(Character player) {
-        for (DamageOverTime dot : player.getDamageOverTimeEffects()){
-            dot.setRemainingRounds(0);
-        }
-        for (StatusEffect status : player.getActiveStatusEffects()){
-            status.setRemainingRounds(0);
-        }
-        for (HealOverTime hot : player.getHealOverTimeEffects()){
-            hot.setRemainingRounds(0);
-        }
-        player.removeAllStatusEffects();
-        player.removeHealOverTime();
-        player.removeDamageOverTime();
+//        for (DamageOverTime dot : player.getDamageOverTimeEffects()){
+//            dot.setRemainingRounds(0);
+//        }
+//        for (StatusEffect status : player.getActiveStatusEffects()){
+//            status.setRemainingRounds(0);
+//        }
+//        for (HealOverTime hot : player.getHealOverTimeEffects()){
+//            hot.setRemainingRounds(0);
+//        }
+        player.removeAllDots();
+        player.removeAllHots();
+        player.removeAllStatus();
 
-        // removing3
+//        player.removeAllStatusEffects();
+//        player.removeHealOverTime();
+//        player.removeDamageOverTime();
+
+        // removing
         // the DoT effects from the enemies.
         for (Enemy enemy : enemies) {
-            for (DamageOverTime dot : enemy.getDamageOverTimeEffects()){
-                dot.setRemainingRounds(0);
-            }
-            for (StatusEffect status : enemy.getActiveStatusEffects()){
-                status.setRemainingRounds(0);
-            }
-            for (HealOverTime hot : enemy.getHealOverTimeEffects()){
-                hot.setRemainingRounds(0);
-            }
-            enemy.removeAllStatusEffects();
-            enemy.removeHealOverTime();
-            enemy.removeDamageOverTime();
+            enemy.removeAllDots();
+            enemy.removeAllHots();
+            enemy.removeAllStatus();
+//            for (DamageOverTime dot : enemy.getDamageOverTimeEffects()){
+//                dot.setRemainingRounds(0);
+//            }
+//            for (StatusEffect status : enemy.getActiveStatusEffects()){
+//                status.setRemainingRounds(0);
+//            }
+//            for (HealOverTime hot : enemy.getHealOverTimeEffects()){
+//                hot.setRemainingRounds(0);
+//            }
+//            enemy.removeAllStatusEffects();
+//            enemy.removeHealOverTime();
+//            enemy.removeDamageOverTime();
         }
     }
     private static boolean checkStun(Character character){

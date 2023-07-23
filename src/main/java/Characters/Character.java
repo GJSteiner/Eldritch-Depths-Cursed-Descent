@@ -465,7 +465,26 @@ public abstract class Character {
             }
         }
     }
+    public void removeAllDots(){
+        for (DamageOverTime dot : getDamageOverTimeEffects()){
+            dot.setRemainingRounds(0);
+        }
+        removeDamageOverTime();
+    }
+    public void removeAllHots(){
+        for (HealOverTime hot : getHealOverTimeEffects()){
+            hot.setRemainingRounds(0);
+        }
+        removeHealOverTime();
+    }
+    public void removeAllStatus(){
+        for (StatusEffect status : getActiveStatusEffects()){
+            status.setRemainingRounds(0);
+        }
+        removeAllStatusEffects();
+    }
     public void removeDamageOverTime() {
+
         List<DamageOverTime> toRemove = new ArrayList<>();
         for (DamageOverTime dot : damageOverTimeEffects) {
             if (dot.getRemainingRounds() <= 0) {
