@@ -32,11 +32,11 @@ public class HellhoundCreator extends EnemyCreator{
             createArmor("Legs", 4);
         }
 
-        int enemyMaxHealth = (enemyLevel + 1) * 10;
+        int enemyMaxHealth = (enemyLevel + 1) * 20;
         int enemyHealth = enemyMaxHealth;
         int enemyMagic = (enemyLevel + 1) * 5;
         int enemyStrength = (enemyLevel + 1) * 5;
-        int enemyDefense = (enemyLevel + 1);
+        int enemyDefense = (enemyLevel + 1) * 3;
         boolean enemyAlive = true;
 
         Hellhound hellhound = new Hellhound(enemyName, enemyLevel, enemyMaxHealth, enemyHealth, enemyMagic, enemyStrength, enemyDefense, enemyAlive, enemyInventory, enemyAbilities, enemyPassives);

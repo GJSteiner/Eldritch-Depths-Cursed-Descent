@@ -16,6 +16,7 @@ public abstract class Room {
     private List<Enemy> enemies;
     private boolean isEndRoom;
     private boolean visited;
+    private boolean isFinalRoom;
 
     public Room(String name, String description) {
         this.name = name;
@@ -24,6 +25,7 @@ public abstract class Room {
         this.enemies = new ArrayList<>();
         this.isEndRoom = false;
         this.visited = false;
+        this.isFinalRoom = false;
     }
 
     public String getName() {
@@ -65,11 +67,20 @@ public abstract class Room {
         return isEndRoom;
     }
 
+
     public void setEndRoom(boolean endRoom) {
         isEndRoom = endRoom;
     }
     public boolean isVisited() {
         return visited;
+    }
+
+    public boolean isFinalRoom() {
+        return isFinalRoom;
+    }
+
+    public void setFinalRoom(boolean finalRoom) {
+        isFinalRoom = finalRoom;
     }
 
     public void setVisited(boolean visited) {

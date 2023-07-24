@@ -10,7 +10,7 @@ public class ShadowStep extends Ability {
     private static final String NAME = "Shadow Step";
     private static final String DESCRIPTION = "Teleports behind the target and launches a surprise attack.";
     private static final int LEVEL_REQUIREMENT = 1;
-    private static final double DAMAGE = 10;
+    private static final double DAMAGE = 5;
     private static final boolean AOE = false;
     private static final boolean DOT = false;
     private static final String ABILITY_ELEMENT = "Void";

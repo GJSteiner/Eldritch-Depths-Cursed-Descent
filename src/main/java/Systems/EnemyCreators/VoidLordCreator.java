@@ -32,11 +32,11 @@ public class VoidLordCreator extends EnemyCreator{
             createArmor("Legs", 5);
         }
 
-        int enemyMaxHealth = (enemyLevel + 1) * 10;
+        int enemyMaxHealth = (enemyLevel + 1) * 30;
         int enemyHealth = enemyMaxHealth;
         int enemyMagic = (enemyLevel + 1) * 5;
         int enemyStrength = (enemyLevel + 1) * 5;
-        int enemyDefense = (enemyLevel + 1);
+        int enemyDefense = (enemyLevel + 1) * 6;
         boolean enemyAlive = true;
 
         VoidLord voidLord = new VoidLord(enemyName, enemyLevel, enemyMaxHealth, enemyHealth, enemyMagic, enemyStrength, enemyDefense, enemyAlive, enemyInventory, enemyAbilities, enemyPassives);

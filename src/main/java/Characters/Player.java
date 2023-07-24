@@ -21,6 +21,8 @@ public class Player extends Character {
     private int experience;
     private int gold;
     private String playerClass;
+   private int experienceThreshold = 100;
+
     public Player(String name, int level, int maxHealth, int health, int magic, int strength, int defense, boolean alive) {
         super(name, level, maxHealth, health, magic, strength, defense, alive);
         this.abilities = new ArrayList<>();
@@ -41,8 +43,8 @@ public class Player extends Character {
         System.out.println();
         System.out.println(getName() + ":");
         System.out.println("Level: " + getLevel());
-        System.out.println("Experience: " + getExperience() + "/" + calculateExperienceThreshold());
-        System.out.println("Health: " + getHealth() + "/" + (getMaxHealth()+getEquippedHealth()) + " HP");
+        System.out.println("Experience: " + getExperience() + "/" + experienceThreshold);
+        System.out.println("Health: " + getHealth() + "/" + getMaxHealth() + " HP");
         System.out.println("Magic: " + getMagic());
         System.out.println("Strength: " + getStrength());
         System.out.println("Defense: " + getDefense());
@@ -105,7 +107,13 @@ public class Player extends Character {
         this.playerClass = playerClass;
     }
 
+    public int getExperienceThreshold() {
+        return experienceThreshold;
+    }
 
+    public void setExperienceThreshold(int experienceTreshold) {
+        this.experienceThreshold = experienceTreshold;
+    }
 
     public void move() {
         Scanner scanner = new Scanner(System.in);
@@ -202,20 +210,21 @@ public class Player extends Character {
 
     @Override
     public void levelUp(){
-        int experienceThreshold = calculateExperienceThreshold();
+//        int experienceThreshold = calculateExperienceThreshold();
         while(experience >= experienceThreshold){
             setLevel(getLevel()+1);
             System.out.println(getName() + " has leveled up!");
             System.out.println(getName() + " is now level " + getLevel() + "!");
             System.out.println();
-            Map<EquipmentSlot, EquipableItem> currentEquipment = getEquippedItems();
+//            Map<EquipmentSlot, EquipableItem> currentEquipment = getEquippedItems();
 //            unequipAll();
 
             int newBaseHealth = getBaseHealth() * 2;
             int newBaseStrength = getBaseStrength() * 2;
             int newBaseMagic = getBaseMagic() * 2;
             int newBaseDefense = getBaseDefense() * 2;
-            experience -= calculateExperienceThreshold();
+            experience -= experienceThreshold;
+            //could remove to allow excess xp to rollover after levelup
             if (experience < 0){
                 experience = 0;
             }
@@ -226,7 +235,9 @@ public class Player extends Character {
 
             setBaseHealth(newBaseHealth);
             calculateTotalHealth();
-            setHealth(getMaxHealth());
+
+            int missingHealth = getMaxHealth() - getHealth();
+            setHealth(getHealth()+(missingHealth/2));
             setBaseStrength(newBaseStrength);
             calculateTotalStrength();
             setBaseDefense(newBaseDefense);
@@ -239,19 +250,22 @@ public class Player extends Character {
 //                    equip(item);
 //                }
 //            }
+
             experienceThreshold = calculateExperienceThreshold();
         }
     }
     public int calculateExperienceThreshold(){
-        int baseExperienceThreshold = 100;
-        int thresholdIncrease = 50;
-        int newExperienceTreshold = baseExperienceThreshold + (thresholdIncrease * (getLevel()));
-        if(getLevel() == 0){
-            return baseExperienceThreshold;
-        }
-        else {
-            return newExperienceTreshold;
-        }
+//        int thresholdIncrease = 50;
+//        int newExperienceTreshold = baseExperienceThreshold + (thresholdIncrease * (getLevel()));
+        int thresholdIncrease = 2;
+        experienceThreshold = experienceThreshold*thresholdIncrease;
+
+//        if(getLevel() == 0){
+            return experienceThreshold;
+//        }
+//        else {
+//            return newExperienceTreshold;
+//        }
     }
     public void displayEquipment(){
         System.out.println();

@@ -18,7 +18,7 @@ public abstract class Character {
    private int level = 1;
    private int maxHealth;
    private int baseHealth = maxHealth;
-  private  int equippedHealth = 0;
+   private int equippedHealth = 0;
    private int health = 1;
    private int magic = 1;
    private int equippedMagic =0;
@@ -213,7 +213,7 @@ public abstract class Character {
         this.equippedHealth = equippedHealth;
         calculateTotalHealth();
     }
-    public void calculateTotalHealth() {
+    public int calculateTotalHealth() {
         maxHealth = baseHealth + equippedHealth;
         for (Debuff debuff : activeDebuffs) {
             if (debuff.getTag().equals("Health")) {
@@ -225,6 +225,7 @@ public abstract class Character {
                 maxHealth += buff.getIntensity();
             }
         }
+        return maxHealth;
     }
 
     public int getEquippedMagic() {

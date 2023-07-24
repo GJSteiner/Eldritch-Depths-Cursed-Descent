@@ -30,7 +30,7 @@ public class AbyssalTides extends Ability {
         System.out.println(caster.getName() + " casts " + NAME +  " on " + target.getName() + "!");
         System.out.println(caster.getName() + " deals " + realDamage + " damage.");
         System.out.println(caster.getName() + " cleanses all damage over time effects.");
-        
+
         for(DamageOverTime dot : caster.getDamageOverTimeEffects()){
             System.out.println(NAME + " has removed " + dot.getDotName());
         }

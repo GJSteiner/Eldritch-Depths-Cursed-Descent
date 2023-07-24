@@ -12,43 +12,6 @@ import java.util.List;
 
 public class WeaponList {
     List<EquipableItem> weaponList = new ArrayList<>();
-    public void compileWeaponList(){
-     //tier 1
-     weaponList.add(voidDagger);
-     weaponList.add(voidStaff);
-     weaponList.add(silverRapier);
-     weaponList.add(arcaneOrb);
-     weaponList.add(orbOfMight);
-     weaponList.add(blessedShield);
-     //tier 2
-     weaponList.add(shadowblade);
-     weaponList.add(eldritchStaff);
-     weaponList.add(cursedSword);
-     weaponList.add(eldritchTome);
-     weaponList.add(golemHeart);
-     weaponList.add(voidShield);
-     //tier 3
-     weaponList.add(arcaneHammer);
-     weaponList.add(arcaneScepter);
-     weaponList.add(abyssalHammer);
-     weaponList.add(voidSigil);
-     weaponList.add(holySigil);
-     weaponList.add(sentinelShield);
-     //tier 4
-     weaponList.add(celestialBow);
-     weaponList.add(staffOfTheEternalVoid);
-     weaponList.add(bladeOfFury);
-     weaponList.add(crystalOfAbyssalMastery);
-     weaponList.add(dragonboneWarhorn);
-     weaponList.add(shieldOfWarding);
-     //tier 5
-     weaponList.add(etherealBlade);
-     weaponList.add(staffOfAbyssalDominion);
-     weaponList.add(axeOfAnnihilation);
-     weaponList.add(blackGrimoire);
-     weaponList.add(leviathansGrasp);
-     weaponList.add(aegis);
-    }
 
     //
     //tier 1
@@ -138,6 +101,45 @@ public class WeaponList {
     public StrengthOffHand leviathansGrasp = new StrengthOffHand("Leviathan's Grasp", "A tentacle-like appendage infused with the power of ancient sea beasts, providing tremendous strength.", 5);
     //    //defense offhand
     public DefenseOffHand aegis = new DefenseOffHand("Aegis", "An indestructible shield rumored to have been forged by gods, providing unmatched defense to its wielder", 5);
+
+
+ public void compileWeaponList(){
+  //tier 1
+  weaponList.add(voidDagger);
+  weaponList.add(voidStaff);
+  weaponList.add(silverRapier);
+  weaponList.add(arcaneOrb);
+  weaponList.add(orbOfMight);
+  weaponList.add(blessedShield);
+  //tier 2
+  weaponList.add(shadowblade);
+  weaponList.add(eldritchStaff);
+  weaponList.add(cursedSword);
+  weaponList.add(eldritchTome);
+  weaponList.add(golemHeart);
+  weaponList.add(voidShield);
+  //tier 3
+  weaponList.add(arcaneHammer);
+  weaponList.add(arcaneScepter);
+  weaponList.add(abyssalHammer);
+  weaponList.add(voidSigil);
+  weaponList.add(holySigil);
+  weaponList.add(sentinelShield);
+  //tier 4
+  weaponList.add(celestialBow);
+  weaponList.add(staffOfTheEternalVoid);
+  weaponList.add(bladeOfFury);
+  weaponList.add(crystalOfAbyssalMastery);
+  weaponList.add(dragonboneWarhorn);
+  weaponList.add(shieldOfWarding);
+  //tier 5
+  weaponList.add(etherealBlade);
+  weaponList.add(staffOfAbyssalDominion);
+  weaponList.add(axeOfAnnihilation);
+  weaponList.add(blackGrimoire);
+  weaponList.add(leviathansGrasp);
+  weaponList.add(aegis);
+ }
 
  public EquipableItem getByTypeAndTier(String type, int tier){
   compileWeaponList();

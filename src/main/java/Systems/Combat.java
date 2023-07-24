@@ -102,6 +102,9 @@ public class Combat {
                 // Displaying dot damage for player
                 for (DamageOverTime dot : player.getDamageOverTimeEffects()) {
                     System.out.println(player.getName() + " takes " + dot.getDamagePerRound() + " damage from " + dot.getDotName() + ".");
+                    if(!player.isAlive()){
+                        gameOver(player);
+                    }
                 }
 
                 // Displaying dot damage for enemy
@@ -130,6 +133,8 @@ public class Combat {
 
             }
         }
+        endCombat(player);
+
         if (player.getCurrentRoom().isEndRoom()) {
             System.out.println("Congratulations! You have defeated this floor's boss and cleared the floor!");
 
@@ -140,7 +145,10 @@ public class Combat {
             System.out.println("The battle has ended.");
             enemies.clear();
         }
-        endCombat(player);
+
+        if(player.getCurrentRoom().isFinalRoom()){
+            GameRunner.gameCompleted();
+        }
         player.makeChoice();
 
     }
@@ -371,7 +379,7 @@ public class Combat {
         System.out.println(enemy.getName() + " has been defeated. " + player.getName() + " wins!");
 
         player.gainExperience(enemy.getXpYield(enemy.getLevel()));
-        System.out.println("Exp: " + player.getExperience() + "/" + player.calculateExperienceThreshold());
+        System.out.println("Exp: " + player.getExperience() + "/" + player.getExperienceThreshold());
 
         int droppedGold = enemy.dropGold();
         player.addGold(droppedGold);

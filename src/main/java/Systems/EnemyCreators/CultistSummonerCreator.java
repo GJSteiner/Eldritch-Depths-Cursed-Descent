@@ -32,11 +32,11 @@ public class CultistSummonerCreator extends EnemyCreator{
             createArmor("Legs", 3);
         }
 
-        int enemyMaxHealth = (enemyLevel + 1) * 10;
+        int enemyMaxHealth = (enemyLevel + 1) * 20;
         int enemyHealth = enemyMaxHealth;
         int enemyMagic = (enemyLevel + 1) * 5;
         int enemyStrength = (enemyLevel + 1) * 5;
-        int enemyDefense = (enemyLevel + 1);
+        int enemyDefense = (enemyLevel + 1) * 4;
         boolean enemyAlive = true;
 
         CultistSummoner cultistSummoner = new CultistSummoner(enemyName, enemyLevel, enemyMaxHealth, enemyHealth, enemyMagic, enemyStrength, enemyDefense, enemyAlive, enemyInventory, enemyAbilities, enemyPassives);

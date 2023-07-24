@@ -126,22 +126,22 @@ public class FirstFloorLayout extends FloorLayout {
         bossRoom.setEndRoom(true);
 
 
-        // testRoom
-        AbyssKnight abyssKnight1 = abyssKnight.level9Knight();
-        VoidLord voidLord1 = voidLord.level9Lord();
-        VoidLord voidLord2 = voidLord.level10Lord();
-        AbyssKnight abyssKnight2 = abyssKnight.level10Knight();
-
-        List<Enemy> testRoomEnemies = new ArrayList<>();
-        testRoomEnemies.add(abyssKnight1);
-        testRoomEnemies.add(abyssKnight2);
-        testRoomEnemies.add(voidLord1);
-        testRoomEnemies.add(voidLord2);
-
-        Room testRoom = new EnemyRoom("Test Room", "Test", testRoomEnemies);
-        startingRoom.addExit(testRoom, Direction.SOUTH);
-        testRoom.addExit(startingRoom, Direction.NORTH);
-        addRoom(testRoom);
+//        // testRoom
+//        AbyssKnight abyssKnight1 = abyssKnight.level9Knight();
+//        VoidLord voidLord1 = voidLord.level9Lord();
+//        VoidLord voidLord2 = voidLord.level10Lord();
+//        AbyssKnight abyssKnight2 = abyssKnight.level10Knight();
+//
+//        List<Enemy> testRoomEnemies = new ArrayList<>();
+//        testRoomEnemies.add(abyssKnight1);
+//        testRoomEnemies.add(abyssKnight2);
+//        testRoomEnemies.add(voidLord1);
+//        testRoomEnemies.add(voidLord2);
+//
+//        Room testRoom = new EnemyRoom("Test Room", "Test", testRoomEnemies);
+//        startingRoom.addExit(testRoom, Direction.SOUTH);
+//        testRoom.addExit(startingRoom, Direction.NORTH);
+//        addRoom(testRoom);
 
     }
     public void addNextFloorExit(){

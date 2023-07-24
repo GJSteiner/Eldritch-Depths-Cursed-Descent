@@ -59,7 +59,7 @@ public class GameRunner {
 //            dungeon.moveToNextFloor();
         }
 
-        System.out.println("Congratulations! You have completed the dungeon!");
+//        System.out.println("Congratulations! You have completed the dungeon!");
     }
 
     private static void exploreDungeon(Player player, Dungeon dungeon) {
@@ -69,31 +69,23 @@ public class GameRunner {
 
             player.makeChoice();
 
-            // Checking if the player has reached the end of the floor
-//            if (currentRoom.isEndRoom()) {
-//                dungeon.moveToNextFloor();
-//                //attempt at using the existing methods to generate the room exit whenever the player moves
-//                //to the next floor. didn't work. need to try something else.
-//                i++;
-//                dungeon.getFloors().get(i).addNextFloorExit();
-//
-//
-//                currentRoom = dungeon.getCurrentFloorLayout().getStartingRoom();
-//
-//                System.out.println();
-//                System.out.println("You have reached Floor " + (dungeon.getCurrentFloorIndex() + 1) + ".");
-//            }
+            if (currentRoom.isEndRoom()) {
+            }
 
             if (currentRoom.isVisited()) {
                 System.out.println("You have already visited this room.");
                 continue; // Move to the next iteration of the loop
+            }
+            if(currentRoom.isFinalRoom()){
+                gameCompleted();
+                continue;
             }
 
             // Marking the current room as visited
             currentRoom.setVisited(true);
 
             // Moving to the next room
-    player.makeChoice();
+            player.makeChoice();
 
         }
     }
@@ -133,6 +125,24 @@ public class GameRunner {
         }
 
         return choice - 1;
+    }
+    public static void gameCompleted(){
+        dungeon.setGameCompleted(true);
+        System.out.println();
+        System.out.println("Congratulations! You have completed the dungeon!");
+
+        System.out.println();
+        System.out.println("Would you like to start a new game?");
+        System.out.println("1. Yes");
+        System.out.println("2. No");
+        int choice = getPlayerChoice(2)+1;
+        if(choice == 1){
+            restartGame();
+        }
+        else {
+            System.out.println("Thank you for playing. Goodbye!");
+            System.exit(0); // Terminate the application
+        }
     }
 
 

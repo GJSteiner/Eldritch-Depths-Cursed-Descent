@@ -31,7 +31,7 @@ public class AbyssElementalCreator extends EnemyCreator {
             createArmor("Legs", 2);
         }
 
-        int enemyMaxHealth = (enemyLevel + 1) * 10;
+        int enemyMaxHealth = (enemyLevel + 1) * 15;
         int enemyHealth = enemyMaxHealth;
         int enemyMagic = (enemyLevel + 1) * 5;
         int enemyStrength = (enemyLevel + 1) * 5;

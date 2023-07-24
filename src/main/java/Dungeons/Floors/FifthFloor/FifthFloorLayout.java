@@ -173,6 +173,7 @@ public class FifthFloorLayout extends FloorLayout {
             addRoom(bossRoom);
 
             bossRoom.setEndRoom(true);
+            bossRoom.setFinalRoom(true);
 
         }
     @Override
