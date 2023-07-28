@@ -1,8 +1,7 @@
 package Abilities.Crusader;
 
 import Abilities.Ability;
-import Abilities.Acolyte.AcolytePassives.Reserves;
-import Abilities.Crusader.Passives.HolyFireMastery;
+import Abilities.Crusader.CrusaderPassives.HolyFireMastery;
 import Characters.Character;
 
 public abstract class CrusaderAbility extends Ability {

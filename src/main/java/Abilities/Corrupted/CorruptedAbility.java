@@ -3,7 +3,6 @@ package Abilities.Corrupted;
 import Abilities.Ability;
 import Abilities.Corrupted.CorruptedPassives.EmpoweredCurses;
 import Abilities.Corrupted.CorruptedPassives.SiphoningCurses;
-import Abilities.Crusader.Passives.HolyFireMastery;
 import Characters.Character;
 
 public abstract class CorruptedAbility extends Ability {

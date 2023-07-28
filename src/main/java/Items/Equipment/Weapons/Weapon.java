@@ -3,7 +3,7 @@ package Items.Equipment.Weapons;
 import Items.Equipment.EquipableItem;
 import Items.Equipment.EquipmentSlot;
 
-public class Weapon extends EquipableItem {
+public abstract class Weapon extends EquipableItem {
     public Weapon(String name, String description, String type, int tier) {
         super(name, description, EquipmentSlot.WEAPON, type, tier, 0, 0, 0, 0);
     }

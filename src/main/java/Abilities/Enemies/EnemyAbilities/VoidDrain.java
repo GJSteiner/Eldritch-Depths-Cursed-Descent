@@ -7,7 +7,7 @@ import Characters.Enemies.Enemy;
 import java.util.List;
 
 public class VoidDrain extends Ability {
-    private static final String NAME = "Void Siphon";
+    private static final String NAME = "Void Drain";
     private static final String DESCRIPTION = "Drains the target's health.";
     private static final int LEVEL_REQUIREMENT = 1;
     private static final double DAMAGE = 15;

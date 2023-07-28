@@ -1,6 +1,6 @@
 package Abilities;
 
-public class Passive {
+public abstract class Passive {
     private String name;
     private String description;
     private int levelRequirement;

@@ -9,7 +9,7 @@ import Abilities.Corrupted.CorruptedAbilities.VoidStrike;
 import Abilities.Corrupted.CorruptedPassives.EmpoweredCurses;
 import Abilities.Corrupted.CorruptedPassives.SiphoningCurses;
 import Abilities.Crusader.CrusaderAbilities.*;
-import Abilities.Crusader.Passives.HolyFireMastery;
+import Abilities.Crusader.CrusaderPassives.HolyFireMastery;
 import Characters.Player;
 
 import java.util.Scanner;

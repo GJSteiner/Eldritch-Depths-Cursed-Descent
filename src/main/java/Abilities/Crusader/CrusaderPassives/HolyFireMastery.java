@@ -1,4 +1,4 @@
-package Abilities.Crusader.Passives;
+package Abilities.Crusader.CrusaderPassives;
 
 import Abilities.Passive;
 import Characters.Character;

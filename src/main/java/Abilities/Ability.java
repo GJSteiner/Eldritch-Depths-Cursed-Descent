@@ -28,7 +28,8 @@ public abstract class Ability {
         this.tags = new ArrayList<>();
     }
 
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
 

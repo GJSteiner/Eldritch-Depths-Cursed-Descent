@@ -219,10 +219,10 @@ public class Player extends Character {
 //            Map<EquipmentSlot, EquipableItem> currentEquipment = getEquippedItems();
 //            unequipAll();
 
-            int newBaseHealth = getBaseHealth() * 2;
-            int newBaseStrength = getBaseStrength() * 2;
-            int newBaseMagic = getBaseMagic() * 2;
-            int newBaseDefense = getBaseDefense() * 2;
+            int newBaseHealth = (int)(getBaseHealth() * 1.5);
+            int newBaseStrength = (int)(getBaseStrength() * 1.5);
+            int newBaseMagic = (int)(getBaseMagic() * 1.5);
+            int newBaseDefense = (int)(getBaseDefense() * 1.5);
             experience -= experienceThreshold;
             //could remove to allow excess xp to rollover after levelup
             if (experience < 0){
